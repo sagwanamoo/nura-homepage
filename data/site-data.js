@@ -31,7 +31,8 @@ window.NURA_DATA = {
       name: "가천대학교",
       region: "gyeonggi",
       clubName: "GRPL (가천로켓추진연구회)",
-      description: "경기도 성남시 수정구 성남대로 1342 (글로벌)"
+      description: "경기도 성남시 수정구 성남대로 1342 (글로벌)",
+      website: "https://www.gachon.ac.kr/"
     },
     {
       name: "건국대학교",
@@ -45,6 +46,7 @@ window.NURA_DATA = {
       region: "gyeonggi",
       clubName: "KURBC",
       description: "경기도 수원시 영통구 광교산로 154-42 (수원캠)",
+      website: "https://www.kyonggi.ac.kr/",
     },
     {
       name: "경북대학교",
@@ -78,7 +80,8 @@ window.NURA_DATA = {
       name: "공군사관학교",
       region: "chungbuk",
       clubName: "공군사관학교 로켓동아리",
-      description: "충청북도 청주시 상당구 남일면 단재로 635"
+      description: "충청북도 청주시 상당구 남일면 단재로 635",
+      website: "http://www.afa.ac.kr/"
     },
     {
       name: "광주과학기술원",
@@ -91,7 +94,8 @@ window.NURA_DATA = {
       name: "국립순천대학교",
       region: "jeonnam",
       clubName: "로켓단",
-      description: "전라남도 순천시 중앙로 255"
+      description: "전라남도 순천시 중앙로 255",
+      website: "https://www.scnu.ac.kr/"
     },
     {
       name: "국립한국교통대학교",
@@ -125,7 +129,8 @@ window.NURA_DATA = {
       name: "서울과학기술대학교",
       region: "seoul",
       clubName: "MACH1ne",
-      description: "서울특별시 노원구 공릉로 232"
+      description: "서울특별시 노원구 공릉로 232",
+      website: "https://www.seoultech.ac.kr/"
     },
     {
       name: "서울대학교",
@@ -159,7 +164,8 @@ window.NURA_DATA = {
       name: "숭실대학교",
       region: "seoul",
       clubName: "UsFromEarth",
-      description: "서울특별시 동작구 상도로 369"
+      description: "서울특별시 동작구 상도로 369",
+      website: "https://www.ssu.ac.kr/"
     },
     {
       name: "아주대학교",
@@ -179,7 +185,8 @@ window.NURA_DATA = {
       name: "영남대학교",
       region: "gyeongbuk",
       clubName: "ARC",
-      description: "경상북도 경산시 대학로 280 (경산캠)"
+      description: "경상북도 경산시 대학로 280 (경산캠)",
+      website: "https://www.yu.ac.kr/"
     },
     {
       name: "울산과학기술원",
@@ -248,7 +255,8 @@ window.NURA_DATA = {
       name: "한국에너지공과대학교",
       region: "jeonnam",
       clubName: "WGM",
-      description: "전라남도 나주시 켄텍길 21"
+      description: "전라남도 나주시 켄텍길 21",
+      website: "https://www.kentech.ac.kr/"
     },
     {
       name: "한국항공대학교",

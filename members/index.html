@@ -58,6 +58,79 @@
         opacity: 1;
       }
 
+      .members-directory-shell {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .members-logo-wall {
+        position: relative;
+        padding: 0.6rem 0 0;
+        background: transparent;
+        box-shadow: none;
+        isolation: isolate;
+      }
+
+      .members-logo-wall__meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.35rem;
+      }
+
+      .members-logo-wall__title {
+        font-size: 1.05rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: rgba(255, 255, 255, 0.96);
+        text-align: center;
+      }
+
+      .members-logo-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 1.3rem 1rem;
+      }
+
+      .members-logo-item {
+        display: flex;
+        min-height: 104px;
+        align-items: center;
+        justify-content: center;
+        padding: 0.2rem;
+        text-decoration: none;
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .members-logo-item:hover,
+      .members-logo-item:focus-visible {
+        transform: translateY(-2px) scale(1.02);
+        opacity: 0.92;
+      }
+
+      .members-logo-item img {
+        display: block;
+        max-width: 100%;
+        max-height: 82px;
+        object-fit: contain;
+        filter: none;
+      }
+
+      .members-logo-item__fallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 82px;
+        padding: 0 0.2rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1.45;
+        color: #334155;
+        text-align: center;
+        word-break: keep-all;
+      }
+
       .region-accordion {
         display: flex;
         flex-direction: column;
@@ -527,6 +600,34 @@
       @media (max-width: 430px) {
         .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
 
+        .members-logo-wall {
+          padding-top: 0.2rem;
+        }
+
+        .members-logo-wall__meta {
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .members-logo-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0.8rem 0.5rem;
+        }
+
+        .members-logo-item {
+          min-height: 72px;
+          padding: 0;
+        }
+
+        .members-logo-item img {
+          max-height: 52px;
+        }
+
+        .members-logo-item__fallback {
+          min-height: 56px;
+          font-size: 0.68rem;
+        }
+
         .region-toggle__meta {
           gap: 0.4rem;
           flex-wrap: wrap;
@@ -547,6 +648,17 @@
 
         .subregion-group__panel {
           padding-left: 0.7rem;
+        }
+      }
+
+      @media (min-width: 431px) and (max-width: 860px) {
+        .members-logo-wall__meta {
+          align-items: center;
+        }
+
+        .members-logo-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 1rem 0.8rem;
         }
       }
     </style>
@@ -598,6 +710,17 @@
                 </div>
               </div>
             </section>
+
+            <section class="px-0 md:px-2 lg:px-4 pt-2 md:pt-4 pb-8 md:pb-10 border-t border-white/10">
+              <div class="members-directory-shell">
+                <section class="members-logo-wall" aria-labelledby="members-logo-wall-title">
+                  <div class="members-logo-wall__meta">
+                    <p id="members-logo-wall-title" class="members-logo-wall__title">회원 대학 로고</p>
+                  </div>
+                  <div id="members-logo-grid" class="members-logo-grid"></div>
+                </section>
+              </div>
+            </section>
           </div>
         </section>
       </main>
@@ -613,6 +736,7 @@
       const mapStatus = document.getElementById('members-map-status');
       const membersGuideBlock = document.getElementById('members-guide-block');
       const regionAccordion = document.getElementById('region-accordion');
+      const memberLogoGrid = document.getElementById('members-logo-grid');
 
       const provinceGroupsByRegion = {
         seoul: ['KR-11'],
@@ -696,14 +820,53 @@
       const regionDefinitionMap = new Map(memberRegions.map((region) => [region.id, region]));
       const regionMembersMap = new Map(memberRegions.map((region) => [region.id, []]));
 
-      const MAP_BASE_FILL = 'rgba(255,255,255,0.045)';
-      const MAP_BASE_STROKE = 'rgba(255,255,255,0.18)';
+      const MAP_BASE_FILL = 'rgba(255,255,255,0.095)';
+      const MAP_BASE_STROKE = 'rgba(255,255,255,0.3)';
       const MAP_HOVER_FILL = 'rgba(96,165,250,0.10)';
       const MAP_HOVER_STROKE = 'rgba(147,197,253,0.72)';
       const MAP_INTERACTIVE_FILL = 'rgba(255,255,255,0.14)';
       const MAP_INTERACTIVE_STROKE = 'rgba(191,219,254,0.94)';
       const MAP_SELECTED_FILL = 'rgba(96,165,250,0.18)';
       const MAP_SELECTED_STROKE = 'rgba(191,219,254,1)';
+
+      const memberLogoPathByName = {
+        '가천대학교': '../source/members/used-logos/가천대학교.png',
+        '건국대학교': '../source/members/used-logos/건국대학교.png',
+        '경기대학교': '../source/members/used-logos/경기대학교.png',
+        '경북대학교': '../source/members/used-logos/경북대학교.png',
+        '경상국립대학교': '../source/members/used-logos/경상국립대학교.png',
+        '경희대학교': '../source/members/used-logos/경희대학교.png',
+        '고려대학교': '../source/members/used-logos/고려대학교.gif',
+        '공군사관학교': '../source/members/used-logos/공군사관학교.svg',
+        '광주과학기술원': '../source/members/used-logos/광주과학기술원.png',
+        '국립순천대학교': '../source/members/used-logos/국립순천대학교.png',
+        '국립한국교통대학교': '../source/members/used-logos/국립한국교통대학교.png',
+        '국민대학교': '../source/members/used-logos/국민대학교.png',
+        '동국대학교': '../source/members/used-logos/동국대학교.png',
+        '부산대학교': '../source/members/used-logos/부산대학교.png',
+        '서울과학기술대학교': '../source/members/used-logos/서울과학기술대학교.svg',
+        '서울대학교': '../source/members/used-logos/서울대학교.svg',
+        '성균관대학교': '../source/members/used-logos/성균관대학교.png',
+        '세종대학교': '../source/members/used-logos/세종대학교.png',
+        '숙명여자대학교': '../source/members/used-logos/숙명여자대학교.png',
+        '숭실대학교': '../source/members/used-logos/숭실대학교.svg',
+        '아주대학교': '../source/members/used-logos/아주대학교.svg',
+        '연세대학교': '../source/members/used-logos/연세대학교.png',
+        '영남대학교': '../source/members/used-logos/영남대학교.png',
+        '울산과학기술원': '../source/members/used-logos/unist.svg',
+        '인하대학교': '../source/members/used-logos/인하대학교.png',
+        '전북대학교': '../source/members/used-logos/전북대학교.png',
+        '조선대학교': '../source/members/used-logos/조선대학교.jpg',
+        '중앙대학교': '../source/members/used-logos/중앙대학교.png',
+        '충남대학교': '../source/members/used-logos/충남대학교.svg',
+        '포항공과대학교': '../source/members/used-logos/포항공대.png',
+        '한국과학기술원': '../source/members/used-logos/한국과학기술원.png',
+        '한국기술교육대학교': '../source/members/used-logos/한국기술교육대학교.svg',
+        '한국에너지공과대학교': '../source/members/used-logos/한국에너지공과대학교.png',
+        '한국항공대학교': '../source/members/used-logos/항공대학교.svg',
+        '한양대학교': '../source/members/used-logos/한양대학교.svg',
+        '한양대학교 ERICA': '../source/members/used-logos/한양대학교 ERICA.svg'
+      };
 
       let provinceNodes = [];
       let svgRootNode = null;
@@ -730,6 +893,60 @@
       });
 
       const getMembersByFineRegion = (regionId) => regionMembersMap.get(regionId) || [];
+
+      const getInstagramUrl = (member) => {
+        const instagramHandle = typeof member.instagramHandle === 'string' ? member.instagramHandle.trim() : '';
+        const normalizedInstagramHandle = instagramHandle
+          ? (instagramHandle.startsWith('@') ? instagramHandle : `@${instagramHandle}`)
+          : '';
+
+        return normalizedInstagramHandle
+          ? `https://www.instagram.com/${normalizedInstagramHandle.slice(1)}/`
+          : member.instagram || '';
+      };
+
+      const getWebsiteUrl = (member) => {
+        if (member.website) return member.website;
+        return '';
+      };
+
+      const getPrimaryLink = (member) => {
+        const instagramUrl = getInstagramUrl(member);
+        if (instagramUrl) {
+          return { url: instagramUrl, label: 'Instagram' };
+        }
+
+        const websiteUrl = getWebsiteUrl(member);
+        if (websiteUrl) {
+          return { url: websiteUrl, label: 'Website' };
+        }
+
+        return { url: '', label: '' };
+      };
+
+      const renderLogoWall = () => {
+        if (!memberLogoGrid) return;
+
+        memberLogoGrid.innerHTML = memberOrganizations
+          .map((member) => {
+            const primaryLink = getPrimaryLink(member);
+            const logoPath = memberLogoPathByName[member.name] || '';
+            const encodedLogoPath = logoPath ? encodeURI(logoPath) : '';
+            const tagName = primaryLink.url ? 'a' : 'div';
+            const hrefAttrs = primaryLink.url
+              ? ` href="${primaryLink.url}" target="_blank" rel="noopener noreferrer" aria-label="${member.name} ${primaryLink.label} 열기"`
+              : '';
+
+            return `
+              <${tagName} class="members-logo-item" title="${member.name}"${hrefAttrs}>
+                ${encodedLogoPath
+                  ? `<img src="${encodedLogoPath}" alt="${member.name} 로고" loading="lazy">`
+                  : `<span class="members-logo-item__fallback">${member.name}</span>`}
+              </${tagName}>
+            `;
+          })
+          .join('');
+      };
 
       const getMacroRegionCount = (macroRegionId) => {
         const macroRegion = macroRegions.find((item) => item.id === macroRegionId);
@@ -1420,6 +1637,7 @@
         renderRegionAccordion();
       }
 
+      renderLogoWall();
       initializeMap();
     </script>
   </body>

@@ -108,7 +108,7 @@ pip install Pillow
 각 HTML 파일의 `body`에는 아래 속성이 들어가 있어야 공통 네비게이션이 올바르게 동작합니다.
 
 ```html
-<body data-current-page="overview" data-base-path=".">
+<body data-current-page="home" data-base-path=".">
 ```
 
 하위 폴더 페이지에서는 보통 아래처럼 설정합니다.
