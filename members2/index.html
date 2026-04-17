@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | Members 2</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <script src="../data/site-data.js"></script>
+    <style>
+      html { scroll-behavior: smooth; }
+      html, body { background-color: #030712; overflow-x: hidden; }
+      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      .page-shell { min-height: 100vh; }
+      .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
+      .break-keep { word-break: keep-all; }
+
+      .members-directory-shell {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .members-logo-wall {
+        position: relative;
+        padding: 0.4rem 0;
+        background: transparent;
+        box-shadow: none;
+        isolation: isolate;
+      }
+
+      .members-logo-wall__meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.15rem;
+      }
+
+      .members-logo-wall__title {
+        font-size: 1rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: rgba(255, 255, 255, 0.96);
+        text-align: center;
+      }
+
+      .members-logo-wall__description {
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .members-logo-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 1.35rem 1.15rem;
+      }
+
+      .members-logo-item {
+        display: flex;
+        min-height: 108px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        text-decoration: none;
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .members-logo-item:hover,
+      .members-logo-item:focus-visible {
+        transform: translateY(-2px) scale(1.02);
+        opacity: 0.92;
+      }
+
+      .members-logo-item img {
+        display: block;
+        max-width: 100%;
+        max-height: 84px;
+        object-fit: contain;
+        filter: none;
+      }
+
+      .members-logo-item__fallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 82px;
+        padding: 0 0.2rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1.45;
+        color: #334155;
+        text-align: center;
+        word-break: keep-all;
+      }
+
+      @media (max-width: 430px) {
+        .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
+
+        .members-logo-wall {
+          padding: 0.25rem 0;
+        }
+
+        .members-logo-wall__meta {
+          justify-content: center;
+          gap: 0.35rem;
+        }
+
+        .members-logo-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0.8rem 0.5rem;
+        }
+
+        .members-logo-item {
+          min-height: 72px;
+          padding: 0;
+        }
+
+        .members-logo-item img {
+          max-height: 52px;
+        }
+
+        .members-logo-item__fallback {
+          min-height: 56px;
+          font-size: 0.68rem;
+        }
+      }
+
+      @media (min-width: 431px) and (max-width: 860px) {
+        .members-logo-grid {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 1rem 0.8rem;
+        }
+      }
+    </style>
+    <script src="../data/shared-layout.js"></script>
+  </head>
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="members2" data-base-path="..">
+    <div class="page-shell flex flex-col">
+      <div data-shared-header></div>
+
+      <main class="w-full flex-1 flex flex-col">
+        <section class="bg-black">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
+            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+              <div class="max-w-5xl">
+                <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">회원 대학</h1>
+                <p class="mt-6 text-gray-300 text-base md:text-lg leading-8 break-keep max-w-3xl">
+                  전국대학교로켓연합회와 함께하는 회원 대학의 로고를 정리하였습니다.
+                  현재 <span id="member-total-count" class="font-semibold text-white">36</span>개 대학이 참여하고 있으며,
+                  회원 대학 로고를 한눈에 살펴보고 각 학교 채널로 바로 이동할 수 있습니다.
+                </p>
+              </div>
+            </section>
+
+            <section class="px-0 md:px-2 lg:px-4 py-8 md:py-10">
+              <div class="members-directory-shell">
+                <section class="members-logo-wall mb-8 md:mb-10" aria-labelledby="members-logo-wall-title">
+                  <div class="members-logo-wall__meta">
+                    <p id="members-logo-wall-title" class="members-logo-wall__title">회원 대학 로고</p>
+                  </div>
+                  <div id="members-logo-grid" class="members-logo-grid"></div>
+                </section>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+      <div data-shared-footer></div>
+    </div>
+
+    <script>
+      const memberOrganizations = Array.isArray(window.NURA_DATA?.memberOrganizations) ? window.NURA_DATA.memberOrganizations : [];
+      const memberCount = window.NURA_DATA?.overviewStats?.find((item) => item.label === '참여 대학')?.value || 36;
+      const memberTotalCount = document.getElementById('member-total-count');
+      const memberLogoGrid = document.getElementById('members-logo-grid');
+
+      const memberLogoPathByName = {
+        '가천대학교': '../source/members/used-logos/가천대학교.png',
+        '건국대학교': '../source/members/used-logos/건국대학교.png',
+        '경기대학교': '../source/members/used-logos/경기대학교.png',
+        '경북대학교': '../source/members/used-logos/경북대학교.png',
+        '경상국립대학교': '../source/members/used-logos/경상국립대학교.png',
+        '경희대학교': '../source/members/used-logos/경희대학교.png',
+        '고려대학교': '../source/members/used-logos/고려대학교.gif',
+        '공군사관학교': '../source/members/used-logos/공군사관학교.svg',
+        '광주과학기술원': '../source/members/used-logos/광주과학기술원.png',
+        '국립순천대학교': '../source/members/used-logos/국립순천대학교.png',
+        '국립한국교통대학교': '../source/members/used-logos/국립한국교통대학교.png',
+        '국민대학교': '../source/members/used-logos/국민대학교.png',
+        '동국대학교': '../source/members/used-logos/동국대학교.png',
+        '부산대학교': '../source/members/used-logos/부산대학교.png',
+        '서울과학기술대학교': '../source/members/used-logos/서울과학기술대학교.svg',
+        '서울대학교': '../source/members/used-logos/서울대학교.svg',
+        '성균관대학교': '../source/members/used-logos/성균관대학교.png',
+        '세종대학교': '../source/members/used-logos/세종대학교.png',
+        '숙명여자대학교': '../source/members/used-logos/숙명여자대학교.png',
+        '숭실대학교': '../source/members/used-logos/숭실대학교.svg',
+        '아주대학교': '../source/members/used-logos/아주대학교.svg',
+        '연세대학교': '../source/members/used-logos/연세대학교.png',
+        '영남대학교': '../source/members/used-logos/영남대학교.png',
+        '울산과학기술원': '../source/members/used-logos/unist.svg',
+        '인하대학교': '../source/members/used-logos/인하대학교.png',
+        '전북대학교': '../source/members/used-logos/전북대학교.png',
+        '조선대학교': '../source/members/used-logos/조선대학교.jpg',
+        '중앙대학교': '../source/members/used-logos/중앙대학교.png',
+        '충남대학교': '../source/members/used-logos/충남대학교.svg',
+        '포항공과대학교': '../source/members/used-logos/포항공대.png',
+        '한국과학기술원': '../source/members/used-logos/한국과학기술원.png',
+        '한국기술교육대학교': '../source/members/used-logos/한국기술교육대학교.svg',
+        '한국에너지공과대학교': '../source/members/used-logos/한국에너지공과대학교.png',
+        '한국항공대학교': '../source/members/used-logos/항공대학교.svg',
+        '한양대학교': '../source/members/used-logos/한양대학교.svg',
+        '한양대학교 ERICA': '../source/members/used-logos/한양대학교 ERICA.svg'
+      };
+
+      if (memberTotalCount) {
+        memberTotalCount.textContent = String(memberCount);
+      }
+
+      const getInstagramUrl = (member) => {
+        const instagramHandle = typeof member.instagramHandle === 'string' ? member.instagramHandle.trim() : '';
+        const normalizedInstagramHandle = instagramHandle
+          ? (instagramHandle.startsWith('@') ? instagramHandle : `@${instagramHandle}`)
+          : '';
+
+        return normalizedInstagramHandle
+          ? `https://www.instagram.com/${normalizedInstagramHandle.slice(1)}/`
+          : member.instagram || '';
+      };
+
+      const getWebsiteUrl = (member) => {
+        if (member.website) return member.website;
+        return '';
+      };
+
+      const getPrimaryLink = (member) => {
+        const instagramUrl = getInstagramUrl(member);
+        if (instagramUrl) {
+          return { url: instagramUrl, label: 'Instagram' };
+        }
+
+        const websiteUrl = getWebsiteUrl(member);
+        if (websiteUrl) {
+          return { url: websiteUrl, label: 'Website' };
+        }
+
+        return { url: '', label: '' };
+      };
+
+      const renderLogoWall = () => {
+        if (!memberLogoGrid) return;
+
+        memberLogoGrid.innerHTML = memberOrganizations
+          .map((member) => {
+            const primaryLink = getPrimaryLink(member);
+            const logoPath = memberLogoPathByName[member.name] || '';
+            const encodedLogoPath = logoPath ? encodeURI(logoPath) : '';
+            const tagName = primaryLink.url ? 'a' : 'div';
+            const hrefAttrs = primaryLink.url
+              ? ` href="${primaryLink.url}" target="_blank" rel="noopener noreferrer" aria-label="${member.name} ${primaryLink.label} 열기"`
+              : '';
+
+            return `
+              <${tagName} class="members-logo-item" title="${member.name}"${hrefAttrs}>
+                ${encodedLogoPath
+                  ? `<img src="${encodedLogoPath}" alt="${member.name} 로고" loading="lazy">`
+                  : `<span class="members-logo-item__fallback">${member.name}</span>`}
+              </${tagName}>
+            `;
+          })
+          .join('');
+      };
+
+      renderLogoWall();
+    </script>
+  </body>
+</html>
