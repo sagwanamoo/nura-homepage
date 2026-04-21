@@ -27,6 +27,11 @@
         margin: 0 auto;
       }
 
+      .members-map-panel {
+        display: flex;
+        justify-content: center;
+      }
+
       .map-status {
         position: absolute;
         inset: 0;
@@ -571,6 +576,10 @@
       @media (max-width: 430px) {
         .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
 
+        .map-graphic {
+          max-width: min(360px, calc(100vw - 2rem));
+        }
+
         .members-logo-wall {
           padding-top: 0.2rem;
         }
@@ -660,7 +669,7 @@
 
             <section class="px-0 md:px-2 lg:px-4 py-8 md:py-10">
               <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.9fr)] gap-8 lg:gap-10 items-start">
-                <div class="min-w-0">
+                <div class="min-w-0 members-map-panel">
                   <div class="map-graphic">
                     <div id="members-map-status" class="map-status">대한민국 지도를 불러오는 중입니다.</div>
                     <object
