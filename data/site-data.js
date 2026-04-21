@@ -3,7 +3,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 4월 기준",
       label: "참여 대학",
-      value: 36,
+      value: 37,
       unit: "개교"
     },
     {
@@ -110,6 +110,13 @@ window.NURA_DATA = {
       clubName: "ERUCA",
       description: "서울특별시 성북구 정릉로 77",
       instagramHandle: "@eruca_official"
+    },
+    {
+      name: "대구경북과학기술원",
+      region: "daegu",
+      clubName: "ARION",
+      description: "대구광역시 달성군 현풍읍 테크노중앙대로 333",
+      website: "https://www.dgist.ac.kr/"
     },
     {
       name: "동국대학교",

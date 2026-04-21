@@ -117,6 +117,11 @@
         filter: none;
       }
 
+      .members-logo-item img.members-logo-item__image--dgist {
+        max-width: 86%;
+        max-height: 68px;
+      }
+
       .members-logo-item__fallback {
         display: flex;
         align-items: center;
@@ -535,40 +540,6 @@
         color: rgba(255, 255, 255, 0.74);
       }
 
-      .member-entry__links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.42rem;
-        margin-top: 0.34rem;
-        justify-content: flex-start;
-      }
-
-      .member-entry__link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 24px;
-        padding: 0 0.56rem;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        color: rgba(255, 255, 255, 0.72);
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.01em;
-        text-decoration: none;
-        transition:
-          background-color 180ms ease,
-          border-color 180ms ease,
-          color 180ms ease;
-      }
-
-      .member-entry__link:hover,
-      .member-entry__link:focus-visible {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.24);
-        color: rgba(255, 255, 255, 0.92);
-      }
-
       .member-entry__empty {
         padding: 0.42rem 0 0.12rem;
         font-size: 0.76rem;
@@ -621,6 +592,11 @@
 
         .members-logo-item img {
           max-height: 52px;
+        }
+
+        .members-logo-item img.members-logo-item__image--dgist {
+          max-width: 82%;
+          max-height: 42px;
         }
 
         .members-logo-item__fallback {
@@ -676,7 +652,7 @@
                 <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">회원 대학</h1>
                 <p class="mt-6 text-gray-300 text-base md:text-lg leading-8 break-keep max-w-3xl">
                   전국대학교로켓연합회와 함께하는 대학 로켓 동아리를 대한민국 지역 지도로 정리했습니다.
-                  현재 <span id="member-total-count" class="font-semibold text-white">36</span>개 대학이 참여하고 있으며,
+                  현재 <span id="member-total-count" class="font-semibold text-white">37</span>개 대학이 참여하고 있으며,
                   권역을 먼저 보고, 펼친 뒤 세부 지역별 회원 대학을 확인할 수 있습니다.
                 </p>
               </div>
@@ -730,7 +706,7 @@
     <script>
       const memberOrganizations = Array.isArray(window.NURA_DATA?.memberOrganizations) ? window.NURA_DATA.memberOrganizations : [];
       const memberRegions = Array.isArray(window.NURA_DATA?.memberRegions) ? window.NURA_DATA.memberRegions : [];
-      const memberCount = window.NURA_DATA?.overviewStats?.find((item) => item.label === '참여 대학')?.value || 36;
+      const memberCount = window.NURA_DATA?.overviewStats?.find((item) => item.label === '참여 대학')?.value || 37;
       const memberTotalCount = document.getElementById('member-total-count');
       const mapFrame = document.getElementById('members-korea-map');
       const mapStatus = document.getElementById('members-map-status');
@@ -842,6 +818,7 @@
         '국립순천대학교': '../source/members/used-logos/국립순천대학교.png',
         '국립한국교통대학교': '../source/members/used-logos/국립한국교통대학교.png',
         '국민대학교': '../source/members/used-logos/국민대학교.png',
+        '대구경북과학기술원': '../source/members/used-logos/디지스트.png',
         '동국대학교': '../source/members/used-logos/동국대학교.png',
         '부산대학교': '../source/members/used-logos/부산대학교.png',
         '서울과학기술대학교': '../source/members/used-logos/서울과학기술대학교.svg',
@@ -933,6 +910,8 @@
             const logoPath = memberLogoPathByName[member.name] || '';
             const encodedLogoPath = logoPath ? encodeURI(logoPath) : '';
             const tagName = primaryLink.url ? 'a' : 'div';
+            const imageClassName = member.name === '대구경북과학기술원' ? ' members-logo-item__image--dgist' : '';
+            const imageClassAttr = imageClassName ? ` class="${imageClassName.trim()}"` : '';
             const hrefAttrs = primaryLink.url
               ? ` href="${primaryLink.url}" target="_blank" rel="noopener noreferrer" aria-label="${member.name} ${primaryLink.label} 열기"`
               : '';
@@ -940,7 +919,7 @@
             return `
               <${tagName} class="members-logo-item" title="${member.name}"${hrefAttrs}>
                 ${encodedLogoPath
-                  ? `<img src="${encodedLogoPath}" alt="${member.name} 로고" loading="lazy">`
+                  ? `<img${imageClassAttr} src="${encodedLogoPath}" alt="${member.name} 로고" loading="lazy">`
                   : `<span class="members-logo-item__fallback">${member.name}</span>`}
               </${tagName}>
             `;
@@ -969,7 +948,6 @@
 
         return members
           .map((member) => {
-            const links = [];
             const instagramHandle = typeof member.instagramHandle === 'string' ? member.instagramHandle.trim() : '';
             const normalizedInstagramHandle = instagramHandle
               ? (instagramHandle.startsWith('@') ? instagramHandle : `@${instagramHandle}`)
@@ -977,10 +955,6 @@
             const instagramUrl = normalizedInstagramHandle
               ? `https://www.instagram.com/${normalizedInstagramHandle.slice(1)}/`
               : member.instagram;
-
-            if (member.website) {
-              links.push(`<a class="member-entry__link" href="${member.website}" target="_blank" rel="noopener noreferrer">Website</a>`);
-            }
 
             const interactiveAttrs = instagramUrl
               ? ` data-member-href="${instagramUrl}" tabindex="0" role="link" aria-label="${member.name} 인스타그램 열기"`
@@ -992,7 +966,6 @@
                 <p class="member-entry__meta">
                   ${member.name}
                 </p>
-                ${links.length ? `<div class="member-entry__links">${links.join('')}</div>` : ''}
                 ${member.description ? `<p class="member-entry__meta break-keep">${member.description}</p>` : ''}
               </article>
             `;
@@ -1581,10 +1554,6 @@
         });
 
         regionAccordion.addEventListener('click', (event) => {
-          if (event.target.closest('.member-entry__link')) {
-            return;
-          }
-
           const interactiveMemberCard = event.target.closest('[data-member-href]');
           if (interactiveMemberCard) {
             window.open(interactiveMemberCard.dataset.memberHref, '_blank', 'noopener,noreferrer');
