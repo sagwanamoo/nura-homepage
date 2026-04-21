@@ -184,9 +184,9 @@ Tailwind CSS 클래스를 사용하여 색상을 변경할 수 있습니다:
 ```javascript
 overviewStats: [
   {
-    basis: "2026년 3월 기준",
+    basis: "2026년 4월 기준",
     label: "참여 대학",
-    value: 35,
+    value: 37,
     unit: "개교"
   }
 ]
