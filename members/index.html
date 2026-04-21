@@ -856,6 +856,7 @@
 
       let provinceNodes = [];
       let svgRootNode = null;
+      let originalMapViewBox = '';
       let activeMacroRegionId = null;
       let selectedProvinceId = null;
       let hoveredProvinceId = null;
@@ -1374,6 +1375,40 @@
 
       const isMobileMapInteraction = () => window.matchMedia('(pointer: coarse), (max-width: 767px)').matches;
 
+      const updateMapViewBoxForMobile = () => {
+        if (!svgRootNode || !provinceNodes.length) return;
+
+        if (!originalMapViewBox) {
+          originalMapViewBox = svgRootNode.getAttribute('viewBox') || '';
+        }
+
+        const shouldUseMobileViewBox = window.matchMedia('(max-width: 767px)').matches;
+        if (!shouldUseMobileViewBox) {
+          if (originalMapViewBox) {
+            svgRootNode.setAttribute('viewBox', originalMapViewBox);
+          }
+          return;
+        }
+
+        const provinceBounds = provinceNodes.map((provinceNode) => provinceNode.getBBox());
+        const minX = Math.min(...provinceBounds.map((bound) => bound.x));
+        const minY = Math.min(...provinceBounds.map((bound) => bound.y));
+        const maxX = Math.max(...provinceBounds.map((bound) => bound.x + bound.width));
+        const maxY = Math.max(...provinceBounds.map((bound) => bound.y + bound.height));
+
+        const width = maxX - minX;
+        const height = maxY - minY;
+
+        if (width <= 0 || height <= 0) return;
+
+        const horizontalPadding = width * 0.035;
+        const verticalPadding = height * 0.03;
+        svgRootNode.setAttribute(
+          'viewBox',
+          `${minX - horizontalPadding} ${minY - verticalPadding} ${width + (horizontalPadding * 2)} ${height + (verticalPadding * 2)}`
+        );
+      };
+
       const openMapSubregion = (provinceId) => {
         const macroRegionId = provinceMacroRegionMap.get(provinceId);
         const fineRegionId = provinceFineRegionMap.get(provinceId);
@@ -1498,6 +1533,7 @@
           if (mapStatus) {
             mapStatus.classList.add('is-hidden');
           }
+          updateMapViewBoxForMobile();
           syncActiveState();
         };
 
@@ -1617,6 +1653,7 @@
 
       renderLogoWall();
       initializeMap();
+      window.addEventListener('resize', updateMapViewBoxForMobile);
     </script>
   </body>
 </html>
