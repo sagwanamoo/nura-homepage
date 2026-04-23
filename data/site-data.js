@@ -116,7 +116,7 @@ window.NURA_DATA = {
       region: "daegu",
       clubName: "ARION",
       description: "대구광역시 달성군 현풍읍 테크노중앙대로 333",
-      website: "https://www.dgist.ac.kr/"
+      instagramHandle: "@dgist_arion"
     },
     {
       name: "동국대학교",
