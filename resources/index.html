@@ -5,14 +5,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png">
     <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
     <script src="../data/site-data.js"></script>
     <style>
       html { scroll-behavior: smooth; }
       html, body { background-color: #030712; overflow-x: hidden; }
-      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      body { font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
       .page-shell { min-height: 100vh; }
       .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
       @media (max-width: 430px) {
@@ -21,7 +21,7 @@
 
 
     </style>
-        <script src="../data/shared-layout.js"></script>
+        <script src="../data/shared-layout.js" defer></script>
   </head>
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="resources" data-base-path="..">
     <div class="page-shell flex flex-col">

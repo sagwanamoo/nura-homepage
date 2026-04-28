@@ -7,14 +7,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
     <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <script src="../data/site-data.js"></script>
     <style>
       html { scroll-behavior: smooth; }
       html, body { background-color: #030712; overflow-x: hidden; }
-      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      body { font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
       .page-shell { min-height: 100vh; }
       .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
       .break-keep { word-break: keep-all; }
@@ -125,6 +125,10 @@
       .members-logo-item img.members-logo-item__image--dgist {
         max-width: 86%;
         max-height: 68px;
+      }
+
+      .members-logo-item img.members-logo-item__image--uos {
+        transform: scale(1.4);
       }
 
       .members-logo-item__fallback {
@@ -608,6 +612,10 @@
           max-height: 42px;
         }
 
+        .members-logo-item img.members-logo-item__image--uos {
+          transform: scale(1.12);
+        }
+
         .members-logo-item__fallback {
           min-height: 56px;
           font-size: 0.68rem;
@@ -647,7 +655,7 @@
         }
       }
     </style>
-    <script src="../data/shared-layout.js"></script>
+    <script src="../data/shared-layout.js" defer></script>
   </head>
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="members" data-base-path="..">
     <div class="page-shell flex flex-col">
@@ -832,6 +840,7 @@
         '부산대학교': '../source/members/used-logos/부산대학교.png',
         '서울과학기술대학교': '../source/members/used-logos/서울과학기술대학교.svg',
         '서울대학교': '../source/members/used-logos/서울대학교.svg',
+        '서울시립대학교': '../source/members/used-logos/서울시립대.png',
         '성균관대학교': '../source/members/used-logos/성균관대학교.png',
         '세종대학교': '../source/members/used-logos/세종대학교.png',
         '숙명여자대학교': '../source/members/used-logos/숙명여자대학교.png',
@@ -920,7 +929,11 @@
             const logoPath = memberLogoPathByName[member.name] || '';
             const encodedLogoPath = logoPath ? encodeURI(logoPath) : '';
             const tagName = primaryLink.url ? 'a' : 'div';
-            const imageClassName = member.name === '대구경북과학기술원' ? ' members-logo-item__image--dgist' : '';
+            const logoImageClassByName = {
+              '대구경북과학기술원': 'members-logo-item__image--dgist',
+              '서울시립대학교': 'members-logo-item__image--uos'
+            };
+            const imageClassName = logoImageClassByName[member.name] || '';
             const imageClassAttr = imageClassName ? ` class="${imageClassName.trim()}"` : '';
             const hrefAttrs = primaryLink.url
               ? ` href="${primaryLink.url}" target="_blank" rel="noopener noreferrer" aria-label="${member.name} ${primaryLink.label} 열기"`
@@ -929,7 +942,7 @@
             return `
               <${tagName} class="members-logo-item" title="${member.name}"${hrefAttrs}>
                 ${encodedLogoPath
-                  ? `<img${imageClassAttr} src="${encodedLogoPath}" alt="${member.name} 로고" loading="lazy">`
+                  ? `<img${imageClassAttr} src="${encodedLogoPath}" alt="${member.name} 로고" loading="lazy" decoding="async">`
                   : `<span class="members-logo-item__fallback">${member.name}</span>`}
               </${tagName}>
             `;

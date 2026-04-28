@@ -7,10 +7,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
     <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
-    <script src="../data/shared-layout.js"></script>
+    <script src="../data/shared-layout.js" defer></script>
 <style>
   html { scroll-behavior: smooth; }
 
@@ -22,7 +22,7 @@
   }
 
   body {
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     color: #fff;
   }
 
@@ -251,6 +251,8 @@
     <img
       src="../source/resources/meeting.jpg"
       alt="대표자회의 대표 이미지"
+      fetchpriority="high"
+      decoding="async"
       class="activity-hero__image"
     />
     <div class="activity-hero__content">
@@ -265,6 +267,8 @@
     <img
       src="../source/resources/kspe.jpg"
       alt="춘추계학술대회 대표 이미지"
+      loading="lazy"
+      decoding="async"
       class="activity-hero__image"
     />
     <div class="activity-hero__content">
@@ -279,6 +283,8 @@
         <img
           src="../source/resources/conference.jpg"
           alt="전국대학교로켓학술대회 대표 이미지"
+          loading="lazy"
+          decoding="async"
           class="activity-hero__image"
         />
         <div class="activity-hero__content">
@@ -293,6 +299,8 @@
         <img
           src="../source/resources/launch.jpg"
           alt="전국대학교로켓발사대회 대표 이미지"
+          loading="lazy"
+          decoding="async"
           class="activity-hero__image"
         />
         <div class="activity-hero__content">

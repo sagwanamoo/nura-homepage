@@ -185,6 +185,9 @@
             <img
               src="${basePath}/source/resources/nura-header.png"
               alt="전국대학교로켓연합회 로고"
+              width="720"
+              height="79"
+              decoding="async"
               class="block h-5 md:h-7 w-auto max-w-[240px] md:max-w-[520px] object-contain translate-y-[1px]"
             />
           </a>

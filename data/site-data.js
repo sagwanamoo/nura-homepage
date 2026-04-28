@@ -146,6 +146,13 @@ window.NURA_DATA = {
       description: "서울특별시 관악구 관악로 1 (관악캠)",
       instagramHandle: "@snu_hanaro"
     },
+      {
+      name: "서울시립대학교",
+      region: "seoul",
+      clubName: "서울시립대학교 로켓동아리",
+      description: "서울특별시 관악구 관악로 1 (관악캠)",
+      website: "https://www.uos.ac.kr/"
+    },
     {
       name: "성균관대학교",
       region: "gyeonggi",
