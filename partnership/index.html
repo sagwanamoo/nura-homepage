@@ -92,6 +92,126 @@
         padding: 0.48rem 0.75rem;
         letter-spacing: -0.025em;
       }
+
+      .sponsor-account-inline {
+        position: relative;
+        display: inline-flex;
+        align-items: baseline;
+      }
+
+      .sponsor-account-trigger {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: rgb(147 197 253);
+        cursor: pointer;
+        display: inline;
+        font: inherit;
+        font-weight: 750;
+        padding: 0;
+        text-decoration: underline;
+        text-decoration-color: rgba(147, 197, 253, 0.42);
+        text-underline-offset: 0.18em;
+      }
+
+      .sponsor-account-trigger:hover,
+      .sponsor-account-trigger:focus-visible,
+      .sponsor-account-inline.is-open .sponsor-account-trigger {
+        color: rgb(191 219 254);
+        text-decoration-color: rgba(191, 219, 254, 0.78);
+      }
+
+      .sponsor-account-popover {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 0.35rem);
+        z-index: 30;
+        width: max-content;
+        max-width: min(18rem, calc(100vw - 2rem));
+        transform: translateX(-50%) translateY(0.25rem);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 0.85rem;
+        background: rgba(248, 250, 252, 0.98);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+        color: #111827;
+        opacity: 0;
+        padding: 0.8rem 0.9rem;
+        pointer-events: none;
+        transition: opacity 160ms ease, transform 160ms ease;
+        white-space: normal;
+      }
+
+      .sponsor-account-popover::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        height: 0.7rem;
+      }
+
+      .sponsor-account-popover::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        width: 0.8rem;
+        height: 0.8rem;
+        transform: translate(-50%, -50%) rotate(45deg);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        border-right: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(248, 250, 252, 0.98);
+      }
+
+      .sponsor-account-inline:hover .sponsor-account-popover,
+      .sponsor-account-inline:focus-within .sponsor-account-popover,
+      .sponsor-account-inline.is-open .sponsor-account-popover {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .sponsor-account-popover__bank {
+        display: block;
+        color: #334155;
+        font-size: 0.78rem;
+        font-weight: 750;
+        line-height: 1.35;
+      }
+
+      .sponsor-account-number {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: #0369a1;
+        cursor: pointer;
+        display: block;
+        margin-top: 0.24rem;
+        padding: 0;
+        font: inherit;
+        font-size: 0.98rem;
+        font-weight: 850;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.35;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .sponsor-account-number:hover,
+      .sponsor-account-number:focus-visible {
+        color: #075985;
+        text-decoration: underline;
+        text-underline-offset: 0.16em;
+      }
+
+      .sponsor-account-popover__owner {
+        display: block;
+        margin-top: 0.2rem;
+        color: #64748b;
+        font-size: 0.76rem;
+        line-height: 1.4;
+      }
+
       @media (max-width: 768px) {
         .sponsor-benefit-card { padding: 1.25rem; }
         .sponsor-benefit-icon {
@@ -106,6 +226,24 @@
         .sponsor-benefit-copy {
           font-size: 0.92rem;
           line-height: 1.75;
+        }
+
+        .sponsor-account-popover {
+          left: auto;
+          right: -0.5rem;
+          transform: translateY(0.25rem);
+        }
+
+        .sponsor-account-popover::after {
+          left: auto;
+          right: 1.2rem;
+          transform: translateY(-50%) rotate(45deg);
+        }
+
+        .sponsor-account-inline:hover .sponsor-account-popover,
+        .sponsor-account-inline:focus-within .sponsor-account-popover,
+        .sponsor-account-inline.is-open .sponsor-account-popover {
+          transform: translateY(0);
         }
       }
 
@@ -226,7 +364,14 @@
                           </div>
                           <p class="mt-4 text-sm md:text-[15px] leading-7 text-white/55 break-keep">
                             지원해주신 자금은 NURA 총회 의결을 거친 예산에 따라 투명하게 집행되며,
-                            NURA 운영진과 세부 범위를 추가 논의하시거나 NURA 계좌(국민은행 824201-00-114793 (예금주 전국대학교로켓연합회))를 통하여 후원하실 수 있습니다.
+                            NURA 운영진과 세부 범위를 추가 논의하시거나 <span class="sponsor-account-inline">
+                              <button class="sponsor-account-trigger" type="button" aria-expanded="false">NURA 계좌</button>
+                              <span class="sponsor-account-popover" role="note" aria-label="NURA 후원 계좌">
+                                <span class="sponsor-account-popover__bank">국민은행</span>
+                                <button class="sponsor-account-number" type="button" data-copy-account="824201-00-114793" aria-label="계좌번호 복사">824201-00-114793</button>
+                                <span class="sponsor-account-popover__owner">예금주 전국대학교로켓연합회</span>
+                              </span>
+                            </span>를 통하여 후원하실 수 있습니다.
                           </p>
                         </div>
 
@@ -388,6 +533,76 @@
 
       [partnershipMemberCount, partnershipSponsorMemberCount].forEach((target) => {
         if (target) target.textContent = String(currentMemberCount);
+      });
+
+      document.querySelectorAll('.sponsor-account-trigger').forEach((trigger) => {
+        const wrap = trigger.closest('.sponsor-account-inline');
+        let closeTimer = null;
+
+        const openPopover = () => {
+          if (!wrap) return;
+          if (closeTimer) window.clearTimeout(closeTimer);
+          wrap.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        };
+
+        const scheduleClose = () => {
+          if (!wrap) return;
+          if (closeTimer) window.clearTimeout(closeTimer);
+          closeTimer = window.setTimeout(() => {
+            wrap.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          }, 650);
+        };
+
+        wrap?.addEventListener('mouseenter', openPopover);
+        wrap?.addEventListener('mouseleave', scheduleClose);
+        wrap?.addEventListener('focusin', openPopover);
+        wrap?.addEventListener('focusout', scheduleClose);
+
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const isOpen = wrap?.classList.contains('is-open');
+
+          document.querySelectorAll('.sponsor-account-inline.is-open').forEach((element) => {
+            element.classList.remove('is-open');
+            element.querySelector('.sponsor-account-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+
+          if (wrap && !isOpen) {
+            openPopover();
+          }
+        });
+      });
+
+      document.querySelectorAll('[data-copy-account]').forEach((button) => {
+        button.addEventListener('click', async (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const account = button.dataset.copyAccount || '';
+          if (!account) return;
+
+          try {
+            await navigator.clipboard.writeText(account);
+            const originalText = button.textContent;
+            button.textContent = '복사됨';
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 1400);
+          } catch (error) {
+            button.textContent = account;
+          }
+        });
+      });
+
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.sponsor-account-inline.is-open').forEach((element) => {
+          element.classList.remove('is-open');
+          element.querySelector('.sponsor-account-trigger')?.setAttribute('aria-expanded', 'false');
+        });
       });
     </script>
   </body>
