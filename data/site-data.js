@@ -81,7 +81,7 @@ window.NURA_DATA = {
       region: "chungbuk",
       clubName: "공군사관학교 로켓동아리",
       description: "충청북도 청주시 상당구 남일면 단재로 635",
-      website: "http://www.afa.ac.kr/"
+      website: "https://rokaf.airforce.mil.kr/afa/index.do"
     },
     {
       name: "광주과학기술원",
@@ -150,7 +150,7 @@ window.NURA_DATA = {
       name: "서울시립대학교",
       region: "seoul",
       clubName: "서울시립대학교 로켓동아리",
-      description: "서울특별시 관악구 관악로 1 (관악캠)",
+      description: "서울특별시 동대문구 서울시립대로 163 (전농동)",
       website: "https://www.uos.ac.kr/"
     },
     {

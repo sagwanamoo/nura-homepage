@@ -60,6 +60,10 @@
         max-width: 100%;
       }
 
+      .hero-content-wrap {
+        align-items: flex-start;
+      }
+
       .hero-progress-inline {
         margin-top: 18px;
         display: grid;
@@ -130,13 +134,25 @@
       }
 
       @media (max-width: 767px) {
+        #home {
+          height: 100svh;
+          min-height: 560px;
+        }
+
+        .hero-content-wrap {
+          align-items: flex-end;
+          padding-top: 0;
+          padding-bottom: clamp(5rem, 14vh, 7rem);
+        }
+
         .hero-title {
-          font-size: 8vw;
+          font-size: clamp(1.7rem, 8vw, 2.45rem);
+          line-height: 1.18;
         }
 
         .hero-subtitle {
           margin-top: 2vw;
-          font-size: min(4vw, 20px);
+          font-size: clamp(0.9rem, 3.7vw, 1.08rem);
           line-height: 1.35;
         }
 
@@ -164,6 +180,29 @@
 
         .hero-progress-track {
           height: 2px;
+        }
+
+        #sponsor-wall {
+          padding: 0;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.75rem;
+        }
+
+        #sponsor-wall > div {
+          min-height: 88px;
+          padding: 1rem;
+          border-radius: 0.85rem;
+        }
+
+        #sponsor-wall img {
+          max-height: 58px;
+        }
+
+        #nura-now > div,
+        #nura-now + section > div,
+        #nura-now + section + section > div {
+          padding-top: 3rem;
+          padding-bottom: 3rem;
         }
       }
 
@@ -218,7 +257,7 @@
           </div>
 
           <div class="relative z-30 h-full w-full text-white">
-            <div class="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-start pt-[450px] md:pt-[400px] lg:pt-[350px]">
+            <div class="hero-content-wrap max-w-7xl mx-auto px-4 md:px-8 h-full flex pt-[450px] md:pt-[400px] lg:pt-[350px]">
               <div class="max-w-5xl flex flex-col items-start text-left">
                 <h1 class="hero-title text-white font-bold tracking-[-0.01em] break-keep hero-reveal">
                   <span class="reveal-line"><span class="reveal-text">함께 더 멀리</span></span>

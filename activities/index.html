@@ -208,15 +208,31 @@
       font-size: clamp(1.75rem, 9.4vw, 2.3rem);
     }
 
+    .activities-grid-fit {
+      gap: 12px;
+      padding-bottom: 1.5rem;
+    }
+
+    .activities-grid-fit .activity-hero,
+    .activities-grid-fit .activity-hero__content {
+      min-height: clamp(236px, 58vw, 300px);
+    }
+
     .activities-grid-fit .activity-hero__inner {
       padding-left: 1.1rem;
       padding-right: 1.1rem;
       padding-bottom: 1.2rem;
     }
 
+    .activities-grid-fit .activity-label {
+      font-size: clamp(1.65rem, 7.8vw, 2.1rem);
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+
     .activities-grid-fit .activity-label--conference,
     .activities-grid-fit .activity-label--launch {
-      font-size: 1.9rem;
+      font-size: clamp(1.65rem, 7.8vw, 2rem);
     }
 
     .activities-grid-fit .activity-btn {

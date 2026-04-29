@@ -150,17 +150,80 @@
         color: rgba(255, 255, 255, 0.96);
       }
 
-.footer-contact-link {
-  color: inherit;
-  text-decoration: none;
-  transition: color 180ms ease, opacity 180ms ease;
-}
+      .footer-contact-link {
+        color: inherit;
+        text-decoration: none;
+        transition: color 180ms ease, opacity 180ms ease;
+      }
 
-.footer-contact-link:hover {
-  color: rgba(255, 255, 255, 0.96);
-}
+      .footer-contact-link:hover {
+        color: rgba(255, 255, 255, 0.96);
+      }
 
       @media (max-width: 767px) {
+        .site-footer {
+          padding: 1.15rem 1rem max(1.15rem, env(safe-area-inset-bottom));
+        }
+
+        .site-footer__grid {
+          gap: 1rem;
+        }
+
+        .site-footer h3 {
+          margin-bottom: 0.45rem;
+        }
+
+        .site-footer__copyright {
+          margin-top: 1rem;
+          padding-top: 1rem;
+          padding-bottom: 0;
+        }
+
+        .page-shell > main > section > .max-w-7xl,
+        .page-shell > main > .max-w-7xl,
+        .activities-intro > .max-w-7xl {
+          padding-top: 4rem !important;
+          padding-bottom: 1.25rem !important;
+        }
+
+        .page-shell > main > section > .max-w-7xl > section:first-child,
+        .page-shell > main > .max-w-7xl > section:first-child,
+        .activities-intro > .max-w-7xl > section:first-child {
+          padding-top: 3rem !important;
+          padding-bottom: 1rem !important;
+        }
+
+        .page-main-title {
+          margin-top: 0 !important;
+        }
+
+        .page-main-title + p,
+        .page-shell > main > section > .max-w-7xl > section:first-child p,
+        .page-shell > main > .max-w-7xl > section:first-child p,
+        .activities-intro > .max-w-7xl > section:first-child p {
+          margin-top: 0.85rem !important;
+          line-height: 1.55 !important;
+        }
+
+        #topbar > div {
+          gap: 0.75rem;
+        }
+
+        #topbar img {
+          max-width: min(58vw, 210px);
+        }
+
+        #mobile-menu {
+          height: 100dvh;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+        }
+
+        #mobile-menu > div {
+          min-height: 100dvh;
+          padding-bottom: max(2rem, env(safe-area-inset-bottom));
+        }
+
         .footer-site-nav {
           gap: 10px 16px;
         }
@@ -324,9 +387,9 @@
 
   function renderFooter(basePath) {
     return `
-      <footer class="bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
+      <footer class="site-footer bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
         <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-0 md:px-8">
+          <div class="site-footer__grid grid grid-cols-1 md:grid-cols-4 gap-8 px-0 md:px-8">
             <div>
               <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
               <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
@@ -377,7 +440,7 @@
             </div>
           </div>
 
-          <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
+          <div class="site-footer__copyright border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
             <p class="text-gray-500 text-sm">© 1992 - 2026 NURA. All rights reserved.</p>
           </div>
         </div>
