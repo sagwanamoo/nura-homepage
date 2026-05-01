@@ -920,7 +920,7 @@
         '부산대학교': '../source/members/used-logos/부산대학교.png',
         '서울과학기술대학교': '../source/members/used-logos/서울과학기술대학교.svg',
         '서울대학교': '../source/members/used-logos/서울대학교.svg',
-        '서울시립대학교': '../source/members/used-logos/서울시립대.png',
+        //'서울시립대학교': '../source/members/used-logos/서울시립대.png',
         '성균관대학교': '../source/members/used-logos/성균관대학교.png',
         '세종대학교': '../source/members/used-logos/세종대학교.png',
         '숙명여자대학교': '../source/members/used-logos/숙명여자대학교.png',
@@ -1011,7 +1011,7 @@
             const tagName = primaryLink.url ? 'a' : 'div';
             const logoImageClassByName = {
               '대구경북과학기술원': 'members-logo-item__image--dgist',
-              '서울시립대학교': 'members-logo-item__image--uos'
+              //'서울시립대학교': 'members-logo-item__image--uos'
             };
             const imageClassName = logoImageClassByName[member.name] || '';
             const imageClassAttr = imageClassName ? ` class="${imageClassName.trim()}"` : '';
@@ -1022,7 +1022,7 @@
             return `
               <${tagName} class="members-logo-item" title="${member.name}"${hrefAttrs}>
                 ${encodedLogoPath
-                  ? `<img${imageClassAttr} src="${encodedLogoPath}" alt="${member.name} 로고" loading="lazy" decoding="async">`
+                  ? `<img${imageClassAttr} src="${encodedLogoPath}" alt="${member.name} 로고" decoding="async">`
                   : `<span class="members-logo-item__fallback">${member.name}</span>`}
               </${tagName}>
             `;

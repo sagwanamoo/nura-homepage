@@ -146,13 +146,13 @@ window.NURA_DATA = {
       description: "서울특별시 관악구 관악로 1 (관악캠)",
       instagramHandle: "@snu_hanaro"
     },
-      {
-      name: "서울시립대학교",
-      region: "seoul",
-      clubName: "서울시립대학교 로켓동아리",
-      description: "서울특별시 동대문구 서울시립대로 163 (전농동)",
-      website: "https://www.uos.ac.kr/"
-    },
+    // {
+    //   name: "서울시립대학교",
+    //   region: "seoul",
+    //   clubName: "서울시립대학교 로켓동아리",
+    //   description: "서울특별시 동대문구 서울시립대로 163 (전농동)",
+    //   website: "https://www.uos.ac.kr/"
+    // },
     {
       name: "성균관대학교",
       region: "gyeonggi",
@@ -426,15 +426,15 @@ window.NURA_DATA = {
   
   resourceDocuments: [
     {
-      date: "2026.04",
-      title: "전국대학교로켓연합회 CI 가이드라인",
-      category: "Partnership",
-      format: "AI",
-      size: "2.2MB",
-      description: "전국대학교로켓연합회의 CI 사용 방안을 담은 가이드라인입니다.",
-      href: "../source/resources/NURA_AI.ai"
+      date: "2026.03",
+      title: "2026 전국대학교로켓연합회 회칙",
+      category: "Rule",
+      format: "pdf ",
+      size: "397KB",
+      description: "전국대학교로켓연합회의 회칙 입니다.",
+      href: "../source/resources/2026 전국대학교로켓연합회 회칙_260314.pdf"
     },
-        {
+    {
       date: "2026.04",
       title: "2026 전국대학교로켓학술대회 규정",
       category: "Conference",
@@ -453,12 +453,22 @@ window.NURA_DATA = {
       href: "../source/resources/2026 전국대학교로켓발사대회 규정집_260403.pdf"
     },
     {
+      date: "2026.04",
+      title: "전국대학교로켓연합회 CI 가이드라인",
+      category: "Partnership",
+      format: "AI",
+      size: "2.2MB",
+      description: "전국대학교로켓연합회의 CI 사용 방안을 담은 가이드라인입니다.",
+      href: "../source/resources/NURA_AI.ai"
+    },
+    {
       date: "2026.05",
       title: "후원제안서",
       category: "Brochure",
-      format: "PDF",
+      format: "pdf",
+      size: "4.3MB",
       description: "전국대학교로켓연합회의 후원제안서입니다.",
-      status: "coming-soon"
+      href: "../source/resources/전국대학교로켓연합회 NURA 후원제안서.pdf"
     }
   ],
 
