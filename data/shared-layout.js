@@ -420,13 +420,10 @@
 
             <div>
               <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
-              <div class="text-gray-400 text-sm grid grid-cols-[105px_1fr] gap-y-2">
-                <span class="text-gray-500">대표자</span>
-                <span>: &nbsp;전하상</span>
-                <span class="text-gray-500">사업자등록번호</span>
-                <span>: &nbsp;609-82-83482</span>
-                <span class="text-gray-500">설립일</span>
-                <span>: &nbsp;1992년 3월 2일</span>
+              <div class="text-gray-400 text-sm space-y-2">
+                <p>대표자: 전하상</p>
+                <p>사업자등록번호: 609-82-83482</p>
+                <p>설립일: 1992년 3월 2일</p>
               </div>
             </div>
           </div>
