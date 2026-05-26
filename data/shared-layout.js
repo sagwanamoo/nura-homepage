@@ -389,7 +389,7 @@
     return `
       <footer class="site-footer bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
         <div class="max-w-6xl mx-auto">
-          <div class="site-footer__grid grid grid-cols-1 md:grid-cols-4 gap-8 px-0 md:px-8">
+          <div class="site-footer__grid grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
             <div>
               <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
               <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
@@ -420,28 +420,26 @@
 
             <div>
               <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
-              <div class="text-gray-400 text-sm space-y-2">
-                <p>사업자등록번호: 609-82-83482</p>
-                <p>대표자: 전하상</p>
-                <p>설립일: 1992년 3월 2일</p>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold mb-4">사이트맵</h3>
-              <div class="footer-site-nav">
-                <a href="${basePath}/">Home</a>
-                <a href="${basePath}/about/">About</a>
-                <a href="${basePath}/activities/">Activities</a>
-                <a href="${basePath}/partnership/">Partnership</a>
-                <a href="${basePath}/members/">Members</a>
-                <a href="${basePath}/resources/">Resources</a>
+              <div class="text-gray-400 text-sm grid grid-cols-[105px_1fr] gap-y-2">
+                <span class="text-gray-500">대표자</span>
+                <span>: &nbsp;전하상</span>
+                <span class="text-gray-500">사업자등록번호</span>
+                <span>: &nbsp;609-82-83482</span>
+                <span class="text-gray-500">설립일</span>
+                <span>: &nbsp;1992년 3월 2일</span>
               </div>
             </div>
           </div>
 
-          <div class="site-footer__copyright border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
-            <p class="text-gray-500 text-sm">© 1992 - 2026 NURA. All rights reserved.</p>
+          <div class="site-footer__copyright border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs text-gray-500 pb-2 md:pb-8">
+            <div class="text-left">
+              © 1992 - 2026 NURA. All rights reserved.
+            </div>
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-gray-400">
+              <a href="${basePath}/privacy/" class="hover:text-white hover:underline transition font-semibold text-gray-300">개인정보 처리방침</a>
+              <span class="text-gray-700">|</span>
+              <a href="${basePath}/sitemap/" class="hover:text-white hover:underline transition">사이트 맵</a>
+            </div>
           </div>
         </div>
       </footer>
