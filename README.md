@@ -195,7 +195,7 @@ overviewStats: [
   {
     basis: "2026년 4월 기준",
     label: "참여 대학",
-    value: 37,
+    value: 38,
     unit: "개교"
   }
 ]
