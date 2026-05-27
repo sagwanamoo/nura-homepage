@@ -7,6 +7,10 @@
     const style = document.createElement('style');
     style.id = LAYOUT_STYLE_ID;
     style.textContent = `
+      html, body {
+        background-color: #000000 !important;
+      }
+
       #topbar {
         background: transparent;
         border-bottom: 1px solid transparent;
@@ -243,7 +247,7 @@
         id="topbar"
         class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
       >
-        <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
+        <div class="max-w-7xl w-full mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between relative z-[50]">
           <a href="${basePath}/" class="relative z-[70] flex items-center shrink-0">
             <img
               src="${basePath}/source/resources/nura-header.png"
@@ -290,6 +294,7 @@
               </div>
             </div>
 
+            <a href="${basePath}/senior/" data-page="senior" class="nav-link text-gray-300 hover:text-white transition">Senior</a>
             <a href="${basePath}/members/" data-page="members" class="nav-link text-gray-300 hover:text-white transition">Members</a>
             <a href="${basePath}/partnership/" data-page="partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
             <a href="${basePath}/resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
@@ -373,6 +378,7 @@
                 </div>
               </div>
 
+              <a href="${basePath}/senior/" data-page="senior" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Senior</a>
               <a href="${basePath}/members/" data-page="members" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Members</a>
               <a href="${basePath}/partnership/" data-page="partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
               <a href="${basePath}/resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
@@ -462,6 +468,7 @@
     if (path.includes('/about')) return 'about';
     if (path.includes('/partnership')) return 'partnership';
     if (path.includes('/members')) return 'members';
+    if (path.includes('/senior')) return 'senior';
     if (path.includes('/resources')) return 'resources';
 
     return 'home';

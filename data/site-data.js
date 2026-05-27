@@ -810,5 +810,24 @@ window.NURA_DATA = {
         "제35대 회장 광주과학기술원 이창현, 부회장 동국대학교 한재경, 총무 건국대학교 윤원빈"
       ]
     }
+  ],
+
+  presidentsData: [
+    { generation: 35, name: "이창현", term: "2025-2026", vicePresident: "한재경", secretary: "윤원빈" },
+
+  ],
+
+  conferenceAwards: [
+    { year: 35, rank: "대상", university: "서울대학교", team: "SNURocket" },
+    { year: 35, rank: "최우수상", university: "한국항공대학교", team: "KAU-Rocket" },
+    { year: 34, rank: "대상", university: "카이스트", team: "ICARUS" },
+    { year: 34, rank: "우수상", university: "부산대학교", team: "PURA" }
+  ],
+
+  launchAwards: [
+    { year: 35, rank: "대상", university: "광주과학기술원", team: "GIST-Aerospace" },
+    { year: 35, rank: "최우수상", university: "인하대학교", team: "INHA-Rocketry" },
+    { year: 35, rank: "우수상", university: "충남대학교", team: "CNU-Space" },
+    { year: 34, rank: "대상", university: "연세대학교", team: "Y-Rocket" }
   ]
 };

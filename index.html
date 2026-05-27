@@ -24,6 +24,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
 
     <style>
@@ -244,6 +246,26 @@
         align-self: flex-start;
         margin-top: auto;
       }
+
+      .sponsor-logo {
+        width: 100%;
+        height: 120px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sponsor-logo:hover {
+        transform: scale(1.05);
+      }
+      .sponsor-logo img {
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        transition: filter 0.3s ease;
+      }
+      .sponsor-logo:hover img {
+        filter: none;
+      }
     </style>
 
     <script src="./data/site-data.js?v=20260515"></script>
@@ -302,83 +324,101 @@
         <!-- NURA NOW -->
         <section id="nura-now" class="w-full bg-black border-t border-white/5">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-              <div>
-                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA NOW</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">관련 기사</h2>
-                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-                  전국대학교로켓연합회와 관련된 외부 기사입니다.
-                </p>
-              </div>
+            <div class="mb-8 mt-4">
+              <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">NURA는 지금</h2>
             </div>
 
-            <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+            <div class="relative w-full max-w-7xl mx-auto z-10" id="news-hero-section">
+              <div class="flex flex-col lg:flex-row relative">
+                
+                <!-- Swiper Container (Left Side, FOREGROUND) -->
+                <div class="w-full lg:w-[60%] relative z-20">
+                  <div class="swiper news-swiper rounded-3xl overflow-hidden aspect-[16/10] bg-gray-900 shadow-2xl">
+                    <div class="swiper-wrapper" id="news-swiper-wrapper">
+                      <!-- Slides will be injected here by JS -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Text Box Container (Right Side, BACKGROUND) -->
+                <div class="w-full lg:absolute lg:right-0 lg:top-12 lg:-bottom-8 z-10 mt-6 lg:mt-0">
+                  <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 lg:pt-14 lg:pb-12 lg:pr-12 lg:pl-[64%] xl:pl-[63%] shadow-2xl flex flex-col justify-between h-full">
+                    <div>
+                      <h3 class="text-2xl font-bold text-white leading-snug mb-4 line-clamp-2" id="news-hero-title"></h3>
+                      <p class="text-gray-400 leading-7 line-clamp-3" id="news-hero-summary"></p>
+                    </div>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                      <div>
+                        <span class="text-sm text-gray-500 block mb-2" id="news-hero-date"></span>
+                        <a href="#" target="_blank" rel="noopener noreferrer" id="news-hero-link" class="inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-gray-300 transition">
+                          기사 보기
+                          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                      </div>
+                      
+                      <!-- Swiper Controls -->
+                      <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2 text-gray-400 font-mono text-sm">
+                          <span id="news-hero-current" class="text-white">1</span>
+                          <span class="w-8 h-[1px] bg-gray-600"></span>
+                          <span id="news-hero-total">3</span>
+                        </div>
+                        <div class="flex gap-2">
+                          <button type="button" class="news-prev w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                          </button>
+                          <button type="button" class="news-next w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </section>
 
         <!-- NURA OVERVIEW -->
         <section class="w-full bg-black border-t border-white/5 border-b border-white/5">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 mt-4">
               <div>
-                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA OVERVIEW</p>
                 <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">숫자로 보는 NURA</h2>
-                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-                  연합회의 현재 규모와 활동 현황을 한눈에 볼 수 있도록 주요 지표를 정리했습니다.
-                </p>
               </div>
             </div>
 
-            <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
+            <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-12 mt-16"></div>
           </div>
         </section>
 
         <!-- CURRENT PARTNERS -->
         <section class="border-t border-white/10 border-b border-white/10 bg-black">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 mt-4">
               <div class="max-w-3xl">
-                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">Current Partners</p>
                 <h2 class="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-white">현재 함께하는 파트너</h2>
-                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-                  NURA의 활동을 지원해주신 기업 및 기관입니다.
-                </p>
               </div>
             </div>
 
-            <div id="sponsor-wall" class="mt-4 px-8 py-6 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8">
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/koreanair.png" alt="대한항공 로고" class="max-w-full max-h-24 object-contain" loading="lazy" decoding="async">
+            <div id="sponsor-wall" class="mb-10">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
+                <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                  <img src="source/partnership/koreanair.svg" alt="대한항공 로고" loading="lazy" decoding="async" style="height: 40px; width: auto;">
+                </a>
+                <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                  <img src="source/partnership/innospace.svg" alt="이노스페이스 로고" loading="lazy" decoding="async" style="height: 48px; width: auto;">
+                </a>
+                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                  <img src="source/partnership/kari.svg" alt="한국항공우주연구원 로고" loading="lazy" decoding="async" style="height: 80px; width: auto;">
+                </a>
+                <a href="http://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                  <img src="source/partnership/ligpoongsan-transparent.png" alt="LIG풍산 로고" loading="lazy" decoding="async" style="height: 44px; width: auto;">
                 </a>
               </div>
-
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/innospace.png" alt="이노스페이스 로고" class="max-w-full max-h-24 object-contain" loading="lazy" decoding="async">
-                </a>
-              </div>
-
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/kari.jpg" alt="한국항공우주연구원 로고" class="max-w-full max-h-24 object-contain" loading="lazy" decoding="async">
-                </a>
-              </div>
-
-               <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/ligpoongsan.png" alt="LIG풍산 로고" class="max-w-full max-h-24 object-contain" loading="lazy" decoding="async">
-                </a>
-              </div>
-
-              <!--
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.kasa.go.kr/eng/index.do" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/kasa.png" alt="우주항공청 로고" class="aspect-[2/1] w-48 max-w-full object-contain" loading="lazy" decoding="async">
-                </a>
-              </div>
-              -->
-
             </div>
           </div>
         </section>
@@ -522,57 +562,88 @@
         const data = window.NURA_DATA;
         if (!data) return;
 
-        const newsContainer = document.getElementById("news-list");
+        const swiperWrapper = document.getElementById("news-swiper-wrapper");
         const statsContainer = document.getElementById("stats-list");
 
-        if (newsContainer) {
-          newsContainer.innerHTML = data.newsItems
+        if (swiperWrapper && typeof Swiper !== "undefined" && data.newsItems) {
+          swiperWrapper.innerHTML = data.newsItems
             .map(
               (item) => `
-                <article class="news-card rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
-                  <a href="${item.href}" target="_blank" rel="noopener noreferrer" class="news-card__link group">
-                    <div class="aspect-[16/10] overflow-hidden bg-gray-900">
-                      <img
-                        src="${item.image}"
-                        alt="${item.title}"
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-
-                    <div class="news-card__body p-6">
-                      <div class="text-sm text-gray-500 mb-3">${item.date}</div>
-
-                      <h3 class="text-xl font-bold text-white leading-snug">
-                        ${item.title}
-                      </h3>
-
-                      <p class="news-card__summary mt-4 text-gray-400 leading-7">
-                        ${item.summary}
-                      </p>
-
-                      <span class="news-card__cta inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
-                        기사 보기 →
-                      </span>
-                    </div>
-                  </a>
-                </article>
+                <div class="swiper-slide cursor-pointer group">
+                  <div class="w-full h-full overflow-hidden">
+                    <img
+                      src="${item.image}"
+                      alt="${item.title}"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
               `
             )
             .join("");
+
+          const titleEl = document.getElementById("news-hero-title");
+          const summaryEl = document.getElementById("news-hero-summary");
+          const dateEl = document.getElementById("news-hero-date");
+          const linkEl = document.getElementById("news-hero-link");
+          const curEl = document.getElementById("news-hero-current");
+          const totEl = document.getElementById("news-hero-total");
+
+          if (totEl) totEl.textContent = data.newsItems.length;
+
+          const updateTextBox = (index) => {
+            const item = data.newsItems[index];
+            if (!item) return;
+            if (titleEl) titleEl.textContent = item.title;
+            if (summaryEl) summaryEl.textContent = item.summary;
+            if (dateEl) dateEl.textContent = item.date;
+            if (linkEl) linkEl.href = item.href;
+            if (curEl) curEl.textContent = index + 1;
+          };
+
+          if (data.newsItems.length > 0) updateTextBox(0);
+
+          const newsSwiper = new Swiper(".news-swiper", {
+            loop: true,
+            speed: 600,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            navigation: {
+              nextEl: ".news-next",
+              prevEl: ".news-prev",
+            },
+            on: {
+              slideChange: function () {
+                updateTextBox(this.realIndex);
+              },
+            },
+          });
+
+          const slides = swiperWrapper.querySelectorAll('.swiper-slide');
+          slides.forEach((slide) => {
+             slide.addEventListener('click', () => {
+                const itemIdx = slide.getAttribute('data-swiper-slide-index');
+                const idx = itemIdx !== null ? parseInt(itemIdx, 10) : 0;
+                const item = data.newsItems[idx];
+                if(item && item.href) window.open(item.href, '_blank', 'noopener,noreferrer');
+             });
+          });
         }
 
         if (statsContainer) {
           statsContainer.innerHTML = data.overviewStats
             .map(
               (item) => `
-                <article class="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
-                  <p class="text-sm text-gray-500">${item.basis}</p>
-                  <h3 class="mt-3 text-lg font-semibold text-gray-200">${item.label}</h3>
-                  <p class="mt-5 text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white">
-                    <span class="count-up text-blue-300" data-target="${item.value}">0</span><span class="text-white">${item.unit}</span>
+                <article class="flex flex-col">
+                  <p class="text-sm font-semibold tracking-widest text-gray-500 uppercase">${item.basis}</p>
+                  <p class="mt-4 text-6xl md:text-7xl font-light tracking-tighter text-white">
+                    <span class="count-up" data-target="${item.value}">0</span><span class="text-3xl text-gray-400 font-normal ml-1">${item.unit}</span>
                   </p>
+                  <h3 class="mt-2 text-base font-medium text-gray-400">${item.label}</h3>
                 </article>
               `
             )
