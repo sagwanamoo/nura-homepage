@@ -263,10 +263,9 @@
             <a href="${basePath}/about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
 
             <div class="activities-dropdown">
-              <a
-                href="${basePath}/activities/"
+              <span
                 data-page="activities"
-                class="nav-link text-gray-300 hover:text-white transition inline-flex items-center gap-2"
+                class="nav-link text-gray-300 hover:text-white transition inline-flex items-center gap-2 cursor-pointer"
               >
                 Activities
                 <svg class="w-4 h-4 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -276,7 +275,7 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-              </a>
+              </span>
 
               <div class="activities-dropdown-menu">
                 <a href="${basePath}/activities/meeting/" class="activities-dropdown-item">
@@ -340,13 +339,12 @@
 
               <div class="border-b border-white/10">
                 <div class="flex items-center justify-between gap-3 py-4">
-                  <a
-                    href="${basePath}/activities/"
+                  <span
                     data-page="activities"
-                    class="nav-link flex-1 text-2xl font-semibold text-white"
+                    class="nav-link flex-1 text-2xl font-semibold text-white cursor-default"
                   >
                     Activities
-                  </a>
+                  </span>
                   <button
                     id="mobile-activities-toggle"
                     type="button"
