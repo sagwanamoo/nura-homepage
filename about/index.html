@@ -27,145 +27,48 @@
   }
 
   .history-summary-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .history-stat-card,
-  .history-dial-wrap {
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    background: rgba(255, 255, 255, 0.045);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-
-  .history-stat-card {
-    border-radius: 1.35rem;
-    padding: 1.25rem;
-  }
-
-  .history-dial-wrap {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(180px, 250px);
-    gap: 1.25rem;
+    display: flex;
     align-items: center;
-    border-radius: 1.5rem;
-    padding: 1.15rem;
+    gap: 2.5rem;
   }
 
-  .history-dial-copy {
-    min-width: 0;
-  }
-
-  .history-dial-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.48);
-  }
-
-  .history-dial-description {
-    margin-top: 0.55rem;
-    font-size: 0.92rem;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.62);
-    word-break: keep-all;
-  }
-
-  .history-dial {
+  .history-dial-sleek {
     position: relative;
+    height: 220px;
     width: 100%;
-    max-width: 250px;
-    height: 112px;
     overflow: hidden;
-    border-radius: 1.1rem;
-    background: rgba(0, 0, 0, 0.28);
-  }
-
- .history-dial::before,
-.history-dial::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  height: 2rem;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.history-dial::before {
-  top: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(3, 7, 18, 0.96) 0%,
-    rgba(3, 7, 18, 0.72) 45%,
-    rgba(3, 7, 18, 0) 100%
-  );
-}
-
-.history-dial::after {
-  bottom: 0;
-  background: linear-gradient(
-    to top,
-    rgba(3, 7, 18, 0.96) 0%,
-    rgba(3, 7, 18, 0.72) 45%,
-    rgba(3, 7, 18, 0) 100%
-  );
-}
-
-  .history-dial-focus {
-    position: absolute;
-    inset-inline: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 1px;
-    background: rgba(96, 165, 250, 0.45);
-    z-index: 11;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
   }
 
   .history-year-reel {
     position: absolute;
     inset-inline: 0;
-    transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
   }
 
-  .history-year-item,
-#history-current-year {
-  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1, "lnum" 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
-}
+  .history-year-item {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 4rem;
+    font-weight: 200;
+    letter-spacing: -0.05em;
+    color: rgba(255, 255, 255, 0.15);
+    transition: all 400ms cubic-bezier(0.22, 1, 0.36, 1);
+    user-select: none;
+  }
 
-.history-year-item {
-  height: 112px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(2.25rem, 5vw, 4rem); /* 일반년도 작게 */
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.16);
-  opacity: 0.52;
-  transform: none;
-  transition:
-    color 300ms ease,
-    opacity 300ms ease,
-    text-shadow 300ms ease,
-    font-size 300ms ease;
-  user-select: none;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
+  .history-year-item.is-active {
+    color: rgb(147, 197, 253);
+    text-shadow: 0 0 24px rgba(96, 165, 250, 0.4);
+    font-size: 5.5rem;
+    font-weight: 300;
+  }
 
-.history-year-item.is-active {
-  color: rgb(147 197 253);
-  opacity: 1;
-  text-shadow: 0 0 22px rgba(96, 165, 250, 0.18);
-}
   .history-rail {
     position: relative;
     padding-left: 2.25rem;
@@ -274,31 +177,9 @@
       padding: 1rem;
     }
 
-    .history-dial-copy {
-      margin-bottom: 0.65rem;
-    }
-
-    .history-dial-description {
-      display: none;
-    }
-
-    .history-dial-wrap .history-dial {
-      max-width: none;
-    }
-
     #history {
       padding-bottom: 4rem;
     }
-
-    .history-dial {
-      max-width: 194px;
-      height: 84px;
-    }
-
-    .history-year-item {
-  height: 84px;
-  font-size: 2.28rem;
-}
 
     .history-rail {
       padding-left: 1.75rem;
@@ -310,12 +191,6 @@
   }
 
   @media (max-width: 1023px) {
-    .history-dial-wrap {
-      display: none !important;
-      position: static !important;
-      transform: none !important;
-    }
-
     #history {
       padding-bottom: 0 !important;
     }
@@ -338,8 +213,9 @@
     }
 
     .history-stat-card {
-      border-radius: 1rem !important;
-      padding: 1rem !important;
+      /* Reset mobile padding/radius for the new minimalist style */
+      border-radius: 0 !important;
+      padding: 0 !important;
     }
 
     .history-rail {
@@ -359,7 +235,7 @@
     }
 
     .history-entry-year {
-      font-size: 1.55rem !important;
+      /* Remove forced smaller font size so text-6xl takes effect */
     }
 
     .history-entry p {
@@ -390,24 +266,21 @@
 NURA는 국내 대학 간 로켓 관련 학술 교류를 촉진하고 정기적인 로켓발사대회를 개최하여 로켓에 관한 대학생들의 관심과 접근성을 고취하고자 설립되었습니다. 
       </p>
 
-        <div class="history-summary-grid mt-10">
-          <div class="history-stat-card">
-            <div class="text-xs uppercase tracking-[0.18em] text-gray-400">Founded from</div>
-            <div class="mt-2 text-3xl font-black tracking-[-0.04em] text-white">1992</div>
+        <div class="history-summary-grid mt-10 mb-12">
+          <div class="history-stat-card flex flex-col">
+            <div class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Founded</div>
+            <div class="mt-2 text-6xl md:text-7xl font-light tracking-tighter text-white opacity-60">1992</div>
           </div>
-          <div class="history-stat-card">
-            <div class="text-xs uppercase tracking-[0.18em] text-gray-400">Current</div>
-<div id="history-current-year" class="mt-2 text-3xl font-black tracking-[-0.04em] text-white"></div>
+          <div class="w-[1px] h-16 bg-white/10 hidden sm:block"></div>
+          <div class="history-stat-card flex flex-col">
+            <div class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Present</div>
+            <div class="mt-2 text-6xl md:text-7xl font-light tracking-tighter text-white opacity-60">2026</div>
           </div>
         </div>
-
-        <div class="history-dial-wrap mt-8">
-          <div class="history-dial-copy">
-            <div class="history-dial-label">Timeline Focus</div>
-            <p class="history-dial-description">1992년부터 현재까지</p>
-          </div>
-          <div class="history-dial">
-            <div class="history-dial-focus"></div>
+        
+        <div class="hidden lg:block mt-12">
+          <div class="text-sm font-semibold tracking-widest text-blue-400 uppercase mb-4">Timeline Journey</div>
+          <div class="history-dial-sleek">
             <div id="history-year-reel" class="history-year-reel"></div>
           </div>
         </div>
@@ -429,7 +302,7 @@ NURA는 국내 대학 간 로켓 관련 학술 교류를 촉진하고 정기적�
   const historyData = window.NURA_DATA?.historyData || [];
 
 function createHistoryEntry(entry) {
-  const yearClass = "text-[28px] md:text-[40px] font-bold tracking-[-0.05em] text-white";
+  const yearClass = "text-4xl md:text-5xl font-light tracking-tighter text-white";
   const itemTextClass = "text-gray-300 text-[15px] md:text-[17px] leading-7 md:leading-8";
 
   const itemsHtml = entry.items
@@ -521,12 +394,10 @@ class="history-group-toggle inline-flex items-center gap-2 rounded-full border b
   (function renderHistoryDialTimeline() {
     const reel = document.getElementById("history-year-reel");
     const list = document.getElementById("history-entry-list");
-    const currentYearEl = document.getElementById("history-current-year");
     const endSpacer = document.getElementById("history-end-spacer");
-    const dial = document.querySelector(".history-dial");
     const historySection = document.getElementById("history");
 
-    if (!reel || !list || !dial || !historySection) return;
+    if (!list || !historySection || !reel) return;
 
     list.innerHTML = buildHistoryGroups(historyData);
 
@@ -584,16 +455,6 @@ function getVisibleEntries() {
     let introRunning = false;
     let introRaf = null;
 
-    function getYearItemHeight() {
-      const first = yearItems[0];
-      return first ? first.offsetHeight : 112;
-    }
-
-    function getDialCenterYViewport() {
-      const rect = dial.getBoundingClientRect();
-      return rect.top + rect.height / 2 - 300;
-    }
-
     function getMaxScrollY() {
       return Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
     }
@@ -602,14 +463,9 @@ function getVisibleEntries() {
       return Math.min(Math.max(value, 0), getMaxScrollY());
     }
 
-    const REAL_CURRENT_YEAR = new Date().getFullYear();
-
-function setCurrentYearText() {
-  if (currentYearEl) currentYearEl.textContent = String(REAL_CURRENT_YEAR);
-}
     function setReelPositionByYear(yearValue) {
-      const itemHeight = getYearItemHeight();
-      const dialHeight = dial.clientHeight;
+      const itemHeight = 80; // matches CSS height
+      const dialHeight = 220; // matches CSS height
       const indexFloat = yearValue - startYear;
       const offset = dialHeight / 2 - itemHeight / 2 - indexFloat * itemHeight;
       reel.style.transform = `translate3d(0, ${offset}px, 0)`;
@@ -620,7 +476,6 @@ function setCurrentYearText() {
       if (!years.includes(numericYear)) return;
 
       setReelPositionByYear(numericYear);
-      setCurrentYearText();
 
       yearItems.forEach((item) => {
         item.classList.toggle("is-active", Number(item.dataset.year) === numericYear);
