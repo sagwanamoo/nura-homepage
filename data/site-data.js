@@ -1,7 +1,7 @@
 window.NURA_DATA = {
   overviewStats: [
     {
-      basis: "2026년 4월 기준",
+      basis: "2026년 5월 기준",
       label: "참여 대학",
       value: 38,
       unit: "개교"
@@ -452,14 +452,14 @@ window.NURA_DATA = {
     {
       date: "2022.06.11",
       title: "[한국 우주시대 본격 개막]로켓 직접 깎고 다듬고, 우주산업 혁명 벼르는 ‘우주키즈'",
-      summary: "한국의 우주산업을 이끌 우주키즈들의 마음 한 켠엔 저마다의 로켓이 자리 잡고 있다.",
+      summary: "“누리호는 개발하는 과정에 있고, 개발 과정을 두고 성공이나 실패라고 규정짓긴 어려울 것 같다.” 지난해 10월 21일 누리호 1차 발사 직후 진행된 브리핑에서 권현준 과학기술정보통신부 거대공공연구정책관은 울먹이는 목소리로 이렇게 말했다.",
       image: "source/news/news2.jpg",
       href: "https://www.joongang.co.kr/article/25078299"
     },
     {
       date: "2024.01.05",
       title: "부산대학교 항공우주공학과 동아리 PRO, 전국항공우주과학경진대회 대상·금상 수상",
-      summary: "전국항공우주과학경진대회에서 부산대 항공우주공학과 동아리가 대상 및 금상을 수상한 기사입니다.",
+      summary: "부산대학교(총장 차정인)는 항공우주공학과 동아리 PRO가 ‘제21회 전국항공우주과학경진대회’에서 12월 20일 로켓발사대회 부문 대상(과학기술정보통신부장관상)을 차지했다고 밝혔다.",
       image: "source/news/news3.jpg",
       href: "https://www.lecturernews.com/news/articleView.html?idxno=143887"
     },

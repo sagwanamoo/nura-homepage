@@ -247,7 +247,7 @@
         id="topbar"
         class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
       >
-        <div class="max-w-7xl w-full mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between relative z-[50]">
+        <div class="max-w-7xl w-full mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between relative z-[70]">
           <a href="${basePath}/" class="relative z-[70] flex items-center shrink-0">
             <img
               src="${basePath}/source/resources/nura-header.png"

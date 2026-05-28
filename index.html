@@ -349,28 +349,27 @@
                       <p class="text-gray-400 leading-7 line-clamp-3" id="news-hero-summary"></p>
                     </div>
                     
-                    <div class="mt-8 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-                      <div>
-                        <span class="text-sm text-gray-500 block mb-2" id="news-hero-date"></span>
+                    <div class="mt-8">
+                      <span class="text-sm text-gray-500 block mb-3" id="news-hero-date"></span>
+                      <div class="flex items-center justify-between gap-4 sm:gap-6">
                         <a href="#" target="_blank" rel="noopener noreferrer" id="news-hero-link" class="inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-gray-300 transition">
                           기사 보기
                           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         </a>
-                      </div>
-                      
-                      <!-- Swiper Controls -->
-                      <div class="flex items-center gap-4">
-                        <div class="flex items-center gap-2 text-gray-400 font-mono text-sm">
-                          <span id="news-hero-current" class="text-white">1</span>
-                          <span class="w-8 h-[1px] bg-gray-600"></span>
-                          <span id="news-hero-total">3</span>
-                        </div>
-                        <div class="flex gap-2">
-                          <button type="button" class="news-prev w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition disabled:opacity-50 disabled:cursor-not-allowed">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                          </button>
-                          <button type="button" class="news-next w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition disabled:opacity-50 disabled:cursor-not-allowed">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        
+                        <!-- Swiper Controls -->
+                        <div class="flex-shrink-0">
+                          <div class="inline-flex items-center gap-4">
+                            <button type="button" class="news-prev text-gray-400 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none flex items-center justify-center p-1">
+                              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                            
+                            <div class="w-20 h-[2px] bg-white/20 rounded-full overflow-hidden">
+                              <div class="news-progress-fill h-full bg-white" style="width: 0%;"></div>
+                            </div>
+
+                            <button type="button" class="news-next text-gray-400 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none flex items-center justify-center p-1">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                           </button>
                         </div>
                       </div>
@@ -395,7 +394,7 @@
         </section>
 
         <!-- CURRENT PARTNERS -->
-        <section class="border-t border-white/10 border-b border-white/10 bg-black">
+        <section class="border-t border-white/10 bg-black">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
             <div class="text-center mb-8 mt-4">
               <h2 class="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-white">현재 함께하는 파트너</h2>
@@ -416,6 +415,24 @@
                   <img src="source/partnership/ligpoongsan-transparent.png" alt="LIG풍산 로고" loading="lazy" decoding="async" style="height: 44px; width: auto;">
                 </a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FIND NURA SENIOR -->
+        <section id="alumni" class="border-t border-white/10 border-b border-white/10 bg-black">
+          <div class="max-w-5xl mx-auto px-4 md:px-8 py-24 md:py-32 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white tracking-[-0.04em] mb-8 leading-tight">NURA 선배님을 찾습니다</h2>
+            <div class="text-gray-400 text-base md:text-[17px] leading-relaxed break-keep space-y-4 max-w-3xl mx-auto">
+              <p>안녕하세요! 저희는 선배님의 꿈을 이어받아 전국대학교로켓연합회 NURA에서 활동 중인 후배들입니다.</p>
+              <p>선배님의 꿈을 차례로 물려받아 온 지 올해로 35년 차, 전국의 친구들과 함께 로켓을 만들다 보면 저희보다 앞서 이 꿈을 꾸셨던 분들은 어떤 분들이신지, 지금은 어디에 계시는지 궁금할 때가 참 많습니다.</p>
+              <p class="text-white/80 font-medium pt-2">저희 후배들에게 선배님을 알려주세요! 저희도 그 발자취를 따라가며 자라나겠습니다.</p>
+            </div>
+            <div class="mt-12 flex justify-center">
+              <a href="https://forms.gle/3sKChMwF2myE7zYb8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-[15px] font-semibold text-white transition hover:bg-white hover:text-black">
+                선배님 소식 전하기
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
             </div>
           </div>
         </section>
@@ -585,10 +602,6 @@
           const summaryEl = document.getElementById("news-hero-summary");
           const dateEl = document.getElementById("news-hero-date");
           const linkEl = document.getElementById("news-hero-link");
-          const curEl = document.getElementById("news-hero-current");
-          const totEl = document.getElementById("news-hero-total");
-
-          if (totEl) totEl.textContent = data.newsItems.length;
 
           const updateTextBox = (index) => {
             const item = data.newsItems[index];
@@ -597,10 +610,11 @@
             if (summaryEl) summaryEl.textContent = item.summary;
             if (dateEl) dateEl.textContent = item.date;
             if (linkEl) linkEl.href = item.href;
-            if (curEl) curEl.textContent = index + 1;
           };
 
           if (data.newsItems.length > 0) updateTextBox(0);
+
+          const newsProgressFill = document.querySelector('.news-progress-fill');
 
           const newsSwiper = new Swiper(".news-swiper", {
             loop: true,
@@ -617,6 +631,12 @@
               slideChange: function () {
                 updateTextBox(this.realIndex);
               },
+              autoplayTimeLeft(s, time, progress) {
+                if (newsProgressFill) {
+                  const percentage = (1 - progress) * 100;
+                  newsProgressFill.style.width = percentage + "%";
+                }
+              }
             },
           });
 
