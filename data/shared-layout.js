@@ -393,14 +393,14 @@
     return `
       <footer class="site-footer bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
         <div class="max-w-6xl mx-auto">
-          <div class="site-footer__grid grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
-            <div>
+          <div class="site-footer__grid flex flex-col md:flex-row justify-center md:gap-24 gap-8 px-0 md:px-8">
+            <div class="text-left">
               <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
               <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
               <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
             </div>
 
-            <div>
+            <div class="text-left">
               <h3 class="text-lg font-bold mb-4">연락처</h3>
               <div class="text-gray-400 text-sm space-y-2">
                 <p>
@@ -422,7 +422,7 @@
               </div>
             </div>
 
-            <div>
+            <div class="text-left">
               <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
               <div class="text-gray-400 text-sm space-y-2">
                 <p>대표자: 전하상</p>

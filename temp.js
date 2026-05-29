@@ -1,4 +1,4 @@
-window.NURA_DATA = {
+module.exports = {
   overviewStats: [
     {
       basis: "2026년 5월 기준",
@@ -21,7 +21,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 기준",
       label: "협력 기관",
-      value: 5,
+      value: 4,
       unit: "곳"
     }
   ],
@@ -813,27 +813,27 @@ window.NURA_DATA = {
   ],
 
   presidentsData: [
-    { generation: 1, name: "이훈희(인하대학교)", term: "2001" },
-    { generation: 2, name: "이선미(인하대학교)", term: "2001-2002" },
-    { generation: 3, name: "강해성(한국항공대학교)", term: "2002-2003" },
-    { generation: 4, name: "김두환(인하대학교)", term: "2003-2004" },
-    { generation: 5, name: "김기홍(경희대학교)", term: "2004-2005" },
-    { generation: 6, name: "이용우(충남대학교)", term: "2005-2006" },
-    { generation: 7, name: "오근수(부산대학교)", term: "2006-2007" },
-    { generation: 8, name: "조승현(항공대학교)", term: "2007-2008" },
-    { generation: 9, name: "강경오(건국대학교)", term: "2008-2009" },
-    { generation: 12, name: "김일수(서울대학교)", term: "2011-2012" },
-    { generation: 14, name: "심창훈(충남대학교)", term: "2013-2014" },
-    { generation: 15, name: "손민수(경북대학교)", term: "2014-2015", vicePresident: "길하종(건국대학교)", secretary: "엄태호(조선대학교)" },
-    { generation: 16, name: "엄태호(조선대학교)", term: "2015-2016", vicePresident: "박성재(구미대학교)", secretary: "김세원(한국항공대학교)" },
-    { generation: 17, name: "김진섭(경희대학교)", term: "2016-2017", vicePresident: "허수범(서울대학교)", secretary: "김민웅(건국대학교)" },
-    { generation: 18, name: "정민지(인하대학교)", term: "2017-2018", vicePresident: "권영근(한국기술교육대학교), 이성우(중앙대학교)" },
-    { generation: 30, name: "장예지(부경대학교)", term: "2020-2021" },
-    { generation: 31, name: "최나린(항공대)", term: "2021-2022", vicePresident: "황우연(항공대)", secretary: "문준석(건국대)" },
-    { generation: 32, name: "양소현(한국항공대학교)", term: "2022-2023", vicePresident: "이승환(한국교통대학교)", secretary: "서보석(건국대학교)" },
-    { generation: 33, name: "신동욱(한국항공대학교)", term: "2023-2024", vicePresident: "서지완(서울대학교)", secretary: "노혜우(건국대학교)" },
-    { generation: 34, name: "신동욱(한국항공대학교)", term: "2024-2025", vicePresident: "서지완(서울대학교, 직무대행 광주과학기술원 이창현)", secretary: "박세연(이화여자대학교)" },
-    { generation: 35, name: "이창현(광주과학기술원)", term: "2025-2026", vicePresident: "한재경(동국대학교)", secretary: "윤원빈(건국대학교)" }
+    { generation: 1, name: "이훈희", term: "2001" },
+    { generation: 2, name: "이선미", term: "2001-2002" },
+    { generation: 3, name: "강해성", term: "2002-2003" },
+    { generation: 4, name: "김두환", term: "2003-2004" },
+    { generation: 5, name: "김기홍", term: "2004-2005" },
+    { generation: 6, name: "이용우", term: "2005-2006" },
+    { generation: 7, name: "오근수", term: "2006-2007" },
+    { generation: 8, name: "조승현", term: "2007-2008" },
+    { generation: 9, name: "강경오", term: "2008-2009" },
+    { generation: 12, name: "김일수", term: "2011-2012" },
+    { generation: 14, name: "심창훈", term: "2013-2014" },
+    { generation: 15, name: "손민수", term: "2014-2015", vicePresident: "건국대학교 길하종", secretary: "조선대학교 엄태호" },
+    { generation: 16, name: "엄태호", term: "2015-2016", vicePresident: "구미대학교 박성재", secretary: "한국항공대학교 김세원" },
+    { generation: 17, name: "김진섭", term: "2016-2017", vicePresident: "서울대학교 허수범", secretary: "건국대학교 김민웅" },
+    { generation: 18, name: "정민지", term: "2017-2018", vicePresident: "한국기술교육대학교 권영근, 중앙대학교 이성우" },
+    { generation: 30, name: "장예지", term: "2020-2021" },
+    { generation: 31, name: "최나린", term: "2021-2022", vicePresident: "항공대 황우연", secretary: "건국대 문준석" },
+    { generation: 32, name: "양소현", term: "2022-2023", vicePresident: "한국교통대학교 이승환", secretary: "건국대학교 서보석" },
+    { generation: 33, name: "신동욱", term: "2023-2024", vicePresident: "서울대학교 서지완", secretary: "건국대학교 노혜우" },
+    { generation: 34, name: "신동욱", term: "2024-2025", vicePresident: "서울대학교 서지완(직무대행 광주과학기술원 이창현)", secretary: "이화여자대학교 박세연" },
+    { generation: 35, name: "이창현", term: "2025-2026", vicePresident: "동국대학교 한재경", secretary: "건국대학교 윤원빈" }
   ],
 
   conferenceAwards: [
