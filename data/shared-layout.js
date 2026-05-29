@@ -437,7 +437,7 @@
               © 1992 - 2026 NURA. All rights reserved.
             </div>
             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-gray-400">
-              <a href="${basePath}/privacy/" class="hover:text-white hover:underline transition font-semibold text-gray-300">개인정보 처리방침</a>
+              <a href="${basePath}/privacy/" class="hover:text-white hover:underline transition font-semibold text-gray-300">개인정보처리방침</a>
               <span class="text-gray-700">|</span>
               <a href="${basePath}/sitemap/" class="hover:text-white hover:underline transition">사이트 맵</a>
             </div>

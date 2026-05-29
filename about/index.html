@@ -77,7 +77,7 @@
   .history-rail::before {
     content: "";
     position: absolute;
-    left: 0.653rem;
+    left: 0.625rem;
     top: 0;
     bottom: 0;
     width: 1px;
@@ -127,7 +127,7 @@
   }
 
 .page-main-title {
-  white-space: nowrap;
+  word-break: keep-all;
   font-size: clamp(2.2rem, 6.4vw, 4.5rem);
 }
 
@@ -154,22 +154,9 @@
       position: static;
     }
 
-    .history-dial-wrap {
-      position: fixed;
-      left: 50%;
-      bottom: max(0.85rem, env(safe-area-inset-bottom));
-      transform: translateX(-50%);
-      width: min(100% - 1.4rem, 238px);
-      z-index: 40;
-      margin-top: 0;
-      padding: 0.8rem 0.8rem 0.9rem;
-      display: block;
-      border-radius: 1.25rem;
-      box-shadow: 0 12px 28px rgba(2, 6, 23, 0.28);
-    }
-
     .history-summary-grid {
-      gap: 0.75rem;
+      gap: 3.5rem;
+      justify-content: center;
     }
 
     .history-stat-card {
@@ -186,7 +173,7 @@
     }
 
     .history-entry::before {
-      left: -1.55rem;
+      left: -1.5rem;
     }
   }
 
@@ -204,12 +191,14 @@
     }
 
     .history-side-panel > section {
-      padding-bottom: 1.25rem !important;
+      padding-bottom: 1.5rem !important;
     }
 
     .history-summary-grid {
-      gap: 0.75rem !important;
-      margin-top: 1.5rem !important;
+      gap: 3.5rem !important;
+      margin-top: 4rem !important;
+      margin-bottom: 0.5rem !important;
+      justify-content: center !important;
     }
 
     .history-stat-card {
@@ -230,7 +219,7 @@
     }
 
     .history-entry::before {
-      left: -1.55rem;
+      left: -1.5rem;
       top: 1.85rem;
     }
 
@@ -267,14 +256,14 @@ NURA는 국내 대학 간 로켓 관련 학술 교류를 촉진하고 정기적�
       </p>
 
         <div class="history-summary-grid mt-10 mb-12">
-          <div class="history-stat-card flex flex-col">
+          <div class="history-stat-card flex flex-col items-center md:items-start">
             <div class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Founded</div>
-            <div class="mt-2 text-6xl md:text-7xl font-light tracking-tighter text-white opacity-60">1992</div>
+            <div class="mt-2 text-5xl md:text-7xl font-light tracking-tighter text-white opacity-60">1992</div>
           </div>
-          <div class="w-[1px] h-16 bg-white/10 hidden sm:block"></div>
-          <div class="history-stat-card flex flex-col">
+          <div class="w-[1px] h-12 md:h-16 bg-white/10"></div>
+          <div class="history-stat-card flex flex-col items-center md:items-start">
             <div class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Present</div>
-            <div class="mt-2 text-6xl md:text-7xl font-light tracking-tighter text-white opacity-60">2026</div>
+            <div class="mt-2 text-5xl md:text-7xl font-light tracking-tighter text-white opacity-60">2026</div>
           </div>
         </div>
         
@@ -571,6 +560,7 @@ function syncFromScroll() {
     function handleResize() {
       updateEndSpacerPrecise();
       updateStartSpacerPrecise();
+      syncFromScroll();
     }
 
     setActiveYear(startYear);
