@@ -503,7 +503,7 @@
               <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
               <div class="text-gray-400 text-sm space-y-2">
                 <p>대표자: 전하상</p>
-                <p>사업자등록번호: 609-82-83482</p>
+                <p>고유번호: 609-82-83482</p>
                 <p>설립일: 1992년 3월 2일</p>
               </div>
             </div>
