@@ -500,7 +500,7 @@
             </div>
 
             <div class="text-left">
-              <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
+              <h3 class="text-lg font-bold mb-4">단체 정보</h3>
               <div class="text-gray-400 text-sm space-y-2">
                 <p>대표자: 전하상</p>
                 <p>고유번호: 609-82-83482</p>
@@ -516,7 +516,7 @@
             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-gray-400">
               <a href="${basePath}/privacy/" class="hover:text-white hover:underline transition font-semibold text-gray-300">개인정보처리방침</a>
               <span class="text-gray-700">|</span>
-              <a href="${basePath}/sitemap/" class="hover:text-white hover:underline transition">사이트 맵</a>
+              <a href="${basePath}/sitemap/" class="hover:text-white hover:underline transition">사이트맵</a>
             </div>
           </div>
         </div>
