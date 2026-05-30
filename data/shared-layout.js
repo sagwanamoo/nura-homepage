@@ -313,7 +313,7 @@
               <button
                 type="button"
                 data-page="members"
-                data-related-pages="senior"
+                data-related-pages="leadership"
                 class="nav-link nav-dropdown-trigger text-gray-300 hover:text-white transition inline-flex items-center gap-2 cursor-pointer"
               >
                 Members
@@ -327,10 +327,10 @@
               </button>
 
               <div class="nav-dropdown-menu">
-                <a href="${basePath}/members/" class="nav-dropdown-item">
+                <a href="${basePath}/members/university/" class="nav-dropdown-item">
                   <span>회원대학</span>
                 </a>
-                <a href="${basePath}/senior/" class="nav-dropdown-item">
+                <a href="${basePath}/members/leadership/" class="nav-dropdown-item">
                   <span>역대회장단</span>
                 </a>
               </div>
@@ -421,7 +421,7 @@
                 <div class="flex items-center justify-between gap-3 py-4">
                   <span
                     data-page="members"
-                    data-related-pages="senior"
+                    data-related-pages="leadership"
                     class="nav-link flex-1 text-2xl font-semibold text-white cursor-default"
                   >
                     Members
@@ -449,8 +449,8 @@
 
                 <div id="mobile-members-submenu" class="max-h-0 overflow-hidden transition-all duration-300 ease-out">
                   <div class="pb-4">
-                    <a href="${basePath}/members/" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">회원대학</a>
-                    <a href="${basePath}/senior/" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">역대회장단</a>
+                    <a href="${basePath}/members/university/" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">University</a>
+                    <a href="${basePath}/members/leadership/" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">Leadership</a>
                   </div>
                 </div>
               </div>
@@ -542,8 +542,8 @@
 
     if (path.includes('/about')) return 'about';
     if (path.includes('/partnership')) return 'partnership';
+    if (path.includes('/members/leadership')) return 'leadership';
     if (path.includes('/members')) return 'members';
-    if (path.includes('/senior')) return 'senior';
     if (path.includes('/resources')) return 'resources';
 
     return 'home';

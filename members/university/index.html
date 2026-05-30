@@ -8,7 +8,7 @@
     <meta property="og:title" content="NURA | Members" />
     <meta property="og:description" content="전국대학교로켓연합회(NURA)는 국내 대학 로켓 동아리와 학생 연구자들이 함께 교류하고 성장하는 전국 단위 연합회입니다." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nura.kr/members/" />
+    <meta property="og:url" content="https://nura.kr/members/university/" />
     <meta property="og:image" content="https://nura.kr/source/resources/og-image.jpg" />
     <meta property="og:image:secure_url" content="https://nura.kr/source/resources/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -16,13 +16,13 @@
     <meta property="og:image:alt" content="NURA 로고" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://nura.kr/source/resources/og-image.jpg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
-    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../../source/resources/favicon-32x32.png" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <script src="../data/site-data.js?v=20260530-1"></script>
+    <script src="../../data/site-data.js?v=20260530-1"></script>
     <style>
       html { scroll-behavior: smooth; }
       html, body { background-color: #030712; overflow-x: hidden; }
@@ -744,9 +744,9 @@
         }
       }
     </style>
-    <script src="../data/shared-layout.js?v=20260530-2" defer></script>
+    <script src="../../data/shared-layout.js?v=20260530-2" defer></script>
   </head>
-  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="members" data-base-path="..">
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="members" data-base-path="../..">
     <div class="page-shell flex flex-col">
       <div data-shared-header></div>
 
@@ -773,7 +773,7 @@
                       id="members-korea-map"
                       class="korea-map-frame"
                       type="image/svg+xml"
-                      data="../source/members/south-korea.svg"
+                      data="../../source/members/south-korea.svg"
                       aria-label="대한민국 회원 대학 지도"
                     ></object>
                   </div>
@@ -912,44 +912,44 @@
       const MAP_SELECTED_STROKE = 'rgba(191,219,254,1)';
 
       const memberLogoPathByName = {
-        '가천대학교': '../source/members/used-logos/가천대학교.png',
-        '건국대학교': '../source/members/used-logos/건국대학교.png',
-        '경기대학교': '../source/members/used-logos/경기대학교.png',
-        '경북대학교': '../source/members/used-logos/경북대학교.png',
-        '경상국립대학교': '../source/members/used-logos/경상국립대학교.png',
-        '경희대학교': '../source/members/used-logos/경희대학교.png',
-        '고려대학교': '../source/members/used-logos/고려대학교.gif',
-        '공군사관학교': '../source/members/used-logos/공군사관학교.svg',
-        '광주과학기술원': '../source/members/used-logos/광주과학기술원.png',
-        '국립순천대학교': '../source/members/used-logos/국립순천대학교.png',
-        '국립한국교통대학교': '../source/members/used-logos/국립한국교통대학교.png',
-        '국민대학교': '../source/members/used-logos/국민대학교.png',
-        '대구경북과학기술원': '../source/members/used-logos/디지스트.png',
-        '동국대학교': '../source/members/used-logos/동국대학교.png',
-        '부산대학교': '../source/members/used-logos/부산대학교.png',
-        '서울과학기술대학교': '../source/members/used-logos/서울과학기술대학교.svg',
-        '서울대학교': '../source/members/used-logos/서울대학교.svg',
-        '서울시립대학교': '../source/members/used-logos/서울시립대.png',
-        '성균관대학교': '../source/members/used-logos/성균관대학교.png',
-        '세종대학교': '../source/members/used-logos/세종대학교.png',
-        '숙명여자대학교': '../source/members/used-logos/숙명여자대학교.png',
-        '숭실대학교': '../source/members/used-logos/숭실대학교.svg',
-        '아주대학교': '../source/members/used-logos/아주대학교.svg',
-        '연세대학교': '../source/members/used-logos/연세대학교.png',
-        '영남대학교': '../source/members/used-logos/영남대학교.png',
-        '울산과학기술원': '../source/members/used-logos/unist.svg',
-        '인하대학교': '../source/members/used-logos/인하대학교.png',
-        '전북대학교': '../source/members/used-logos/전북대학교.png',
-        '조선대학교': '../source/members/used-logos/조선대학교.jpg',
-        '중앙대학교': '../source/members/used-logos/중앙대학교.png',
-        '충남대학교': '../source/members/used-logos/충남대학교.svg',
-        '포항공과대학교': '../source/members/used-logos/포항공대.png',
-        '한국과학기술원': '../source/members/used-logos/한국과학기술원.png',
-        '한국기술교육대학교': '../source/members/used-logos/한국기술교육대학교.svg',
-        '한국에너지공과대학교': '../source/members/used-logos/한국에너지공과대학교.png',
-        '한국항공대학교': '../source/members/used-logos/항공대학교.svg',
-        '한양대학교': '../source/members/used-logos/한양대학교.svg',
-        '한양대학교 ERICA': '../source/members/used-logos/한양대학교 ERICA.svg'
+        '가천대학교': '../../source/members/used-logos/가천대학교.png',
+        '건국대학교': '../../source/members/used-logos/건국대학교.png',
+        '경기대학교': '../../source/members/used-logos/경기대학교.png',
+        '경북대학교': '../../source/members/used-logos/경북대학교.png',
+        '경상국립대학교': '../../source/members/used-logos/경상국립대학교.png',
+        '경희대학교': '../../source/members/used-logos/경희대학교.png',
+        '고려대학교': '../../source/members/used-logos/고려대학교.gif',
+        '공군사관학교': '../../source/members/used-logos/공군사관학교.svg',
+        '광주과학기술원': '../../source/members/used-logos/광주과학기술원.png',
+        '국립순천대학교': '../../source/members/used-logos/국립순천대학교.png',
+        '국립한국교통대학교': '../../source/members/used-logos/국립한국교통대학교.png',
+        '국민대학교': '../../source/members/used-logos/국민대학교.png',
+        '대구경북과학기술원': '../../source/members/used-logos/디지스트.png',
+        '동국대학교': '../../source/members/used-logos/동국대학교.png',
+        '부산대학교': '../../source/members/used-logos/부산대학교.png',
+        '서울과학기술대학교': '../../source/members/used-logos/서울과학기술대학교.svg',
+        '서울대학교': '../../source/members/used-logos/서울대학교.svg',
+        '서울시립대학교': '../../source/members/used-logos/서울시립대.png',
+        '성균관대학교': '../../source/members/used-logos/성균관대학교.png',
+        '세종대학교': '../../source/members/used-logos/세종대학교.png',
+        '숙명여자대학교': '../../source/members/used-logos/숙명여자대학교.png',
+        '숭실대학교': '../../source/members/used-logos/숭실대학교.svg',
+        '아주대학교': '../../source/members/used-logos/아주대학교.svg',
+        '연세대학교': '../../source/members/used-logos/연세대학교.png',
+        '영남대학교': '../../source/members/used-logos/영남대학교.png',
+        '울산과학기술원': '../../source/members/used-logos/unist.svg',
+        '인하대학교': '../../source/members/used-logos/인하대학교.png',
+        '전북대학교': '../../source/members/used-logos/전북대학교.png',
+        '조선대학교': '../../source/members/used-logos/조선대학교.jpg',
+        '중앙대학교': '../../source/members/used-logos/중앙대학교.png',
+        '충남대학교': '../../source/members/used-logos/충남대학교.svg',
+        '포항공과대학교': '../../source/members/used-logos/포항공대.png',
+        '한국과학기술원': '../../source/members/used-logos/한국과학기술원.png',
+        '한국기술교육대학교': '../../source/members/used-logos/한국기술교육대학교.svg',
+        '한국에너지공과대학교': '../../source/members/used-logos/한국에너지공과대학교.png',
+        '한국항공대학교': '../../source/members/used-logos/항공대학교.svg',
+        '한양대학교': '../../source/members/used-logos/한양대학교.svg',
+        '한양대학교 ERICA': '../../source/members/used-logos/한양대학교 ERICA.svg'
       };
 
       let provinceNodes = [];
