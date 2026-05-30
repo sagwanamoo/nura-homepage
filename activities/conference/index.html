@@ -34,8 +34,8 @@
       }
 
     </style>
-    <script src="../../data/site-data.js?v=20260515"></script>
-    <script src="../../data/shared-layout.js?v=20260515" defer></script>
+    <script src="../../data/site-data.js?v=20260530-1"></script>
+    <script src="../../data/shared-layout.js?v=20260530-2" defer></script>
   </head>
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="../..">
     <div class="page-shell flex flex-col">
@@ -221,7 +221,7 @@
     `).join('');
     return `
       <div class="rounded-[1.75rem] border border-white/10 px-5 py-5 md:px-6 md:py-6">
-        <p class="text-sm md:text-base text-white/45">제${year}회</p>
+        <p class="text-sm md:text-base text-white/45">${year}년</p>
         <div class="mt-3 space-y-2">${rows}</div>
       </div>
     `;

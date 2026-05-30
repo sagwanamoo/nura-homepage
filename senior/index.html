@@ -34,8 +34,8 @@
       }
 
     </style>
-    <script src="../data/site-data.js?v=20260515"></script>
-    <script src="../data/shared-layout.js?v=20260515" defer></script>
+    <script src="../data/site-data.js?v=20260530-1"></script>
+    <script src="../data/shared-layout.js?v=20260530-2" defer></script>
   </head>
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="senior" data-base-path="..">
     <div class="page-shell flex flex-col">
@@ -86,26 +86,27 @@
         }
 
         const sorted = [...data].sort((a, b) => b.generation - a.generation);
-    container.innerHTML = sorted.map(item => {
-      let details = '';
-      if (item.vicePresident) details += `<span class="inline-block mr-4">부회장: ${item.vicePresident}</span>`;
-      if (item.secretary) details += `<span class="inline-block">총무: ${item.secretary}</span>`;
-      
-      return `
-        <article class="py-6 md:py-8 border-b border-white/10 last:border-b-0">
-          <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)] gap-4 md:gap-8 items-center">
-            <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">${item.term}</div>
-            <div class="min-w-0 text-right">
-              <h2 class="flex flex-wrap items-center justify-end gap-2 text-[22px] md:text-[30px] leading-[1.22] tracking-[-0.04em] font-semibold text-white break-keep">
-                <span class="text-sm md:text-base text-white/45 font-normal">제${item.generation}대</span>
-                <span>회장 ${item.name}</span>
-              </h2>
-              ${details ? `<p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep">${details}</p>` : ''}
-            </div>
-          </div>
-        </article>
-      `;
-    }).join('');
+        container.innerHTML = sorted.map(item => {
+          let details = '';
+          if (item.vicePresident) details += `<span class="inline-block mr-4">부회장: ${item.vicePresident}</span>`;
+          if (item.secretary) details += `<span class="inline-block">총무: ${item.secretary}</span>`;
+
+          return `
+            <article class="py-6 md:py-8 border-b border-white/10 last:border-b-0">
+              <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)] gap-4 md:gap-8 items-center">
+                <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">${item.term}</div>
+                <div class="min-w-0 text-right">
+                  <h2 class="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 text-[22px] md:text-[30px] leading-[1.22] tracking-[-0.04em] font-semibold text-white break-keep">
+                    <span class="text-sm md:text-base text-white/45 font-normal">제${item.generation}대</span>
+                    <span>회장 ${item.name}</span>
+                    ${item.university ? `<span class="text-sm md:text-base text-white/45 font-medium tracking-[-0.02em]">${item.university}</span>` : ''}
+                  </h2>
+                  ${details ? `<p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep">${details}</p>` : ''}
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
       })();
     </script>
   </body>

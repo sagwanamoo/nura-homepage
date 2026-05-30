@@ -35,11 +35,25 @@
         -webkit-backdrop-filter: none;
       }
 
-      .activities-dropdown {
+      .nav-dropdown {
         position: relative;
       }
 
-      .activities-dropdown-menu {
+      .nav-dropdown-trigger {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        font: inherit;
+        padding: 0;
+      }
+
+      .nav-dropdown-trigger:focus-visible {
+        outline: 2px solid rgba(96, 165, 250, 0.85);
+        outline-offset: 4px;
+        border-radius: 6px;
+      }
+
+      .nav-dropdown-menu {
         position: absolute;
         top: 100%;
         margin-top: 11px;
@@ -64,14 +78,15 @@
         z-index: 80;
       }
 
-      .activities-dropdown:hover .activities-dropdown-menu {
+      .nav-dropdown:hover .nav-dropdown-menu,
+      .nav-dropdown:focus-within .nav-dropdown-menu {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
         transform: translateX(-50%) translateY(0);
       }
 
-      .activities-dropdown-item {
+      .nav-dropdown-item {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -88,27 +103,27 @@
           transform 180ms ease;
       }
 
-      .activities-dropdown-item > span {
+      .nav-dropdown-item > span {
         display: block;
         width: 100%;
         text-align: center;
       }
 
-      .activities-dropdown-item + .activities-dropdown-item {
+      .nav-dropdown-item + .nav-dropdown-item {
         border-top: 1px solid rgba(0, 0, 0, 0.08);
       }
 
-      .activities-dropdown-item:hover {
+      .nav-dropdown-item:hover {
         background: #71b3e2;
         color: #ffffff;
         transform: scale(1.02);
       }
 
-      .activities-dropdown-arrow {
+      .nav-dropdown-arrow {
         display: none;
       }
 
-      .activities-dropdown::after {
+      .nav-dropdown::after {
         content: "";
         position: absolute;
         left: 0;
@@ -262,10 +277,11 @@
           <nav class="hidden lg:flex items-center gap-8 text-base font-medium">
             <a href="${basePath}/about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
 
-            <div class="activities-dropdown">
-              <span
+            <div class="nav-dropdown">
+              <button
+                type="button"
                 data-page="activities"
-                class="nav-link text-gray-300 hover:text-white transition inline-flex items-center gap-2 cursor-pointer"
+                class="nav-link nav-dropdown-trigger text-gray-300 hover:text-white transition inline-flex items-center gap-2 cursor-pointer"
               >
                 Activities
                 <svg class="w-4 h-4 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -275,26 +291,51 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-              </span>
+              </button>
 
-              <div class="activities-dropdown-menu">
-                <a href="${basePath}/activities/meeting/" class="activities-dropdown-item">
+              <div class="nav-dropdown-menu">
+                <a href="${basePath}/activities/meeting/" class="nav-dropdown-item">
                   <span>대표자 회의</span>
                 </a>
-                <a href="${basePath}/activities/kspe/" class="activities-dropdown-item">
+                <a href="${basePath}/activities/kspe/" class="nav-dropdown-item">
                   <span>춘추계 학술대회</span>
                 </a>
-                <a href="${basePath}/activities/conference/" class="activities-dropdown-item">
+                <a href="${basePath}/activities/conference/" class="nav-dropdown-item">
                   <span>학술대회</span>
                 </a>
-                <a href="${basePath}/activities/launch/" class="activities-dropdown-item">
+                <a href="${basePath}/activities/launch/" class="nav-dropdown-item">
                   <span>발사대회</span>
                 </a>
               </div>
             </div>
 
-            <a href="${basePath}/senior/" data-page="senior" class="nav-link text-gray-300 hover:text-white transition">Senior</a>
-            <a href="${basePath}/members/" data-page="members" class="nav-link text-gray-300 hover:text-white transition">Members</a>
+            <div class="nav-dropdown">
+              <button
+                type="button"
+                data-page="members"
+                data-related-pages="senior"
+                class="nav-link nav-dropdown-trigger text-gray-300 hover:text-white transition inline-flex items-center gap-2 cursor-pointer"
+              >
+                Members
+                <svg class="w-4 h-4 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+
+              <div class="nav-dropdown-menu">
+                <a href="${basePath}/members/" class="nav-dropdown-item">
+                  <span>회원대학</span>
+                </a>
+                <a href="${basePath}/senior/" class="nav-dropdown-item">
+                  <span>역대회장단</span>
+                </a>
+              </div>
+            </div>
+
             <a href="${basePath}/partnership/" data-page="partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
             <a href="${basePath}/resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
           </nav>
@@ -376,8 +417,44 @@
                 </div>
               </div>
 
-              <a href="${basePath}/senior/" data-page="senior" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Senior</a>
-              <a href="${basePath}/members/" data-page="members" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Members</a>
+              <div class="border-b border-white/10">
+                <div class="flex items-center justify-between gap-3 py-4">
+                  <span
+                    data-page="members"
+                    data-related-pages="senior"
+                    class="nav-link flex-1 text-2xl font-semibold text-white cursor-default"
+                  >
+                    Members
+                  </span>
+                  <button
+                    id="mobile-members-toggle"
+                    type="button"
+                    class="inline-flex shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 p-2.5 text-white transition hover:bg-white/10"
+                    aria-label="Members 하위 메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="mobile-members-submenu"
+                  >
+                    <svg
+                      id="mobile-members-arrow"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-gray-300 transition-transform duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div id="mobile-members-submenu" class="max-h-0 overflow-hidden transition-all duration-300 ease-out">
+                  <div class="pb-4">
+                    <a href="${basePath}/members/" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">회원대학</a>
+                    <a href="${basePath}/senior/" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">역대회장단</a>
+                  </div>
+                </div>
+              </div>
+
               <a href="${basePath}/partnership/" data-page="partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
               <a href="${basePath}/resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
             </div>
@@ -474,7 +551,8 @@
 
   function highlightCurrentPage(currentPage) {
     document.querySelectorAll('.nav-link').forEach((link) => {
-      if (link.dataset.page === currentPage) {
+      const relatedPages = (link.dataset.relatedPages || '').split(/\s+/).filter(Boolean);
+      if (link.dataset.page === currentPage || relatedPages.includes(currentPage)) {
         link.classList.add('text-blue-400', 'font-bold');
         link.classList.remove('text-gray-300', 'text-white');
       }
@@ -586,25 +664,30 @@
     window.addEventListener('scroll', updateTopbarBlur, { passive: true });
   }
 
-  function initMobileActivitiesToggle() {
-    const mobileActivitiesToggle = document.getElementById('mobile-activities-toggle');
-    const mobileActivitiesSubmenu = document.getElementById('mobile-activities-submenu');
-    const mobileActivitiesArrow = document.getElementById('mobile-activities-arrow');
+  function initMobileSubmenuToggle(toggleId, submenuId, arrowId) {
+    const toggle = document.getElementById(toggleId);
+    const submenu = document.getElementById(submenuId);
+    const arrow = document.getElementById(arrowId);
 
-    if (!mobileActivitiesToggle || !mobileActivitiesSubmenu) return;
+    if (!toggle || !submenu) return;
 
-    mobileActivitiesToggle.addEventListener('click', () => {
-      const isOpen = mobileActivitiesToggle.getAttribute('aria-expanded') === 'true';
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
 
-      mobileActivitiesToggle.setAttribute('aria-expanded', String(!isOpen));
-      mobileActivitiesArrow?.classList.toggle('rotate-180', !isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      arrow?.classList.toggle('rotate-180', !isOpen);
 
       if (isOpen) {
-        mobileActivitiesSubmenu.style.maxHeight = '0px';
+        submenu.style.maxHeight = '0px';
       } else {
-        mobileActivitiesSubmenu.style.maxHeight = mobileActivitiesSubmenu.scrollHeight + 'px';
+        submenu.style.maxHeight = submenu.scrollHeight + 'px';
       }
     });
+  }
+
+  function initMobileSubmenuToggles() {
+    initMobileSubmenuToggle('mobile-activities-toggle', 'mobile-activities-submenu', 'mobile-activities-arrow');
+    initMobileSubmenuToggle('mobile-members-toggle', 'mobile-members-submenu', 'mobile-members-arrow');
   }
 
   function initSharedLayout() {
@@ -633,7 +716,7 @@
     highlightCurrentPage(currentPage);
     initMobileMenu();
     initTopbarBlur();
-    initMobileActivitiesToggle();
+    initMobileSubmenuToggles();
   }
 
   if (document.readyState === 'loading') {

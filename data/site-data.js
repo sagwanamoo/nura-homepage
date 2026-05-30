@@ -673,7 +673,7 @@ window.NURA_DATA = {
     {
       year: 2014,
       items: [
-        "제14대 회장 충남대학교 심창훈",
+        "제23대 회장 충남대학교 심창훈",
         "8월 4-6일 제23회 로켓발사대회",
         "제23회 전국대학교 로켓연합캠프(전라남도 고흥군 고흥항공센터)"
       ]
@@ -681,7 +681,7 @@ window.NURA_DATA = {
     {
       year: 2015,
       items: [
-        "제15대 회장 경북대학교 손민수, 부회장 건국대학교 길하종, 총무 조선대학교 엄태호",
+        "제24대 회장 경북대학교 손민수, 부회장 건국대학교 길하종, 총무 조선대학교 엄태호",
         "1월 28일 제15회 정기 총회(서울대학교)",
         "6월 27일 제16회 정기 총회(경북대학교)",
         "8월 4-6일 제24회 로켓발사대회",
@@ -692,7 +692,7 @@ window.NURA_DATA = {
       year: 2016,
       featured: true,
       items: [
-        "제16대 회장 조선대학교 엄태호, 부회장 구미대학교 박성재, 총무 한국항공대학교 김세원",
+        "제25대 회장 조선대학교 엄태호, 부회장 구미대학교 박성재, 총무 한국항공대학교 김세원",
         "(주)한화 방위산업부문 후원",
         "차세대우주추진연구센터 후원(정기후원 계약)",
         "한국항공우주연구원 후원",
@@ -706,14 +706,14 @@ window.NURA_DATA = {
     {
       year: 2017,
       items: [
-        "제17대 회장 경희대학교 김진섭, 부회장 서울대학교 허수범, 총무 건국대학교 김민웅",
+        "제26대 회장 경희대학교 김진섭, 부회장 서울대학교 허수범, 총무 건국대학교 김민응",
         "제26회 전국대학교 로켓발사대회 및 학술대회"
       ]
     },
     {
       year: 2018,
       items: [
-        "제18대 회장 인하대학교 정민지, 부회장 한국기술교육대학교 권영근, 중앙대학교 이성우",
+        "제27대 회장 인하대학교 정민지, 부회장 한국기술교육대학교 권영근, 중앙대학교 이성우",
         "제27회 로켓발사대회",
         "대학 현황: 건국대, 경북대, 경희대, 한서대, 서울대, 인하대, 조선대, 충남대, 교통대, 항공대, 한국기술교육대, 중앙대, 구미대"
       ]
@@ -723,6 +723,7 @@ window.NURA_DATA = {
       items: [
         "2019 상반기 정기 총회(충남대학교)",
         "2019 하반기 정기 총회(경북대학교)",
+        "제28대 회장 한국항공대학교 전하상",
         "제28회 전국대학교 로켓학술대회(순천대학교)",
         "제28회 전국대학교 로켓발사대회(전라남도 고흥군 고흥항공센터)",
         "제28회 전국대학교 로켓연합캠프(전라남도 고흥군 고흥항공센터)",
@@ -735,6 +736,7 @@ window.NURA_DATA = {
     {
       year: 2020,
       items: [
+        "제29대 회장 한국항공대학교 전하상",
         "제29회 전국대학교 로켓학술대회(주최/주관 한국과학우주청소년단, NURA)",
         "한국추진공학회 NURA OS 특별세션 개최, 최우수 논문상 1편 수상 및 발표논문 14편 등록"
       ]
@@ -743,7 +745,7 @@ window.NURA_DATA = {
       year: 2021,
       items: [
         "2021 상반기 대표자 회의",
-        "제30대 회장 부경대학교 장예지",
+        "제30대 회장 부경대학교 장예지, 부회장 충남대학교 김혜진, 총무 조선대학교 김재우",
         "2021 우주 외교포럼(주최/주관 외교부, 과학기술정책연구원) 행사 초청",
         "기존 NURA 단체 명의의 시상에서 과학기술정보통신부, 한국항공우주연구원, 한국과학창의재단, 한국과학우주청소년단 상으로 변경",
         "제30회 전국대학교 로켓학술대회(주최/주관 한국과학우주청소년단, NURA)",
@@ -795,7 +797,7 @@ window.NURA_DATA = {
     {
       year: 2025,
       items: [
-        "제34대 회장 한국항공대학교 신동욱, 부회장 서울대학교 서지완(직무대행 광주과학기술원 이창현), 총무 이화여자대학교 박세연",
+        "제34대 회장 한국항공대학교 신동욱, 부회장 서울대학교 서지완, 총무 이화여자대학교 박세연",
         "2025 대표자회의",
         "‘민간발사체 산업활성화 토론회’ 참석",
         "제34회 전국대학교 로켓학술대회(주최/주관 NURA)",
@@ -813,40 +815,76 @@ window.NURA_DATA = {
   ],
 
   presidentsData: [
-    { generation: 1, name: "이훈희(인하대학교)", term: "2001" },
-    { generation: 2, name: "이선미(인하대학교)", term: "2001-2002" },
-    { generation: 3, name: "강해성(한국항공대학교)", term: "2002-2003" },
-    { generation: 4, name: "김두환(인하대학교)", term: "2003-2004" },
-    { generation: 5, name: "김기홍(경희대학교)", term: "2004-2005" },
-    { generation: 6, name: "이용우(충남대학교)", term: "2005-2006" },
-    { generation: 7, name: "오근수(부산대학교)", term: "2006-2007" },
-    { generation: 8, name: "조승현(항공대학교)", term: "2007-2008" },
-    { generation: 9, name: "강경오(건국대학교)", term: "2008-2009" },
-    { generation: 12, name: "김일수(서울대학교)", term: "2011-2012" },
-    { generation: 14, name: "심창훈(충남대학교)", term: "2013-2014" },
-    { generation: 15, name: "손민수(경북대학교)", term: "2014-2015", vicePresident: "길하종(건국대학교)", secretary: "엄태호(조선대학교)" },
-    { generation: 16, name: "엄태호(조선대학교)", term: "2015-2016", vicePresident: "박성재(구미대학교)", secretary: "김세원(한국항공대학교)" },
-    { generation: 17, name: "김진섭(경희대학교)", term: "2016-2017", vicePresident: "허수범(서울대학교)", secretary: "김민웅(건국대학교)" },
-    { generation: 18, name: "정민지(인하대학교)", term: "2017-2018", vicePresident: "권영근(한국기술교육대학교), 이성우(중앙대학교)" },
-    { generation: 30, name: "장예지(부경대학교)", term: "2020-2021" },
-    { generation: 31, name: "최나린(항공대)", term: "2021-2022", vicePresident: "황우연(항공대)", secretary: "문준석(건국대)" },
-    { generation: 32, name: "양소현(한국항공대학교)", term: "2022-2023", vicePresident: "이승환(한국교통대학교)", secretary: "서보석(건국대학교)" },
-    { generation: 33, name: "신동욱(한국항공대학교)", term: "2023-2024", vicePresident: "서지완(서울대학교)", secretary: "노혜우(건국대학교)" },
-    { generation: 34, name: "신동욱(한국항공대학교)", term: "2024-2025", vicePresident: "서지완(서울대학교, 직무대행 광주과학기술원 이창현)", secretary: "박세연(이화여자대학교)" },
-    { generation: 35, name: "이창현(광주과학기술원)", term: "2025-2026", vicePresident: "한재경(동국대학교)", secretary: "윤원빈(건국대학교)" }
+    { generation: 1, name: "이훈희", university: "인하대학교", term: "2001" },
+    { generation: 2, name: "이선미", university: "인하대학교", term: "2001-2002" },
+    { generation: 3, name: "강해성", university: "한국항공대학교", term: "2002-2003" },
+    { generation: 4, name: "김두환", university: "인하대학교", term: "2003-2004" },
+    { generation: 5, name: "김기홍", university: "경희대학교", term: "2004-2005" },
+    { generation: 6, name: "이용우", university: "충남대학교", term: "2005-2006" },
+    { generation: 7, name: "오근수", university: "부산대학교", term: "2006-2007" },
+    { generation: 8, name: "조승현", university: "한국항공대학교", term: "2007-2008" },
+    { generation: 9, name: "강경오", university: "건국대학교", term: "2008-2009" },
+    { generation: 12, name: "김일수", university: "서울대학교", term: "2011-2012" },
+    { generation: 13, name: "김남호", university: "한국항공대학교", term: "2012-2013" },
+    { generation: 23, name: "심창훈", university: "충남대학교", term: "2013-2014" },
+    { generation: 24, name: "손민수", university: "경북대학교", term: "2014-2015", vicePresident: "길하종(건국대학교)", secretary: "엄태호(조선대학교)" },
+    { generation: 25, name: "엄태호", university: "조선대학교", term: "2015-2016", vicePresident: "박성재(구미대학교)", secretary: "김세원(한국항공대학교)" },
+    { generation: 26, name: "김진섭", university: "경희대학교", term: "2016-2017", vicePresident: "허수범(서울대학교)", secretary: "김민응(건국대학교)" },
+    { generation: 27, name: "정민지", university: "인하대학교", term: "2017-2018", vicePresident: "권영근(한국기술교육대학교), 이성우(중앙대학교)" },
+    { generation: 28, name: "전하상", university: "한국항공대학교", term: "2018-2019" },
+    { generation: 29, name: "전하상", university: "한국항공대학교", term: "2019-2020" },
+    { generation: 30, name: "장예지", university: "부경대학교", term: "2020-2021", vicePresident: "김혜진(충남대학교)", secretary: "김재우(조선대학교)" },
+    { generation: 31, name: "최나린", university: "한국항공대학교", term: "2021-2022", vicePresident: "황우연(한국항공대학교)", secretary: "문준석(건국대학교)" },
+    { generation: 32, name: "양소현", university: "한국항공대학교", term: "2022-2023", vicePresident: "이승환(한국교통대학교)", secretary: "서보석(건국대학교)" },
+    { generation: 33, name: "신동욱", university: "한국항공대학교", term: "2023-2024", vicePresident: "서지완(서울대학교)", secretary: "노혜우(건국대학교)" },
+    { generation: 34, name: "신동욱", university: "한국항공대학교", term: "2024-2025", vicePresident: "서지완(서울대학교)", secretary: "박세연(이화여자대학교)" },
+    { generation: 35, name: "이창현", university: "광주과학기술원", term: "2025-2026", vicePresident: "한재경(동국대학교)", secretary: "윤원빈(건국대학교)" }
   ],
 
   conferenceAwards: [
-    { year: 35, rank: "대상", university: "서울대학교", team: "SNURocket" },
-    { year: 35, rank: "최우수상", university: "한국항공대학교", team: "KAU-Rocket" },
-    { year: 34, rank: "대상", university: "카이스트", team: "ICARUS" },
-    { year: 34, rank: "우수상", university: "부산대학교", team: "PURA" }
+    // 제30회 (2021)
+    { year: 2021, rank: "장관상", university: "순천대학교" },
+    { year: 2021, rank: "원장상", university: "부산대학교" },
+    { year: 2021, rank: "이사장상", university: "부경대학교" },
+    { year: 2021, rank: "소년단총재상", university: "경북대학교" },
+    { year: 2021, rank: "회장상", university: "부경대학교" },
+    { year: 2021, rank: "회장상", university: "경희대학교" },
+    { year: 2021, rank: "회장상", university: "전북대학교" },
+    // 제29회 (2020)
+    { year: 2020, rank: "대상", university: "순천대학교" },
+    { year: 2020, rank: "금상", university: "서울대학교" },
+    { year: 2020, rank: "은상", university: "한국항공대학교" },
+    { year: 2020, rank: "은상", university: "한양대학교" },
+    { year: 2020, rank: "동상", university: "고려대학교" }
   ],
 
   launchAwards: [
-    { year: 35, rank: "대상", university: "광주과학기술원", team: "GIST-Aerospace" },
-    { year: 35, rank: "최우수상", university: "인하대학교", team: "INHA-Rocketry" },
-    { year: 35, rank: "우수상", university: "충남대학교", team: "CNU-Space" },
-    { year: 34, rank: "대상", university: "연세대학교", team: "Y-Rocket" }
+    // 제33회 (2024)
+    { year: 2024, rank: "청장상", university: "카이스트" },
+    { year: 2024, rank: "원장상", university: "경상국립대학교" },
+    { year: 2024, rank: "창의재단이사장상", university: "서울대학교" },
+    { year: 2024, rank: "소년단총재상", university: "아주대학교" },
+    { year: 2024, rank: "회장상", university: "충남대학교" },
+    { year: 2024, rank: "회장상", university: "성균관대학교" },
+    // 제32회 (2023)
+    { year: 2023, rank: "장관상", university: "부산대학교" },
+    { year: 2023, rank: "원장상", university: "한국교통대학교" },
+    { year: 2023, rank: "창의재단이사장상", university: "충남대학교" },
+    { year: 2023, rank: "소년단총재상", university: "전북대학교" },
+    { year: 2023, rank: "회장상", university: "가천대학교" },
+    { year: 2023, rank: "회장상", university: "경기대학교" },
+    // 제30회 (2021)
+    { year: 2021, rank: "장관상", university: "부산대학교" },
+    { year: 2021, rank: "원장상", university: "건국대학교" },
+    { year: 2021, rank: "창의재단이사장상", university: "고려대학교" },
+    { year: 2021, rank: "소년단총재상", university: "경희대학교" },
+    { year: 2021, rank: "회장상", university: "부경대학교" },
+    { year: 2021, rank: "회장상", university: "중앙대학교" },
+    { year: 2021, rank: "회장상", university: "경북대학교" },
+    // 제28회 (2019)
+    { year: 2019, rank: "고체 대상", university: "순천대학교" },
+    { year: 2019, rank: "비고체 대상", university: "한국항공대학교" },
+    { year: 2019, rank: "금상", university: "부산대학교" },
+    { year: 2019, rank: "은상", university: "경북대학교" }
   ]
 };
