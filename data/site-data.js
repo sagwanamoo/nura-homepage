@@ -1,4 +1,21 @@
 window.NURA_DATA = {
+  // 공개 시 enabled를 true로 변경하세요. 비공개 상태에서도 메인 주소 뒤에
+  // ?launchModal=preview를 붙이면 미리 볼 수 있습니다.
+  launchVisitModal: {
+    id: "2026-launch-visit-v2",
+    enabled: true,
+    // ISO 날짜를 입력하면 해당 기간에만 노출됩니다. 예: "2026-08-01T00:00:00+09:00"
+    startAt: "",
+    endAt: "",
+    eyebrow: "2026 NURA LAUNCH DAY",
+    title: "발사대회의 뜨거운 현장을 가까이서 경험해보세요",
+    description: "대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.",
+    schedule: "일정 및 장소 추후 공개",
+    ctaLabel: "참관 신청하기",
+    href: "./activities/launch/apply/",
+    image: "./source/resources/launch.jpg"
+  },
+
   overviewStats: [
     {
       basis: "2026년 5월 기준",
@@ -21,7 +38,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 기준",
       label: "협력 기관",
-      value: 5,
+      value: 6,
       unit: "곳"
     }
   ],
@@ -95,7 +112,7 @@ window.NURA_DATA = {
     },
     {
       name: "광주과학기술원",
-      region: "gwangju",
+      region: "jeonnam",
       clubName: "GPERI",
       description: "광주광역시 북구 첨단과기로 123",
       website: "https://sites.google.com/view/gperigist/%ED%99%88",
@@ -262,7 +279,7 @@ window.NURA_DATA = {
     },
     {
       name: "조선대학교",
-      region: "gwangju",
+      region: "jeonnam",
       clubName: "HANul",
       description: "광주광역시 동구 조선대길 146",
       website: "https://han-ul.com/",
@@ -393,12 +410,6 @@ window.NURA_DATA = {
       description: "충남 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
     },
     {
-      id: "gwangju",
-      name: "광주",
-      coverage: "광주광역시",
-      description: "광주 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
-    },
-    {
       id: "jeonbuk",
       name: "전북",
       coverage: "전북특별자치도",
@@ -407,8 +418,8 @@ window.NURA_DATA = {
     {
       id: "jeonnam",
       name: "전남",
-      coverage: "전라남도",
-      description: "전남 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+      coverage: "전남광주통합특별시",
+      description: "전남광주통합특별시 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
     },
     {
       id: "daegu",

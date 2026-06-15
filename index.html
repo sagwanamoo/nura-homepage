@@ -266,15 +266,243 @@
       .sponsor-logo:hover img {
         filter: none;
       }
+      .sponsor-logo:hover .kspe-logo {
+        filter: brightness(0) invert(1);
+      }
+
+      .launch-visit-modal {
+        position: fixed;
+        z-index: 90;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 28px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 260ms ease, visibility 260ms ease;
+      }
+
+      .launch-visit-modal.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .launch-visit-modal__dialog {
+        position: relative;
+        width: min(960px, 100%);
+        max-height: calc(100vh - 56px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: #000000;
+        box-shadow: 0 34px 100px rgba(0, 0, 0, 0.72);
+        transform: translateY(22px) scale(0.985);
+        transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .launch-visit-modal.is-visible .launch-visit-modal__dialog {
+        transform: translateY(0) scale(1);
+      }
+
+      .launch-visit-modal__hero {
+        position: relative;
+        min-height: 540px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .launch-visit-modal__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 52%;
+        opacity: 0.9;
+      }
+
+      .launch-visit-modal__hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, #000000 0%, transparent 32%, transparent 68%, #000000 100%),
+          rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+      }
+
+      .launch-visit-modal__hero-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 760px;
+        padding: 56px 32px 48px;
+        text-align: center;
+      }
+
+      .launch-visit-modal__title {
+        margin: 0;
+        color: #ffffff;
+        font-size: clamp(32px, 4.4vw, 48px);
+        line-height: 1.18;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        word-break: keep-all;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+      }
+
+      .launch-visit-modal__description {
+        margin: 20px auto 0;
+        max-width: 620px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 16px;
+        line-height: 1.7;
+        font-weight: 500;
+        word-break: keep-all;
+        text-shadow: 0 3px 18px rgba(0, 0, 0, 0.8);
+      }
+
+      .launch-visit-modal__actions {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .launch-visit-modal__primary,
+      .launch-visit-modal__utility-button,
+      .launch-visit-modal__snooze {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        cursor: pointer;
+        transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+      }
+
+      .launch-visit-modal__primary {
+        min-width: 210px;
+        min-height: 52px;
+        gap: 12px;
+        padding: 0 26px;
+        border-radius: 999px;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        background: rgba(255, 255, 255, 0.94);
+        color: #07090d;
+        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3);
+      }
+
+      .launch-visit-modal__primary:hover {
+        border-color: #ffffff;
+        background: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.38);
+      }
+
+      .launch-visit-modal__utility {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        min-height: 46px;
+        padding: 0 18px;
+        border-top: 0;
+        background: rgba(0, 0, 0, 0.72);
+      }
+
+      .launch-visit-modal__snooze,
+      .launch-visit-modal__utility-button {
+        min-height: 36px;
+        padding: 0 8px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.58);
+        font-size: 12px;
+        line-height: 1.4;
+        font-weight: 500;
+      }
+
+      .launch-visit-modal__snooze:hover,
+      .launch-visit-modal__utility-button:hover {
+        color: rgba(255, 255, 255, 0.94);
+      }
+
+      @media (max-width: 767px) {
+        .launch-visit-modal {
+          align-items: center;
+          padding: 12px;
+        }
+
+        .launch-visit-modal__dialog {
+          max-height: calc(100dvh - 24px);
+          transform: translateY(28px);
+        }
+
+        .launch-visit-modal.is-visible .launch-visit-modal__dialog {
+          transform: translateY(0);
+        }
+
+        .launch-visit-modal__hero {
+          min-height: 524px;
+        }
+
+        .launch-visit-modal__hero-content {
+          padding: 58px 20px 32px;
+        }
+
+        .launch-visit-modal__title {
+          font-size: 29px;
+        }
+
+        .launch-visit-modal__description {
+          margin-top: 18px;
+          font-size: 13px;
+          line-height: 1.65;
+        }
+
+        .launch-visit-modal__actions {
+          margin-top: 24px;
+          display: flex;
+        }
+
+        .launch-visit-modal__primary {
+          width: 100%;
+          min-height: 52px;
+        }
+
+        .launch-visit-modal__utility {
+          padding: 0 10px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .launch-visit-modal,
+        .launch-visit-modal__dialog {
+          transition: none;
+        }
+      }
     </style>
 
-    <script src="./data/site-data.js?v=20260530-1"></script>
+    <script src="./data/site-data.js?v=20260615-2"></script>
     <script src="./data/shared-layout.js?v=20260530-2" defer></script>
   </head>
 
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="home" data-base-path=".">
     <div class="page-shell flex flex-col">
       <div data-shared-header></div>
+      <div id="launch-visit-modal-mount" aria-live="polite"></div>
 
       <main class="w-full flex-1 flex flex-col">
         <section id="home" class="relative overflow-hidden flex flex-col justify-center h-screen w-full p-0 m-0">
@@ -401,21 +629,32 @@
             </div>
 
             <div id="sponsor-wall" class="mb-10">
-              <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
                 <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
                   <img src="source/partnership/koreanair.svg" alt="대한항공 로고" loading="lazy" decoding="async" style="height: 40px; width: auto;">
                 </a>
                 <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
                   <img src="source/partnership/innospace.svg" alt="이노스페이스 로고" loading="lazy" decoding="async" style="height: 48px; width: auto;">
                 </a>
-                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
-                  <img src="source/partnership/kari.svg" alt="한국항공우주연구원 로고" loading="lazy" decoding="async" style="height: 80px; width: auto;">
-                </a>
                 <a href="http://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
                   <img src="source/partnership/ligpoongsan-transparent.png" alt="LIG풍산 로고" loading="lazy" decoding="async" style="height: 44px; width: auto;">
                 </a>
-                <a href="http://www.pdk.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo col-span-2 md:col-span-1">
+                <a href="http://www.pdk.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
                   <img src="source/partnership/pdk.png" alt="PDK 로고" loading="lazy" decoding="async" style="height: 100px; width: auto; transform: scale(1.4);">
+                </a>
+              </div>
+            </div>
+
+            <div id="partner-wall" class="border-t border-white/10 pt-12">
+              <div class="text-center mb-8">
+                <h3 class="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-white">협력기관</h3>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 items-center justify-items-center max-w-3xl mx-auto">
+                <a href="https://www.kspe.org/" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                  <img class="kspe-logo" src="source/partnership/kspe.png?v=20260615-2" alt="한국추진공학회 로고" loading="lazy" decoding="async" style="width: min(100%, 280px); height: auto;">
+                </a>
+                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                  <img src="source/partnership/kari.svg" alt="한국항공우주연구원 로고" loading="lazy" decoding="async" style="height: 80px; width: auto;">
                 </a>
               </div>
             </div>
@@ -443,6 +682,105 @@
 
       <div data-shared-footer></div>
     </div>
+
+    <script>
+      (function () {
+        const config = window.NURA_DATA && window.NURA_DATA.launchVisitModal;
+        const mount = document.getElementById("launch-visit-modal-mount");
+        if (!config || !mount) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const isPreview = params.get("launchModal") === "preview" || params.get("launchBanner") === "preview";
+        const now = Date.now();
+        const startsAt = config.startAt ? Date.parse(config.startAt) : null;
+        const endsAt = config.endAt ? Date.parse(config.endAt) : null;
+        const isWithinSchedule = (!startsAt || now >= startsAt) && (!endsAt || now <= endsAt);
+        const snoozeStorageKey = `nura-modal-snoozed-until:${config.id}`;
+        const sessionStorageKey = `nura-modal-session-dismissed:${config.id}`;
+        const snoozedUntil = Number(localStorage.getItem(snoozeStorageKey)) || 0;
+        const isSnoozed = !isPreview && snoozedUntil > now;
+        const isSessionDismissed = !isPreview && sessionStorage.getItem(sessionStorageKey) === "true";
+
+        if ((!config.enabled && !isPreview) || !isWithinSchedule || isSnoozed || isSessionDismissed) return;
+
+        const escapeHtml = (value) =>
+          String(value || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+        mount.innerHTML = `
+          <div class="launch-visit-modal" role="dialog" aria-modal="true" aria-labelledby="launch-visit-modal-title">
+            <div class="launch-visit-modal__dialog">
+              <section class="launch-visit-modal__hero">
+                <img class="launch-visit-modal__image" src="${escapeHtml(config.image)}" alt="발사대회 전경" loading="eager" decoding="async">
+                <div class="launch-visit-modal__hero-content">
+                  <h2 class="launch-visit-modal__title" id="launch-visit-modal-title">발사대회의 뜨거운 현장을<br>가까이서 경험해보세요</h2>
+                  <p class="launch-visit-modal__description">
+                    NURA 전국대학교로켓발사대회의 생생한 순간을 직접 참관할 수 있습니다.<br>
+                    대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.
+                  </p>
+                  <div class="launch-visit-modal__actions">
+                    <a class="launch-visit-modal__primary" href="${escapeHtml(config.href)}">
+                      <span>참관 신청하기</span>
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </section>
+              <div class="launch-visit-modal__utility">
+                <button class="launch-visit-modal__snooze" type="button">7일간 보지 않기</button>
+                <button class="launch-visit-modal__utility-button" type="button">닫기</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const modal = mount.querySelector(".launch-visit-modal");
+        const dialog = mount.querySelector(".launch-visit-modal__dialog");
+        const snoozeButton = mount.querySelector(".launch-visit-modal__snooze");
+        const utilityCloseButton = mount.querySelector(".launch-visit-modal__utility-button");
+        const previousOverflow = document.body.style.overflow;
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            modal.classList.add("is-visible");
+            document.body.style.overflow = "hidden";
+            utilityCloseButton.focus();
+          });
+        });
+
+        function closeModal(snoozeForWeek) {
+          modal.classList.remove("is-visible");
+          document.body.style.overflow = previousOverflow;
+          if (!isPreview) {
+            if (snoozeForWeek) {
+              const sevenDays = 7 * 24 * 60 * 60 * 1000;
+              localStorage.setItem(snoozeStorageKey, String(Date.now() + sevenDays));
+            } else {
+              sessionStorage.setItem(sessionStorageKey, "true");
+            }
+          }
+          document.removeEventListener("keydown", handleKeydown);
+          setTimeout(() => modal.remove(), 300);
+        }
+
+        function handleKeydown(event) {
+          if (event.key === "Escape") closeModal(false);
+        }
+
+        utilityCloseButton.addEventListener("click", () => closeModal(false));
+        snoozeButton.addEventListener("click", () => closeModal(true));
+        modal.addEventListener("click", (event) => {
+          if (!dialog.contains(event.target)) closeModal(false);
+        });
+        document.addEventListener("keydown", handleKeydown);
+      })();
+    </script>
 
     <script>
       (function () {
