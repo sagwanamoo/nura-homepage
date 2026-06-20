@@ -5,8 +5,8 @@ window.NURA_DATA = {
     id: "2026-launch-visit-v2",
     enabled: true,
     // ISO 날짜를 입력하면 해당 기간에만 노출됩니다. 예: "2026-08-01T00:00:00+09:00"
-    startAt: "",
-    endAt: "",
+    startAt: "2026-06-08T00:00:00+09:00",
+    endAt: "2026-08-05T23:59:59+09:00",
     eyebrow: "2026 NURA LAUNCH DAY",
     title: "발사대회의 뜨거운 현장을 가까이서 경험해보세요",
     description: "대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.",

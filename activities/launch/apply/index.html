@@ -33,6 +33,43 @@
         .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
       }
 
+      .apply-field {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 0;
+        background: transparent;
+        padding: 0.9rem 0;
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.5;
+        outline: none;
+        transition: border-color 180ms ease;
+      }
+      .apply-field::placeholder { color: rgba(255, 255, 255, 0.34); }
+      .apply-field:focus { border-color: #60a5fa; }
+      .apply-choice input { position: absolute; opacity: 0; pointer-events: none; }
+      .apply-choice span {
+        display: flex;
+        min-height: 3.2rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 9999px;
+        padding: 0.75rem 1.25rem;
+        color: rgba(255, 255, 255, 0.68);
+        cursor: pointer;
+        transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+      }
+      .apply-choice input:focus-visible + span { outline: 2px solid #60a5fa; outline-offset: 3px; }
+      .apply-choice input:checked + span {
+        border-color: #fff;
+        background: #fff;
+        color: #000;
+      }
+      .apply-panel[hidden] { display: none; }
+      .apply-error { color: #fca5a5; }
+
     </style>
     <script src="../../../data/shared-layout.js?v=20260530-2" defer></script>
   </head>
@@ -71,41 +108,128 @@
         </section>
         
         <section class="bg-black py-20 md:py-28">
-          <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+          <div class="max-w-5xl mx-auto px-4 md:px-8">
+            <div class="text-center">
             <h2 class="text-3xl md:text-5xl font-bold text-white tracking-[-0.04em] mb-6 leading-tight break-keep">
               참관 신청서 작성
             </h2>
             <div class="text-gray-400 text-base md:text-[17px] leading-relaxed break-keep max-w-3xl mx-auto mb-16">
               현장 참관을 희망하시는 분들은 아래 폼을 작성해 주세요. 제출이 완료되면 기재해주신 이메일로 상세 일정과 참관 유의사항을 안내해 드립니다.
             </div>
-
-            <div class="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden p-2 md:p-3 shadow-2xl text-left mx-auto">
-              <!-- 
-                ⚠️ Google Forms URL 교체 안내:
-                아래 iframe의 src를 실제 Google Forms URL로 교체하세요.
-                Google Forms → 보내기 → 링크 아이콘 → "임베드 HTML" 에서 URL을 복사하세요.
-                URL 형식: https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true
-              -->
-              <iframe 
-                id="launch-apply-form"
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdgQXff9Kqm5V61tGQyMQ5aW1FFnLX-SeD0_90yu9eBZ_LT0Q/viewform?embedded=true" 
-                width="100%" 
-                height="800" 
-                frameborder="0" 
-                marginheight="0" 
-                marginwidth="0"
-                style="background: white; border-radius: 1.5rem;"
-                loading="lazy"
-                title="발사대회 참가 신청서"
-              >로딩 중…</iframe>
             </div>
 
-            <p class="mt-6 text-[13px] md:text-[15px] text-gray-500">
-              * 폼이 보이지 않을 경우 
+            <div id="apply-form-shell" class="mx-auto max-w-4xl border-t border-white/15 pt-8 md:pt-12">
+              <div class="mb-12 grid grid-cols-2 gap-3" aria-label="신청 단계">
+                <button type="button" class="apply-step flex items-center gap-3 border-b border-blue-400 pb-4 text-left" data-step-target="1" aria-current="step">
+                  <span class="text-sm font-medium text-white md:text-base">약관 동의</span>
+                </button>
+                <button type="button" class="apply-step flex items-center gap-3 border-b border-white/15 pb-4 text-left" data-step-target="2" disabled>
+                  <span class="text-sm font-medium text-white/45 md:text-base">신청 정보</span>
+                </button>
+              </div>
+
+              <form
+                id="launch-apply-form"
+                action="https://docs.google.com/forms/d/e/1FAIpQLSdgQXff9Kqm5V61tGQyMQ5aW1FFnLX-SeD0_90yu9eBZ_LT0Q/formResponse"
+                method="POST"
+                target="google-form-response"
+                novalidate
+              >
+                <input type="hidden" name="fvv" value="1" />
+                <input type="hidden" name="pageHistory" value="0,1" />
+
+                <section class="apply-panel" data-step="1" aria-labelledby="apply-step-one-title">
+                  <h3 id="apply-step-one-title" class="text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">개인정보 수집 및 이용 동의</h3>
+                  <div class="mt-8 border-y border-white/10 py-7 text-sm leading-7 text-white/55 md:px-2 md:text-base">
+                    <p>참관 신청 접수와 안내를 위해 이름, 성별, 소속, 전화번호, 이메일 주소를 수집합니다.</p>
+                    <p class="mt-2">수집한 개인정보는 행사 운영 목적으로만 사용하며 행사 종료 후 파기합니다. 동의하지 않을 경우 신청이 어렵습니다.</p>
+                  </div>
+
+                  <label class="mt-7 flex cursor-pointer items-start gap-3 text-sm leading-6 text-white/75 md:text-base">
+                    <input id="privacy-agreement" name="entry.1479307030" type="checkbox" value="동의" required class="mt-1 h-5 w-5 shrink-0 accent-blue-500" />
+                    <span>개인정보 수집 및 이용에 동의합니다.</span>
+                  </label>
+                  <p id="agreement-error" class="apply-error mt-3 hidden text-sm" role="alert">동의 후 다음 단계로 진행해 주세요.</p>
+
+                  <div class="mt-12 flex justify-end">
+                    <button id="apply-next" type="button" class="group inline-flex min-w-44 items-center justify-between rounded-full bg-white px-6 py-4 text-sm font-semibold text-black transition hover:bg-blue-400">
+                      다음 단계
+                      <span aria-hidden="true" class="ml-6 transition-transform group-hover:translate-x-1">→</span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="apply-panel" data-step="2" aria-labelledby="apply-step-two-title" hidden>
+                  <h3 id="apply-step-two-title" class="text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">참관 신청 정보</h3>
+
+                  <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
+                    <label>
+                      <span class="text-sm font-medium text-white/80">성함 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="text" name="entry.1303063193" autocomplete="name" placeholder="성함을 입력해 주세요" required />
+                    </label>
+                    <label>
+                      <span class="text-sm font-medium text-white/80">이메일 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="email" name="emailAddress" autocomplete="email" placeholder="name@example.com" required />
+                    </label>
+                    <label>
+                      <span class="text-sm font-medium text-white/80">전화번호 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="tel" name="entry.1267464464" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required />
+                    </label>
+                    <label>
+                      <span class="text-sm font-medium text-white/80">현 소속 단체 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="text" name="entry.2090423559" autocomplete="organization" placeholder="학교, 동아리 또는 단체명" required />
+                    </label>
+                  </div>
+
+                  <fieldset class="mt-12">
+                    <legend class="text-sm font-medium text-white/80">성별 <span class="text-white/35">*</span></legend>
+                    <div class="mt-4 grid grid-cols-2 gap-3 sm:max-w-md">
+                      <label class="apply-choice relative"><input type="radio" name="entry.1152526204" value="남자" required /><span>남자</span></label>
+                      <label class="apply-choice relative"><input type="radio" name="entry.1152526204" value="여자" required /><span>여자</span></label>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="mt-10">
+                    <legend class="text-sm font-medium text-white/80">참관 희망 날짜 <span class="text-white/35">*</span> <span class="ml-1 font-normal text-white/35">복수 선택 가능</span></legend>
+                    <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                      <label class="apply-choice relative"><input type="checkbox" name="entry.605274733" value="2026. 08. 08 (토)" /><span>2026. 08. 08 (토)</span></label>
+                      <label class="apply-choice relative"><input type="checkbox" name="entry.605274733" value="2026. 08. 09 (일)" /><span>2026. 08. 09 (일)</span></label>
+                    </div>
+                  </fieldset>
+
+                  <label class="mt-10 block">
+                    <span class="text-sm font-medium text-white/80">기타 문의 사항 <span class="font-normal text-white/35">선택</span></span>
+                    <textarea class="apply-field min-h-32 resize-y" name="entry.1749477638" placeholder="문의 사항이 있다면 자유롭게 작성해 주세요"></textarea>
+                  </label>
+
+                  <p id="form-error" class="apply-error mt-5 hidden text-sm" role="alert">필수 항목을 모두 확인해 주세요.</p>
+                  <div class="mt-12 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+                    <button id="apply-prev" type="button" class="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-4 text-sm font-semibold text-white transition hover:border-white hover:bg-white hover:text-black">
+                      ← 이전 단계
+                    </button>
+                    <button id="apply-submit" type="submit" class="group inline-flex min-w-48 items-center justify-between rounded-full bg-blue-600 px-6 py-4 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-wait disabled:opacity-60">
+                      신청서 제출
+                      <span aria-hidden="true" class="ml-6 transition-transform group-hover:translate-x-1">→</span>
+                    </button>
+                  </div>
+                </section>
+              </form>
+
+              <section id="apply-success" class="hidden py-16 text-center" tabindex="-1" aria-live="polite">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white text-2xl text-white">✓</div>
+                <h3 class="mt-7 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">신청이 접수되었습니다</h3>
+                <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/55 md:text-base">검토 후 입력하신 이메일로 상세 일정과 참관 유의사항을 안내해 드리겠습니다.</p>
+              </section>
+            </div>
+
+            <iframe name="google-form-response" id="google-form-response" title="신청서 전송 결과" class="hidden"></iframe>
+
+            <p class="mt-8 text-center text-[13px] text-gray-500 md:text-[15px]">
+              * 제출에 문제가 있을 경우
               <a href="https://forms.gle/4SzLBQbuRa8Q6gTz7" 
                  target="_blank" 
                  rel="noopener noreferrer" 
-                 class="text-blue-400 underline underline-offset-2 hover:text-blue-300 transition">
+                 class="text-white/70 underline underline-offset-2 transition hover:text-white">
                 여기를 클릭하여 직접 접속
               </a>해 주세요.
             </p>
@@ -129,5 +253,85 @@
 
       <div data-shared-footer></div>
     </div>
+
+    <script>
+      (() => {
+        const form = document.getElementById('launch-apply-form');
+        const shell = document.getElementById('apply-form-shell');
+        const panels = Array.from(document.querySelectorAll('.apply-panel'));
+        const steps = Array.from(document.querySelectorAll('.apply-step'));
+        const agreement = document.getElementById('privacy-agreement');
+        const agreementError = document.getElementById('agreement-error');
+        const formError = document.getElementById('form-error');
+        const submitButton = document.getElementById('apply-submit');
+        const responseFrame = document.getElementById('google-form-response');
+        const success = document.getElementById('apply-success');
+        const dateChoices = Array.from(form.querySelectorAll('[name="entry.605274733"]'));
+        let submitting = false;
+
+        const showStep = (step) => {
+          panels.forEach((panel) => { panel.hidden = Number(panel.dataset.step) !== step; });
+          steps.forEach((item, index) => {
+            const active = index + 1 === step;
+            const label = item.querySelector('span');
+            item.classList.toggle('border-blue-400', active);
+            item.classList.toggle('border-white/15', !active);
+            label.classList.toggle('text-white', active);
+            label.classList.toggle('text-white/45', !active);
+            active ? item.setAttribute('aria-current', 'step') : item.removeAttribute('aria-current');
+          });
+          shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        document.getElementById('apply-next').addEventListener('click', () => {
+          if (!agreement.checked) {
+            agreementError.classList.remove('hidden');
+            agreement.focus();
+            return;
+          }
+          agreementError.classList.add('hidden');
+          steps[1].disabled = false;
+          showStep(2);
+          panels[1].querySelector('input').focus({ preventScroll: true });
+        });
+
+        agreement.addEventListener('change', () => agreementError.classList.add('hidden'));
+        document.getElementById('apply-prev').addEventListener('click', () => showStep(1));
+        steps[0].addEventListener('click', () => showStep(1));
+        steps[1].addEventListener('click', () => { if (!steps[1].disabled) showStep(2); });
+
+        form.addEventListener('submit', (event) => {
+          const requiredFields = Array.from(form.querySelectorAll('[required]'));
+          const invalidField = requiredFields.find((field) => !field.checkValidity());
+          const invalidDate = !dateChoices.some((field) => field.checked);
+          if (invalidField || invalidDate) {
+            event.preventDefault();
+            formError.classList.remove('hidden');
+            (invalidField || dateChoices[0]).focus();
+            return;
+          }
+
+          formError.classList.add('hidden');
+          submitting = true;
+          submitButton.disabled = true;
+          submitButton.firstChild.textContent = '제출 중 ';
+        });
+
+        responseFrame.addEventListener('load', () => {
+          if (!submitting) return;
+          form.classList.add('hidden');
+          shell.querySelector('[aria-label="신청 단계"]').classList.add('hidden');
+          success.classList.remove('hidden');
+          success.focus({ preventScroll: true });
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        if (window.location.protocol === 'file:') {
+          form.classList.add('hidden');
+          shell.querySelector('[aria-label="신청 단계"]').classList.add('hidden');
+          success.classList.remove('hidden');
+        }
+      })();
+    </script>
   </body>
 </html>

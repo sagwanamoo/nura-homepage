@@ -269,6 +269,24 @@
       .sponsor-logo:hover .kspe-logo {
         filter: brightness(0) invert(1);
       }
+      .sponsor-logo--kari {
+        flex-direction: column;
+        gap: 0.5rem;
+        height: 136px;
+      }
+      .sponsor-logo--kari img {
+        height: 74px;
+        width: auto;
+      }
+      .sponsor-logo__caption {
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 0.75rem;
+        font-weight: 400;
+        line-height: 1.45;
+        max-width: 190px;
+        text-align: center;
+        word-break: keep-all;
+      }
 
       .launch-visit-modal {
         position: fixed;
@@ -495,7 +513,7 @@
       }
     </style>
 
-    <script src="./data/site-data.js?v=20260615-2"></script>
+    <script src="./data/site-data.js?v=20260616-1"></script>
     <script src="./data/shared-layout.js?v=20260530-2" defer></script>
   </head>
 
@@ -653,8 +671,9 @@
                 <a href="https://www.kspe.org/" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
                   <img class="kspe-logo" src="source/partnership/kspe.png?v=20260615-2" alt="한국추진공학회 로고" loading="lazy" decoding="async" style="width: min(100%, 280px); height: auto;">
                 </a>
-                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
-                  <img src="source/partnership/kari.svg" alt="한국항공우주연구원 로고" loading="lazy" decoding="async" style="height: 80px; width: auto;">
+                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo sponsor-logo--kari">
+                  <img src="source/partnership/kari.svg" alt="한국항공우주연구원 로고" loading="lazy" decoding="async">
+                  <span class="sponsor-logo__caption">국가종합비행성능시험장<br>고흥항공센터</span>
                 </a>
               </div>
             </div>

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | University Logo Canvas</title>
+    <meta name="description" content="NURA 회원 대학 로고를 자유롭게 배치하는 흑백 격자 캔버스입니다." />
+    <link rel="icon" type="image/png" href="./source/resources/favicon-32x32.png" />
+    <style>
+      :root {
+        --black: #000000;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-width: 320px;
+        color: var(--black);
+        background: var(--white);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .canvas-scroller {
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        background: var(--white);
+      }
+
+      .logo-canvas {
+        position: relative;
+        width: 100%;
+        min-width: 1600px;
+        height: max(100vh, 1400px);
+        overflow: hidden;
+        background-color: var(--white);
+      }
+
+      .export-controls {
+        position: fixed;
+        z-index: 10000;
+        right: 16px;
+        bottom: 16px;
+        display: flex;
+        gap: 8px;
+      }
+
+      .export-button {
+        appearance: none;
+        display: inline-flex;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid var(--black);
+        border-radius: 0;
+        color: var(--black);
+        background: var(--white);
+        cursor: pointer;
+      }
+
+      .export-button:hover,
+      .export-button:focus-visible {
+        color: var(--white);
+        background: var(--black);
+        outline: none;
+      }
+
+      .export-button:disabled {
+        cursor: wait;
+        opacity: 0.35;
+      }
+
+      .export-button[hidden] {
+        display: none;
+      }
+
+      .export-button svg {
+        width: 21px;
+        height: 21px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: square;
+        stroke-linejoin: miter;
+        stroke-width: 1.6;
+      }
+
+      .export-color-button[aria-pressed="true"] {
+        box-shadow: inset 0 0 0 3px var(--black);
+      }
+
+      .export-color-swatch {
+        display: block;
+        width: 18px;
+        height: 18px;
+        border: 1px solid var(--black);
+      }
+
+      .export-color-swatch-black {
+        background: var(--black);
+      }
+
+      .export-color-swatch-white {
+        background: var(--white);
+      }
+
+      .export-button:hover .export-color-swatch-black,
+      .export-button:focus-visible .export-color-swatch-black {
+        border-color: var(--white);
+      }
+
+      .logo-item {
+        position: absolute;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 168px;
+        height: 120px;
+        padding: 12px;
+        border: 1px solid transparent;
+        color: var(--black);
+        background: transparent;
+        cursor: grab;
+        transition: left 140ms cubic-bezier(0.2, 0.85, 0.25, 1), top 140ms cubic-bezier(0.2, 0.85, 0.25, 1);
+        touch-action: none;
+        user-select: none;
+      }
+
+      .logo-item:focus-visible {
+        border-color: var(--black);
+        border-style: dashed;
+        outline: none;
+      }
+
+      .logo-item.is-dragging {
+        border-color: var(--black);
+        border-style: solid;
+        cursor: grabbing;
+        transition: none;
+      }
+
+      .logo-delete-button {
+        appearance: none;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        z-index: 2;
+        display: inline-flex;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid var(--black);
+        border-radius: 0;
+        color: var(--black);
+        background: var(--white);
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 120ms ease, color 120ms ease, background-color 120ms ease;
+      }
+
+      .logo-item:hover .logo-delete-button,
+      .logo-item:focus-within .logo-delete-button,
+      .logo-delete-button:focus-visible {
+        opacity: 1;
+      }
+
+      .logo-delete-button:hover,
+      .logo-delete-button:focus-visible {
+        color: var(--white);
+        background: var(--black);
+        outline: none;
+      }
+
+      .logo-delete-button svg {
+        width: 13px;
+        height: 13px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: square;
+        stroke-linejoin: miter;
+        stroke-width: 1.8;
+        pointer-events: none;
+      }
+
+      @media (hover: none) {
+        .logo-delete-button {
+          opacity: 1;
+        }
+      }
+
+      .logo-image-wrap {
+        display: flex;
+        min-width: 0;
+        min-height: 0;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 4px;
+        pointer-events: none;
+      }
+
+      .logo-image-wrap img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: grayscale(1) saturate(0) contrast(1.65);
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+
+      .logo-item[data-name="대구경북과학기술원"] .logo-image-wrap img {
+        max-width: 70%;
+        max-height: 70%;
+      }
+
+      .logo-item[data-name="경기대학교"] .logo-image-wrap img {
+        max-width: 68%;
+        max-height: 68%;
+      }
+
+      .logo-item[data-name="서울시립대학교"] .logo-image-wrap img {
+        transform: scale(1.15);
+      }
+
+      .logo-item[data-name="경희대학교"] .logo-image-wrap img {
+        max-width: 82%;
+        max-height: 82%;
+      }
+
+      .logo-item[data-name="NURA"] .logo-image-wrap img {
+        max-width: 78%;
+        max-height: 78%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main class="canvas-scroller">
+      <section id="logo-canvas" class="logo-canvas" aria-label="자유 배치 로고 캔버스"></section>
+    </main>
+
+    <nav class="export-controls" aria-label="캔버스 도구">
+      <button id="undo-delete" class="export-button" type="button" aria-label="삭제 되돌리기" title="삭제 되돌리기" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 7H4v5" />
+          <path d="M4 7c3.5-3 9-3 12.5.5 3 3 3 7.5 0 10.5-2.5 2.5-6.5 3-9.5 1" />
+        </svg>
+      </button>
+      <button id="reset-layout" class="export-button" type="button" aria-label="배치 초기화" title="배치 초기화">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6h12v12H6z" />
+          <path d="M4 12H2m20 0h-2M12 4V2m0 20v-2" />
+          <path d="M8 8h8v8H8z" />
+        </svg>
+      </button>
+      <button id="add-nura" class="export-button" type="button" aria-label="NURA 로고 추가" title="NURA 로고 추가">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-25 12 12)" />
+          <path d="M12 3v18M3 12h18" />
+        </svg>
+      </button>
+      <button id="export-color-black" class="export-button export-color-button" type="button" aria-label="검은색으로 내보내기" title="검은색으로 내보내기" aria-pressed="true">
+        <span class="export-color-swatch export-color-swatch-black" aria-hidden="true"></span>
+      </button>
+      <button id="export-color-white" class="export-button export-color-button" type="button" aria-label="흰색으로 내보내기" title="흰색으로 내보내기" aria-pressed="false">
+        <span class="export-color-swatch export-color-swatch-white" aria-hidden="true"></span>
+      </button>
+      <button id="export-png" class="export-button" type="button" aria-label="PNG로 내보내기" title="PNG로 내보내기">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="14" />
+          <path d="m5.5 14 4-4 3 3 2.5-2.5 3.5 3.5" />
+          <path d="M12 17v4m-3-3 3 3 3-3" />
+        </svg>
+      </button>
+      <button id="export-svg" class="export-button" type="button" aria-label="SVG로 내보내기" title="SVG로 내보내기">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m8 5-5 7 5 7M16 5l5 7-5 7" />
+          <path d="M12 3v14m-3-3 3 3 3-3" />
+        </svg>
+      </button>
+    </nav>
+
+    <script src="./data/site-data.js"></script>
+    <script>
+      const logoPathByName = {
+        '가천대학교': './source/members/used-logos/가천대학교.png',
+        '건국대학교': './source/members/used-logos/건국대학교.png',
+        '경기대학교': './source/members/used-logos/경기대학교.png',
+        '경북대학교': './source/members/used-logos/경북대학교.png',
+        '경상국립대학교': './source/members/used-logos/경상국립대학교.png',
+        '경희대학교': './source/members/used-logos/경희대학교.png',
+        '고려대학교': './source/members/used-logos/고려대학교.gif',
+        '공군사관학교': './source/members/used-logos/공군사관학교.svg',
+        '광주과학기술원': './source/members/used-logos/광주과학기술원.png',
+        '국립순천대학교': './source/members/used-logos/국립순천대학교.png',
+        '국립한국교통대학교': './source/members/used-logos/국립한국교통대학교.png',
+        '국민대학교': './source/members/used-logos/국민대학교.png',
+        '대구경북과학기술원': './source/members/used-logos/디지스트.png',
+        '동국대학교': './source/members/used-logos/동국대학교.png',
+        '부산대학교': './source/members/used-logos/부산대학교.png',
+        '서울과학기술대학교': './source/members/used-logos/서울과학기술대학교.svg',
+        '서울대학교': './source/members/used-logos/서울대학교.svg',
+        '서울시립대학교': './source/members/used-logos/서울시립대.png',
+        '성균관대학교': './source/members/used-logos/성균관대학교.png',
+        '세종대학교': './source/members/used-logos/세종대학교.png',
+        '숙명여자대학교': './source/members/used-logos/숙명여자대학교.png',
+        '숭실대학교': './source/members/used-logos/숭실대학교.svg',
+        '아주대학교': './source/members/used-logos/아주대학교.svg',
+        '연세대학교': './source/members/used-logos/연세대학교.png',
+        '영남대학교': './source/members/used-logos/영남대학교.png',
+        '울산과학기술원': './source/members/used-logos/unist.svg',
+        '인하대학교': './source/members/used-logos/인하대학교.png',
+        '전북대학교': './source/members/used-logos/전북대학교.png',
+        '조선대학교': './source/members/used-logos/조선대학교.jpg',
+        '중앙대학교': './source/members/used-logos/중앙대학교.png',
+        '충남대학교': './source/members/used-logos/충남대학교.svg',
+        '포항공과대학교': './source/members/used-logos/포항공대.png',
+        '한국과학기술원': './source/members/used-logos/한국과학기술원.png',
+        '한국기술교육대학교': './source/members/used-logos/한국기술교육대학교.svg',
+        '한국에너지공과대학교': './source/members/used-logos/한국에너지공과대학교.png',
+        '한국항공대학교': './source/members/used-logos/항공대학교.svg',
+        '한양대학교': './source/members/used-logos/한양대학교.svg',
+        '한양대학교 ERICA': './source/members/used-logos/한양대학교 ERICA.svg',
+        'NURA': './source/resources/nura-logo-grid.svg'
+      };
+
+      const members = Array.isArray(window.NURA_DATA?.memberOrganizations)
+        ? window.NURA_DATA.memberOrganizations
+        : Object.keys(logoPathByName).map((name) => ({ name }));
+      const storageKey = 'nura-university-logo-layout-v3';
+      const itemWidth = 168;
+      const itemHeight = 120;
+      const gridSize = 24;
+      const canvas = document.getElementById('logo-canvas');
+      const scroller = document.querySelector('.canvas-scroller');
+      const undoDeleteButton = document.getElementById('undo-delete');
+      const resetLayoutButton = document.getElementById('reset-layout');
+      const addNuraButton = document.getElementById('add-nura');
+      const exportBlackButton = document.getElementById('export-color-black');
+      const exportWhiteButton = document.getElementById('export-color-white');
+      const exportPngButton = document.getElementById('export-png');
+      const exportSvgButton = document.getElementById('export-svg');
+      let highestZ = members.length;
+      let activeItem = null;
+      let activePointerId = null;
+      let pointerOffsetX = 0;
+      let pointerOffsetY = 0;
+      let moved = false;
+      let deletedLogoSnapshot = null;
+      let logoInstanceCounter = 0;
+      let exportColor = 'black';
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+      const clamp01 = (value) => Math.min(1, Math.max(0, value));
+      const createDefaultLogoId = (name) => `default:${name}`;
+      const createLogoInstanceId = (name) => {
+        logoInstanceCounter += 1;
+        return `${name}:${Date.now()}:${logoInstanceCounter}`;
+      };
+      const exportColors = {
+        black: { filename: 'black', rgb: [0, 0, 0] },
+        white: { filename: 'white', rgb: [255, 255, 255] }
+      };
+
+      const getDrawableLogos = () => {
+        const canvasRect = canvas.getBoundingClientRect();
+        return Array.from(canvas.querySelectorAll('.logo-item'))
+          .map((item) => {
+            const image = item.querySelector('img');
+            const imageRect = image?.getBoundingClientRect();
+            if (!image || !imageRect || !image.complete || image.naturalWidth === 0) return null;
+            return {
+              image,
+              x: imageRect.left - canvasRect.left,
+              y: imageRect.top - canvasRect.top,
+              width: imageRect.width,
+              height: imageRect.height,
+              z: Number(item.style.zIndex) || 1
+            };
+          })
+          .filter(Boolean)
+          .sort((a, b) => a.z - b.z);
+      };
+
+      const downloadBlob = (blob, filename) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      };
+
+      const updateExportColorButtons = () => {
+        exportBlackButton.setAttribute('aria-pressed', String(exportColor === 'black'));
+        exportWhiteButton.setAttribute('aria-pressed', String(exportColor === 'white'));
+      };
+
+      const setExportColor = (color) => {
+        if (!exportColors[color]) return;
+        exportColor = color;
+        updateExportColorButtons();
+      };
+
+      const applyExportColorPixels = (context, width, height, color = exportColor) => {
+        const [red, green, blue] = exportColors[color]?.rgb || exportColors.black.rgb;
+        const imageData = context.getImageData(0, 0, width, height);
+        const { data } = imageData;
+        for (let index = 0; index < data.length; index += 4) {
+          const luminance = data[index] * 0.2126 + data[index + 1] * 0.7152 + data[index + 2] * 0.0722;
+          const saturation = Math.max(data[index], data[index + 1], data[index + 2]) - Math.min(data[index], data[index + 1], data[index + 2]);
+          const ink = Math.max((255 - luminance) / 255, saturation / 255);
+          const alpha = data[index + 3] * clamp01((ink - 0.08) * 1.8);
+          data[index] = red;
+          data[index + 1] = green;
+          data[index + 2] = blue;
+          data[index + 3] = alpha;
+        }
+        context.putImageData(imageData, 0, 0);
+      };
+
+      const createExportLogoCanvas = ({ image, width, height }, scale = 2, color = exportColor) => {
+        const output = document.createElement('canvas');
+        output.width = Math.max(1, Math.round(width * scale));
+        output.height = Math.max(1, Math.round(height * scale));
+        const context = output.getContext('2d');
+        context.drawImage(image, 0, 0, output.width, output.height);
+
+        try {
+          applyExportColorPixels(context, output.width, output.height, color);
+        } catch (error) {
+          const [red, green, blue] = exportColors[color]?.rgb || exportColors.black.rgb;
+          context.clearRect(0, 0, output.width, output.height);
+          context.drawImage(image, 0, 0, output.width, output.height);
+          context.globalCompositeOperation = 'source-in';
+          context.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+          context.fillRect(0, 0, output.width, output.height);
+          context.globalCompositeOperation = 'source-over';
+        }
+
+        return output;
+      };
+
+      const buildPngBlob = async () => {
+        const scale = 2;
+        const output = document.createElement('canvas');
+        output.width = canvas.clientWidth * scale;
+        output.height = canvas.clientHeight * scale;
+        const context = output.getContext('2d');
+        getDrawableLogos().forEach((logo) => {
+          const filteredLogo = createExportLogoCanvas(logo, scale);
+          context.drawImage(filteredLogo, Math.round(logo.x * scale), Math.round(logo.y * scale));
+        });
+        return new Promise((resolve) => output.toBlob(resolve, 'image/png'));
+      };
+
+      const buildSvgBlob = async () => {
+        const logos = getDrawableLogos();
+        const imageElements = logos.map(({ image, x, y, width, height }) => {
+          const dataUrl = createExportLogoCanvas({ image, width, height }, 2).toDataURL('image/png');
+          return `<image href="${dataUrl}" x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${width.toFixed(2)}" height="${height.toFixed(2)}" />`;
+        });
+
+        const svg = [
+          `<svg xmlns="http://www.w3.org/2000/svg" width="${canvas.clientWidth}" height="${canvas.clientHeight}" viewBox="0 0 ${canvas.clientWidth} ${canvas.clientHeight}">`,
+          ...imageElements,
+          '</svg>'
+        ].join('');
+        return new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+      };
+
+      const exportPng = async () => {
+        exportPngButton.disabled = true;
+        try {
+          const blob = await buildPngBlob();
+          if (blob) downloadBlob(blob, `nura-logo-layout-${exportColors[exportColor].filename}.png`);
+        } finally {
+          exportPngButton.disabled = false;
+        }
+      };
+
+      const exportSvg = async () => {
+        exportSvgButton.disabled = true;
+        try {
+          downloadBlob(await buildSvgBlob(), `nura-logo-layout-${exportColors[exportColor].filename}.svg`);
+        } finally {
+          exportSvgButton.disabled = false;
+        }
+      };
+
+      const createLogoItem = (member, index, instanceId = createDefaultLogoId(member.name)) => {
+        const item = document.createElement('article');
+        item.className = 'logo-item';
+        item.dataset.name = member.name;
+        item.dataset.logoId = instanceId;
+        item.tabIndex = 0;
+        item.setAttribute('aria-label', `${member.name} 로고. 드래그하거나 방향키로 이동, Delete 키로 삭제`);
+        item.style.zIndex = String(index + 1);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'logo-delete-button';
+        deleteButton.type = 'button';
+        deleteButton.setAttribute('aria-label', `${member.name} 로고 삭제`);
+        deleteButton.title = `${member.name} 로고 삭제`;
+        deleteButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13" /></svg>';
+        deleteButton.addEventListener('pointerdown', (event) => event.stopPropagation());
+        deleteButton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          removeLogoItem(item);
+        });
+
+        const imageWrap = document.createElement('div');
+        imageWrap.className = 'logo-image-wrap';
+        const logoPath = logoPathByName[member.name];
+
+        if (logoPath) {
+          const image = document.createElement('img');
+          image.src = logoPath;
+          image.alt = `${member.name} 로고`;
+          image.draggable = false;
+          image.decoding = 'async';
+          image.addEventListener('error', () => item.remove());
+          imageWrap.appendChild(image);
+        }
+
+        item.append(deleteButton, imageWrap);
+        return item;
+      };
+
+      const updateUndoDeleteButton = () => {
+        undoDeleteButton.hidden = !deletedLogoSnapshot;
+        undoDeleteButton.disabled = !deletedLogoSnapshot;
+      };
+
+      const snapshotLogoItem = (item) => ({
+        id: item.dataset.logoId,
+        name: item.dataset.name,
+        x: Math.round(parseFloat(item.style.left) || 0),
+        y: Math.round(parseFloat(item.style.top) || 0),
+        z: Number(item.style.zIndex) || 1
+      });
+
+      const removeLogoItem = (item) => {
+        if (!item) return;
+        deletedLogoSnapshot = snapshotLogoItem(item);
+        updateUndoDeleteButton();
+        if (activeItem === item) {
+          activeItem.classList.remove('is-dragging');
+          activeItem = null;
+          activePointerId = null;
+          moved = false;
+        }
+        item.remove();
+        saveLayout();
+      };
+
+      const undoDeleteLogo = () => {
+        if (!deletedLogoSnapshot?.name || !logoPathByName[deletedLogoSnapshot.name]) return;
+
+        let item = Array.from(canvas.querySelectorAll('.logo-item')).find((logoItem) => logoItem.dataset.logoId === deletedLogoSnapshot.id);
+        if (!item) {
+          item = createLogoItem(
+            { name: deletedLogoSnapshot.name },
+            canvas.querySelectorAll('.logo-item').length,
+            deletedLogoSnapshot.id || createLogoInstanceId(deletedLogoSnapshot.name)
+          );
+          canvas.appendChild(item);
+        }
+
+        const maxGridX = Math.floor((canvas.clientWidth - itemWidth) / gridSize) * gridSize;
+        const maxGridY = Math.floor((canvas.clientHeight - itemHeight) / gridSize) * gridSize;
+        item.style.left = `${clamp(Number(deletedLogoSnapshot.x) || 0, 0, maxGridX)}px`;
+        item.style.top = `${clamp(Number(deletedLogoSnapshot.y) || 0, 0, maxGridY)}px`;
+        item.style.zIndex = String(Number(deletedLogoSnapshot.z) || highestZ + 1);
+        highestZ = Math.max(highestZ, Number(item.style.zIndex) || 1);
+        item.focus();
+        deletedLogoSnapshot = null;
+        updateUndoDeleteButton();
+        saveLayout();
+      };
+
+      const resetLayout = () => {
+        if (activeItem) {
+          activeItem.classList.remove('is-dragging');
+          activeItem = null;
+          activePointerId = null;
+          moved = false;
+        }
+
+        deletedLogoSnapshot = null;
+        updateUndoDeleteButton();
+
+        try {
+          localStorage.removeItem(storageKey);
+        } catch (error) {
+          // 저장소를 사용할 수 없는 환경에서는 현재 화면만 기본 배치로 되돌립니다.
+        }
+
+        render();
+      };
+
+      const selectItem = (item) => {
+        highestZ += 1;
+        item.style.zIndex = String(highestZ);
+      };
+
+      const saveLayout = () => {
+        const layout = Array.from(canvas.querySelectorAll('.logo-item'), (item) => ({
+          id: item.dataset.logoId,
+          name: item.dataset.name,
+          x: Math.round(parseFloat(item.style.left) || 0),
+          y: Math.round(parseFloat(item.style.top) || 0),
+          z: Number(item.style.zIndex) || 1
+        }));
+
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(layout));
+        } catch (error) {
+          // 저장소를 사용할 수 없는 환경에서는 현재 화면에서만 배치를 유지합니다.
+        }
+      };
+
+      const applyDefaultLayout = () => {
+        const availableWidth = canvas.clientWidth;
+        const columns = Math.max(1, Math.floor((availableWidth - gridSize * 2) / (itemWidth + gridSize)));
+
+        canvas.querySelectorAll('.logo-item').forEach((item, index) => {
+          const column = index % columns;
+          const row = Math.floor(index / columns);
+          item.style.left = `${gridSize + column * (itemWidth + gridSize)}px`;
+          item.style.top = `${gridSize + row * (itemHeight + gridSize)}px`;
+          item.style.zIndex = String(index + 1);
+        });
+        highestZ = members.length;
+      };
+
+      const normalizeSavedPosition = (position, index) => {
+        if (!position?.name || !logoPathByName[position.name]) return null;
+        return {
+          id: typeof position.id === 'string' && position.id ? position.id : `legacy:${position.name}:${index}`,
+          name: position.name,
+          x: Number(position.x) || 0,
+          y: Number(position.y) || 0,
+          z: Number(position.z) || index + 1
+        };
+      };
+
+      const restoreLayout = () => {
+        let savedLayout = null;
+        try {
+          savedLayout = JSON.parse(localStorage.getItem(storageKey));
+        } catch (error) {
+          savedLayout = null;
+        }
+
+        if (!Array.isArray(savedLayout)) {
+          applyDefaultLayout();
+          return;
+        }
+
+        const normalizedLayout = savedLayout
+          .map(normalizeSavedPosition)
+          .filter(Boolean);
+        const fragment = document.createDocumentFragment();
+        normalizedLayout.forEach((position, index) => {
+          fragment.appendChild(createLogoItem({ name: position.name }, index, position.id));
+        });
+        canvas.replaceChildren(fragment);
+        applyDefaultLayout();
+        canvas.querySelectorAll('.logo-item').forEach((item) => {
+          const position = normalizedLayout.find((savedPosition) => savedPosition.id === item.dataset.logoId);
+          if (!position) return;
+          const maxX = canvas.clientWidth - itemWidth;
+          const maxY = canvas.clientHeight - itemHeight;
+          item.style.left = `${clamp(Number(position.x) || 0, 0, maxX)}px`;
+          item.style.top = `${clamp(Number(position.y) || 0, 0, maxY)}px`;
+          item.style.zIndex = String(Number(position.z) || 1);
+          highestZ = Math.max(highestZ, Number(position.z) || 1);
+        });
+      };
+
+      const render = () => {
+        const fragment = document.createDocumentFragment();
+        members.forEach((member, index) => fragment.appendChild(createLogoItem(member, index, createDefaultLogoId(member.name))));
+        canvas.replaceChildren(fragment);
+        restoreLayout();
+      };
+
+      const addNuraLogo = () => {
+        const nuraCount = canvas.querySelectorAll('.logo-item[data-name="NURA"]').length;
+        const offsetX = (nuraCount % 5) * gridSize;
+        const offsetY = Math.floor(nuraCount / 5) * gridSize;
+        const item = createLogoItem({ name: 'NURA' }, canvas.querySelectorAll('.logo-item').length, createLogoInstanceId('NURA'));
+        const maxGridX = Math.floor((canvas.clientWidth - itemWidth) / gridSize) * gridSize;
+        const maxGridY = Math.floor((canvas.clientHeight - itemHeight) / gridSize) * gridSize;
+        const centerX = scroller.scrollLeft + scroller.clientWidth / 2 - itemWidth / 2 + offsetX;
+        const centerY = scroller.scrollTop + scroller.clientHeight / 2 - itemHeight / 2 + offsetY;
+        item.style.left = `${clamp(Math.round(centerX / gridSize) * gridSize, 0, maxGridX)}px`;
+        item.style.top = `${clamp(Math.round(centerY / gridSize) * gridSize, 0, maxGridY)}px`;
+        canvas.appendChild(item);
+        selectItem(item);
+        item.focus();
+        saveLayout();
+      };
+
+      canvas.addEventListener('pointerdown', (event) => {
+        const item = event.target.closest('.logo-item');
+        if (!item || event.button !== 0) return;
+
+        event.preventDefault();
+        activeItem = item;
+        activePointerId = event.pointerId;
+        moved = false;
+        const itemRect = item.getBoundingClientRect();
+        pointerOffsetX = event.clientX - itemRect.left;
+        pointerOffsetY = event.clientY - itemRect.top;
+        selectItem(item);
+        item.classList.add('is-dragging');
+        item.setPointerCapture(event.pointerId);
+      });
+
+      canvas.addEventListener('pointermove', (event) => {
+        if (!activeItem || event.pointerId !== activePointerId) return;
+        event.preventDefault();
+
+        const canvasRect = canvas.getBoundingClientRect();
+        const nextX = event.clientX - canvasRect.left - pointerOffsetX;
+        const nextY = event.clientY - canvasRect.top - pointerOffsetY;
+        activeItem.style.left = `${clamp(nextX, 0, canvas.clientWidth - activeItem.offsetWidth)}px`;
+        activeItem.style.top = `${clamp(nextY, 0, canvas.clientHeight - activeItem.offsetHeight)}px`;
+        moved = true;
+      }, { passive: false });
+
+      const finishDrag = (event) => {
+        if (!activeItem || (event && event.pointerId !== activePointerId)) return;
+        const item = activeItem;
+        const maxGridX = Math.floor((canvas.clientWidth - item.offsetWidth) / gridSize) * gridSize;
+        const maxGridY = Math.floor((canvas.clientHeight - item.offsetHeight) / gridSize) * gridSize;
+        const snappedX = clamp(Math.round((parseFloat(item.style.left) || 0) / gridSize) * gridSize, 0, maxGridX);
+        const snappedY = clamp(Math.round((parseFloat(item.style.top) || 0) / gridSize) * gridSize, 0, maxGridY);
+        item.classList.remove('is-dragging');
+        if (moved) {
+          requestAnimationFrame(() => {
+            item.style.left = `${snappedX}px`;
+            item.style.top = `${snappedY}px`;
+            saveLayout();
+          });
+        }
+        activeItem = null;
+        activePointerId = null;
+        moved = false;
+      };
+
+      canvas.addEventListener('pointerup', finishDrag);
+      canvas.addEventListener('pointercancel', finishDrag);
+
+      canvas.addEventListener('keydown', (event) => {
+        const item = event.target.closest('.logo-item');
+        if (!item) return;
+
+        if (event.key === 'Delete' || event.key === 'Backspace') {
+          event.preventDefault();
+          removeLogoItem(item);
+          return;
+        }
+
+        if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+
+        event.preventDefault();
+        const step = gridSize;
+        let x = parseFloat(item.style.left) || 0;
+        let y = parseFloat(item.style.top) || 0;
+        if (event.key === 'ArrowLeft') x -= step;
+        if (event.key === 'ArrowRight') x += step;
+        if (event.key === 'ArrowUp') y -= step;
+        if (event.key === 'ArrowDown') y += step;
+        const maxGridX = Math.floor((canvas.clientWidth - item.offsetWidth) / gridSize) * gridSize;
+        const maxGridY = Math.floor((canvas.clientHeight - item.offsetHeight) / gridSize) * gridSize;
+        item.style.left = `${clamp(x, 0, maxGridX)}px`;
+        item.style.top = `${clamp(y, 0, maxGridY)}px`;
+        selectItem(item);
+        saveLayout();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'z' && !event.shiftKey) {
+          if (!deletedLogoSnapshot) return;
+          event.preventDefault();
+          undoDeleteLogo();
+        }
+      });
+
+      window.NURA_LOGO_EXPORT = Object.freeze({ buildPngBlob, buildSvgBlob });
+      undoDeleteButton.addEventListener('click', undoDeleteLogo);
+      resetLayoutButton.addEventListener('click', resetLayout);
+      addNuraButton.addEventListener('click', addNuraLogo);
+      exportBlackButton.addEventListener('click', () => setExportColor('black'));
+      exportWhiteButton.addEventListener('click', () => setExportColor('white'));
+      exportPngButton.addEventListener('click', exportPng);
+      exportSvgButton.addEventListener('click', exportSvg);
+
+      render();
+      updateUndoDeleteButton();
+      updateExportColorButtons();
+    </script>
+  </body>
+</html>
