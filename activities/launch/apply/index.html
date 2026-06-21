@@ -141,15 +141,48 @@
                 <section class="apply-panel" data-step="1" aria-labelledby="apply-step-one-title">
                   <h3 id="apply-step-one-title" class="text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">개인정보 수집 및 이용 동의</h3>
                   <div class="mt-8 border-y border-white/10 py-7 text-sm leading-7 text-white/55 md:px-2 md:text-base">
-                    <p>참관 신청 접수와 안내를 위해 이름, 성별, 소속, 전화번호, 이메일 주소를 수집합니다.</p>
-                    <p class="mt-2">수집한 개인정보는 행사 운영 목적으로만 사용하며 행사 종료 후 파기합니다. 동의하지 않을 경우 신청이 어렵습니다.</p>
+                    <p>참관 신청 접수와 안내를 위해 성명, 이메일 주소, 전화번호, 소속, 성별, 참관 희망일, 기타 문의 내용을 수집합니다.</p>
+                    <p class="mt-2">수집한 개인정보는 2027년 2월 9일까지 보유 후 파기합니다. 동의하지 않을 경우 참관 신청이 어렵습니다.</p>
+                    <details class="mt-4">
+                      <summary class="cursor-pointer text-white/75 underline underline-offset-4">수집·이용 상세보기</summary>
+                      <dl class="mt-4 grid gap-x-5 gap-y-2 border-t border-white/10 pt-4 sm:grid-cols-[9rem_minmax(0,1fr)]">
+                        <dt class="text-white/70">수집·이용 목적</dt>
+                        <dd>발사대회 참관 신청 접수, 신청자 확인, 행사 일정·유의사항 안내 및 문의 응대</dd>
+                        <dt class="text-white/70">수집 항목</dt>
+                        <dd>성명, 이메일 주소, 전화번호, 소속, 성별, 참관 희망일, 기타 문의 내용, 동의 기록 및 제출 일시</dd>
+                        <dt class="text-white/70">보유·이용 기간</dt>
+                        <dd>2027년 2월 9일까지. 관계 법령에 따라 보존할 필요가 있는 경우에는 해당 법령에서 정한 기간 동안 보존합니다.</dd>
+                        <dt class="text-white/70">동의 거부 권리</dt>
+                        <dd>동의를 거부할 수 있으나, 필수정보 수집·이용에 동의하지 않으면 참관 신청을 접수할 수 없습니다.</dd>
+                      </dl>
+                    </details>
                   </div>
 
                   <label class="mt-7 flex cursor-pointer items-start gap-3 text-sm leading-6 text-white/75 md:text-base">
                     <input id="privacy-agreement" name="entry.1479307030" type="checkbox" value="동의" required class="mt-1 h-5 w-5 shrink-0 accent-blue-500" />
-                    <span>개인정보 수집 및 이용에 동의합니다.</span>
+                    <span><span class="font-semibold text-white">[필수]</span> 개인정보 수집 및 이용에 동의합니다.</span>
                   </label>
-                  <p id="agreement-error" class="apply-error mt-3 hidden text-sm" role="alert">동의 후 다음 단계로 진행해 주세요.</p>
+
+                  <details class="mt-7 border-y border-white/10 py-5 text-sm leading-7 text-white/55 md:px-2 md:text-base">
+                    <summary class="cursor-pointer text-white/75 underline underline-offset-4">Google Forms 국외 이전 상세보기</summary>
+                    <dl class="mt-4 grid gap-x-5 gap-y-2 border-t border-white/10 pt-4 sm:grid-cols-[9rem_minmax(0,1fr)]">
+                      <dt class="text-white/70">이전 항목</dt><dd>위 개인정보 수집 항목 일체</dd>
+                      <dt class="text-white/70">국가·받는 자</dt><dd>미국 Google LLC. 글로벌 인프라 운영 과정에서 미국 외 국가에서도 처리될 수 있습니다.</dd>
+                      <dt class="text-white/70">시기·방법</dt><dd>신청서 제출 시 암호화된 네트워크를 통한 전송</dd>
+                      <dt class="text-white/70">목적</dt><dd>Google Forms를 이용한 신청서 접수, 저장 및 관리</dd>
+                      <dt class="text-white/70">보유 기간</dt><dd>2027년 2월 9일까지. 삭제 후에는 Google의 삭제 및 백업 정책에 따라 처리됩니다.</dd>
+                      <dt class="text-white/70">거부 권리</dt><dd>국외 이전을 거부할 수 있으나, 동의하지 않으면 온라인 신청을 접수할 수 없습니다.</dd>
+                    </dl>
+                  </details>
+
+                  <label class="mt-7 flex cursor-pointer items-start gap-3 text-sm leading-6 text-white/75 md:text-base">
+                    <input id="overseas-agreement" name="entry.336913501" type="checkbox" value="동의" required class="mt-1 h-5 w-5 shrink-0 accent-blue-500" />
+                    <span><span class="font-semibold text-white">[필수]</span> 개인정보 국외 이전에 동의합니다.</span>
+                  </label>
+                  <p class="mt-5 text-sm leading-6 text-white/50">
+                    자세한 내용은 <a href="../../../privacy/" target="_blank" rel="noopener noreferrer" class="text-white/75 underline underline-offset-2 transition hover:text-white">개인정보처리방침</a>에서 확인할 수 있습니다.
+                  </p>
+                  <p id="agreement-error" class="apply-error mt-3 hidden text-sm" role="alert">필수 동의 항목을 모두 확인해 주세요.</p>
 
                   <div class="mt-12 flex justify-end">
                     <button id="apply-next" type="button" class="group inline-flex min-w-44 items-center justify-between rounded-full bg-white px-6 py-4 text-sm font-semibold text-black transition hover:bg-blue-400">
@@ -226,11 +259,11 @@
 
             <p class="mt-8 text-center text-[13px] text-gray-500 md:text-[15px]">
               * 제출에 문제가 있을 경우
-              <a href="https://forms.gle/4SzLBQbuRa8Q6gTz7" 
-                 target="_blank" 
-                 rel="noopener noreferrer" 
+              <a href="https://forms.gle/4SzLBQbuRa8Q6gTz7"
+                 target="_blank"
+                 rel="noopener noreferrer"
                  class="text-white/70 underline underline-offset-2 transition hover:text-white">
-                여기를 클릭하여 직접 접속
+                여기를 클릭하여 Google Form으로 직접 접속
               </a>해 주세요.
             </p>
           </div>
@@ -261,6 +294,7 @@
         const panels = Array.from(document.querySelectorAll('.apply-panel'));
         const steps = Array.from(document.querySelectorAll('.apply-step'));
         const agreement = document.getElementById('privacy-agreement');
+        const overseasAgreement = document.getElementById('overseas-agreement');
         const agreementError = document.getElementById('agreement-error');
         const formError = document.getElementById('form-error');
         const submitButton = document.getElementById('apply-submit');
@@ -283,22 +317,34 @@
           shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
         };
 
-        document.getElementById('apply-next').addEventListener('click', () => {
-          if (!agreement.checked) {
+        const validateAgreements = () => {
+          if (!agreement.checked || !overseasAgreement.checked) {
             agreementError.classList.remove('hidden');
-            agreement.focus();
-            return;
+            (agreement.checked ? overseasAgreement : agreement).focus();
+            steps[1].disabled = true;
+            return false;
           }
           agreementError.classList.add('hidden');
           steps[1].disabled = false;
+          return true;
+        };
+
+        const syncAgreementState = () => {
+          steps[1].disabled = !agreement.checked || !overseasAgreement.checked;
+          agreementError.classList.add('hidden');
+        };
+
+        document.getElementById('apply-next').addEventListener('click', () => {
+          if (!validateAgreements()) return;
           showStep(2);
           panels[1].querySelector('input').focus({ preventScroll: true });
         });
 
-        agreement.addEventListener('change', () => agreementError.classList.add('hidden'));
+        agreement.addEventListener('change', syncAgreementState);
+        overseasAgreement.addEventListener('change', syncAgreementState);
         document.getElementById('apply-prev').addEventListener('click', () => showStep(1));
         steps[0].addEventListener('click', () => showStep(1));
-        steps[1].addEventListener('click', () => { if (!steps[1].disabled) showStep(2); });
+        steps[1].addEventListener('click', () => { if (validateAgreements()) showStep(2); });
 
         form.addEventListener('submit', (event) => {
           const requiredFields = Array.from(form.querySelectorAll('[required]'));

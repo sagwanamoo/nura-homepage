@@ -271,7 +271,7 @@
       }
       .sponsor-logo--kari {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.75rem;
         height: 136px;
       }
       .sponsor-logo--kari img {
@@ -279,13 +279,82 @@
         width: auto;
       }
       .sponsor-logo__caption {
-        color: rgba(255, 255, 255, 0.62);
-        font-size: 0.75rem;
-        font-weight: 400;
-        line-height: 1.45;
-        max-width: 190px;
+        padding: 0.38rem 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.7rem;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.02em;
         text-align: center;
-        word-break: keep-all;
+        white-space: nowrap;
+      }
+
+      .home-section-heading {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 1rem 0 2.5rem;
+        text-align: left;
+      }
+
+      .home-section-heading::before {
+        content: "";
+        flex: 0 0 auto;
+        width: 4px;
+        height: 30px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #7dd3fc 0%, #2563eb 100%);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+      }
+
+      .home-section-heading::after {
+        content: "";
+        flex: 1 1 auto;
+        height: 1px;
+        margin-left: 6px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 75%);
+      }
+
+      .home-section-heading h2,
+      .home-section-heading h3 {
+        flex: 0 0 auto;
+        margin: 0;
+        color: #fff;
+        font-size: clamp(1.65rem, 3vw, 2.25rem);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+      }
+
+      .home-section-heading--sub {
+        margin-top: 0;
+        margin-bottom: 2rem;
+      }
+
+      .home-section-heading--sub::before {
+        width: 3px;
+        height: 22px;
+        background: rgba(255, 255, 255, 0.45);
+        box-shadow: none;
+      }
+
+      .home-section-heading--sub h3 {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      }
+
+      @media (max-width: 767px) {
+        .home-section-heading {
+          gap: 11px;
+          margin-bottom: 2rem;
+        }
+
+        .home-section-heading::before {
+          height: 24px;
+        }
       }
 
       .launch-visit-modal {
@@ -571,8 +640,8 @@
         <!-- NURA NOW -->
         <section id="nura-now" class="w-full bg-black">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-            <div class="text-center mb-8 mt-4">
-              <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">NURA는 지금</h2>
+            <div class="home-section-heading">
+              <h2>NURA는 지금</h2>
             </div>
 
             <div class="relative w-full max-w-7xl mx-auto z-10" id="news-hero-section">
@@ -631,8 +700,8 @@
         <!-- NURA OVERVIEW -->
         <section class="w-full bg-black border-t border-white/5 border-b border-white/5">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-            <div class="text-center mb-8 mt-4">
-              <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">숫자로 보는 NURA</h2>
+            <div class="home-section-heading">
+              <h2>숫자로 보는 NURA</h2>
             </div>
 
             <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-12 mt-16"></div>
@@ -642,8 +711,8 @@
         <!-- CURRENT PARTNERS -->
         <section class="border-t border-white/10 bg-black">
           <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
-            <div class="text-center mb-8 mt-4">
-              <h2 class="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-white">후원사</h2>
+            <div class="home-section-heading">
+              <h2>후원사</h2>
             </div>
 
             <div id="sponsor-wall" class="mb-10">
@@ -664,8 +733,8 @@
             </div>
 
             <div id="partner-wall" class="border-t border-white/10 pt-12">
-              <div class="text-center mb-8">
-                <h3 class="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-white">협력기관</h3>
+              <div class="home-section-heading home-section-heading--sub">
+                <h3>협력기관</h3>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 items-center justify-items-center max-w-3xl mx-auto">
                 <a href="https://www.kspe.org/" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
@@ -673,7 +742,7 @@
                 </a>
                 <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo sponsor-logo--kari">
                   <img src="source/partnership/kari.svg" alt="한국항공우주연구원 로고" loading="lazy" decoding="async">
-                  <span class="sponsor-logo__caption">국가종합비행성능시험장<br>고흥항공센터</span>
+                  <span class="sponsor-logo__caption">국가종합비행성능시험장 · 고흥항공센터</span>
                 </a>
               </div>
             </div>
