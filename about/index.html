@@ -71,17 +71,11 @@
 
   .history-rail {
     position: relative;
-    padding-left: 2.25rem;
+    padding-left: 0;
   }
 
   .history-rail::before {
-    content: "";
-    position: absolute;
-    left: 0.625rem;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(96, 165, 250, 0.35);
+    display: none;
   }
 
   .history-entry {
@@ -95,15 +89,7 @@
   }
 
   .history-entry::before {
-    content: "";
-    position: absolute;
-    left: -2rem;
-    top: 2.2rem;
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 9999px;
-    background: rgb(96 165 250);
-    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+    display: none;
   }
 
   .history-entry.is-active {
@@ -169,7 +155,8 @@
     }
 
     .history-rail {
-      padding-left: 1.75rem;
+      margin-top: 0;
+      padding-left: 0;
     }
 
     .history-entry::before {
@@ -195,8 +182,8 @@
     }
 
     .history-summary-grid {
-      gap: 3.5rem !important;
-      margin-top: 4rem !important;
+      gap: 2.5rem !important;
+      margin-top: 2.5rem !important;
       margin-bottom: 0.5rem !important;
       justify-content: center !important;
     }
@@ -208,8 +195,8 @@
     }
 
     .history-rail {
-      margin-top: 0.5rem;
-      padding-left: 1.75rem;
+      margin-top: 0;
+      padding-left: 0;
     }
 
     .history-entry {
@@ -242,47 +229,25 @@
     <div data-shared-header></div>
 
 <main class="w-full flex-1 flex flex-col">
-<section id="history" class="relative border-t border-white/10 bg-black">
-  <div class="relative max-w-7xl mx-auto w-full px-4 md:px-8 pt-12 md:pt-12 pb-24 md:pb-28">
-    <div class="grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1.08fr)] gap-12 lg:gap-16 items-start">
-      <aside class="history-side-panel lg:sticky lg:top-12">
-        <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
-  <div class="max-w-5xl min-w-0">
-<h1 class="page-main-title min-w-0 mt-5 leading-none tracking-[-0.06em] font-bold text-white">
-  NURA의 전체 연혁
-</h1>
-            <p class="mt-6 text-gray-300 text-base md:text-lg leading-8">
-NURA는 국내 대학 간 로켓 관련 학술 교류를 촉진하고 정기적인 로켓발사대회를 개최하여 로켓에 관한 대학생들의 관심과 접근성을 고취하고자 설립되었습니다. 
-      </p>
+<section id="history" class="bg-black">
+  <div class="relative max-w-7xl mx-auto w-full px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-20">
+    <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+      <div class="max-w-5xl">
+        <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">NURA의 전체 연혁</h1>
+        <p class="mt-6 text-gray-300 text-base md:text-lg leading-8 break-keep max-w-3xl">
+          NURA는 국내 대학 간 로켓 관련 학술 교류를 촉진하고 정기적인 로켓발사대회를 개최하여 로켓에 관한 대학생들의 관심과 접근성을 고취하고자 설립되었습니다.
+        </p>
+      </div>
+    </section>
 
-        <div class="history-summary-grid mt-10 mb-12">
-          <div class="history-stat-card flex flex-col items-center md:items-start">
-            <div class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Founded</div>
-            <div class="mt-2 text-5xl md:text-7xl font-light tracking-tighter text-white opacity-60">1992</div>
-          </div>
-          <div class="w-[1px] h-12 md:h-16 bg-white/10"></div>
-          <div class="history-stat-card flex flex-col items-center md:items-start">
-            <div class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Present</div>
-            <div class="mt-2 text-5xl md:text-7xl font-light tracking-tighter text-white opacity-60">2026</div>
-          </div>
-        </div>
-        
-        <div class="hidden lg:block mt-12">
-          <div class="text-sm font-semibold tracking-widest text-blue-400 uppercase mb-4">Timeline Journey</div>
-          <div class="history-dial-sleek">
-            <div id="history-year-reel" class="history-year-reel"></div>
-          </div>
-        </div>
-  </div>
-        </section>
-      </aside>
-
+    <section class="px-0 md:px-2 lg:px-4 py-3 md:py-4">
       <div class="history-rail">
-  <div id="history-start-spacer" aria-hidden="true"></div>
-  <div id="history-entry-list" class="space-y-0"></div>
-  <div id="history-end-spacer" aria-hidden="true"></div>
-</div>
-    </div>
+        <div id="history-start-spacer" aria-hidden="true"></div>
+        <div id="history-entry-list" class="space-y-0 border-t border-white/10"></div>
+        <div id="history-end-spacer" aria-hidden="true"></div>
+      </div>
+      <div id="history-year-reel" class="hidden" aria-hidden="true"></div>
+    </section>
   </div>
 </section>
 
@@ -483,29 +448,15 @@ function getVisibleEntries() {
 
 function updateStartSpacerPrecise() {
   const startSpacer = document.getElementById("history-start-spacer");
-  if (!startSpacer || !entries.length) return;
+  if (!startSpacer) return;
 
-  startSpacer.style.height = window.innerWidth >= 1024 ? "56px" : "0px";
+  startSpacer.style.height = "0px";
 }
 
 function updateEndSpacerPrecise() {
-  if (!endSpacer || !entries.length) return;
+  if (!endSpacer) return;
 
   endSpacer.style.height = "0px";
-
-  const visibleEntries = getVisibleEntries();
-  if (!endSpacer || !visibleEntries.length) return;
-
-  endSpacer.style.height = "0px";
-
-  const lastEntry = visibleEntries[visibleEntries.length - 1];
-  const rawTargetScroll = getTargetScrollForEntry(lastEntry);
-  const currentMaxScroll = getMaxScrollY();
-  const extraNeeded = Math.max(rawTargetScroll - currentMaxScroll, 0);
-
-  endSpacer.style.height = `${Math.ceil(
-    extraNeeded + (window.innerWidth >= 1024 ? 24 : 0)
-  )}px`;
 }
 
   function getActivationCenterY() {
