@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <script src="../../data/site-data.js?v=20260614-map"></script>
+    <script src="../../data/site-data.js?v=20260624-region-transition"></script>
     <style>
       html { scroll-behavior: smooth; }
       html, body { background-color: #030712; overflow-x: hidden; }
@@ -815,8 +815,36 @@
     </div>
 
     <script>
-      const memberOrganizations = Array.isArray(window.NURA_DATA?.memberOrganizations) ? window.NURA_DATA.memberOrganizations : [];
-      const memberRegions = Array.isArray(window.NURA_DATA?.memberRegions) ? window.NURA_DATA.memberRegions : [];
+      const rawMemberOrganizations = Array.isArray(window.NURA_DATA?.memberOrganizations) ? window.NURA_DATA.memberOrganizations : [];
+      const rawMemberRegions = Array.isArray(window.NURA_DATA?.memberRegions) ? window.NURA_DATA.memberRegions : [];
+      const memberRegionTransition = window.NURA_DATA?.memberRegionTransition || {};
+      const memberRegionTransitionAt = Date.parse(memberRegionTransition.effectiveAt || '');
+      const isMergedRegionActive = Number.isFinite(memberRegionTransitionAt) && Date.now() >= memberRegionTransitionAt;
+      const mergedRegionId = memberRegionTransition.mergedRegionId || 'jeonnam';
+      const absorbedRegionIds = Array.isArray(memberRegionTransition.absorbedRegionIds)
+        ? memberRegionTransition.absorbedRegionIds
+        : ['gwangju'];
+      const mergedRegionName = memberRegionTransition.mergedName || '전남광주통합특별시';
+      if (!isMergedRegionActive && Number.isFinite(memberRegionTransitionAt)) {
+        window.setTimeout(() => window.location.reload(), memberRegionTransitionAt - Date.now());
+      }
+      const memberOrganizations = rawMemberOrganizations.map((member) => (
+        isMergedRegionActive && absorbedRegionIds.includes(member.region)
+          ? { ...member, region: mergedRegionId }
+          : member
+      ));
+      const memberRegions = rawMemberRegions
+        .filter((region) => !isMergedRegionActive || !absorbedRegionIds.includes(region.id))
+        .map((region) => (
+          isMergedRegionActive && region.id === mergedRegionId
+            ? {
+                ...region,
+                name: mergedRegionName,
+                coverage: mergedRegionName,
+                description: `${mergedRegionName} 지역에 속한 회원 대학과 로켓 동아리 현황입니다.`
+              }
+            : region
+        ));
       const memberCount = window.NURA_DATA?.overviewStats?.find((item) => item.label === '참여 대학')?.value || 38;
       const memberTotalCount = document.getElementById('member-total-count');
       const mapFrame = document.getElementById('members-korea-map');
@@ -834,8 +862,8 @@
         sejong: ['KR-50'],
         chungbuk: ['KR-43'],
         chungnam: ['KR-44'],
+        ...(isMergedRegionActive ? {} : { gwangju: ['KR-29'] }),
         jeonbuk: ['KR-45'],
-        // KR-46 is the merged Gwangju + Jeonnam launch map for 2026-07-01.
         jeonnam: ['KR-46'],
         daegu: ['KR-27'],
         gyeongbuk: ['KR-47'],
@@ -870,9 +898,11 @@
         {
           id: 'honam',
           name: '호남권',
-          coverage: '전남광주통합특별시 · 전북',
-          description: '호남권은 전남광주통합특별시와 전북으로 구분해 회원 대학을 확인할 수 있습니다.',
-          regions: ['jeonnam', 'jeonbuk']
+          coverage: isMergedRegionActive ? `${mergedRegionName} · 전북` : '광주 · 전북 · 전남',
+          description: isMergedRegionActive
+            ? `호남권은 ${mergedRegionName}와 전북으로 구분해 회원 대학을 확인할 수 있습니다.`
+            : '호남권은 광주, 전북, 전남으로 구분해 회원 대학을 확인할 수 있습니다.',
+          regions: isMergedRegionActive ? ['jeonnam', 'jeonbuk'] : ['gwangju', 'jeonbuk', 'jeonnam']
         },
         {
           id: 'yeongnam',
@@ -1263,6 +1293,7 @@
 
         const provinceId = getProvinceIdByFineRegion(subregionButton.dataset.subregionToggle);
         hoveredProvinceId = provinceId;
+        hoveredMacroRegionId = null;
         applySubregionHoverClasses();
         syncActiveState();
       };
@@ -1338,9 +1369,7 @@
           }
         });
 
-        const highlightedMacroRegionId = hoveredMacroRegionId || (
-          !selectedProvinceId && isRegionPanelOpen ? activeMacroRegionId : null
-        );
+        const highlightedMacroRegionId = hoveredMacroRegionId;
 
         provinceNodes.forEach((provinceNode) => {
           const visualState = provinceNode.id === hoveredProvinceId
@@ -1656,6 +1685,13 @@
           }
 
           svgRootNode = svgRoot;
+          const jeonnamNode = svgRoot.querySelector('#KR-46');
+
+          if (isMergedRegionActive && jeonnamNode) {
+            jeonnamNode.setAttribute('title', mergedRegionName);
+            jeonnamNode.setAttribute('data-map_title', mergedRegionName);
+          }
+
           mapOverlayNodes = Array.from(svgRoot.querySelectorAll('[data-map-overlay="true"]'));
 
           provinceNodes = Array.from(svgRoot.querySelectorAll('[id^="KR-"]')).filter((provinceNode, index) => {
@@ -1682,7 +1718,9 @@
 
         const loadMapSvg = async () => {
           try {
-            const mapSource = mapFrame.dataset.mapSrc;
+            const mapSource = isMergedRegionActive
+              ? mapFrame.dataset.mapSrc
+              : '../../source/members/south-korea-legacy.svg?v=91533b1';
             if (!mapSource) {
               throw new Error('Map SVG source is missing');
             }

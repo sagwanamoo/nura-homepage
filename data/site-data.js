@@ -1,4 +1,11 @@
 window.NURA_DATA = {
+  memberRegionTransition: {
+    effectiveAt: "2026-07-01T00:00:00+09:00",
+    mergedRegionId: "jeonnam",
+    absorbedRegionIds: ["gwangju"],
+    mergedName: "전남광주통합특별시"
+  },
+
   // 공개 시 enabled를 true로 변경하세요. 비공개 상태에서도 메인 주소 뒤에
   // ?launchModal=preview를 붙이면 미리 볼 수 있습니다.
   launchVisitModal: {
@@ -112,7 +119,7 @@ window.NURA_DATA = {
     },
     {
       name: "광주과학기술원",
-      region: "jeonnam",
+      region: "gwangju",
       clubName: "GPERI",
       description: "광주광역시 북구 첨단과기로 123",
       website: "https://sites.google.com/view/gperigist/%ED%99%88",
@@ -279,7 +286,7 @@ window.NURA_DATA = {
     },
     {
       name: "조선대학교",
-      region: "jeonnam",
+      region: "gwangju",
       clubName: "HANul",
       description: "광주광역시 동구 조선대길 146",
       website: "https://han-ul.com/",
@@ -410,6 +417,12 @@ window.NURA_DATA = {
       description: "충남 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
     },
     {
+      id: "gwangju",
+      name: "광주",
+      coverage: "광주광역시",
+      description: "광주 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
       id: "jeonbuk",
       name: "전북",
       coverage: "전북특별자치도",
@@ -418,8 +431,8 @@ window.NURA_DATA = {
     {
       id: "jeonnam",
       name: "전남",
-      coverage: "전남광주통합특별시",
-      description: "전남광주통합특별시 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+      coverage: "전라남도",
+      description: "전남 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
     },
     {
       id: "daegu",
