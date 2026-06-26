@@ -77,7 +77,7 @@
       }
 
     </style>
-    <script src="../data/site-data.js?v=20260626-2"></script>
+    <script src="../data/site-data.js?v=20260626-3"></script>
     <script src="../data/shared-layout.js?v=20260530-2" defer></script>
   </head>
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="goods" data-base-path="..">
@@ -144,8 +144,8 @@
               >
                 <input type="hidden" name="fvv" value="1" />
                 <input type="hidden" name="pageHistory" value="0" />
-                <input type="hidden" name="partialResponse" value='[null,null,"-4735732229389852344"]' />
-                <input type="hidden" name="fbzx" value="-4735732229389852344" />
+                <input type="hidden" name="partialResponse" value='[null,null,"-7154923099066428598"]' />
+                <input type="hidden" name="fbzx" value="-7154923099066428598" />
                 <input type="hidden" name="submissionTimestamp" value="-1" />
                 <input type="hidden" name="entry.379947374_sentinel" />
                 <input type="hidden" name="entry.109305597_sentinel" />
@@ -264,11 +264,12 @@
               <section id="apply-success" class="hidden py-16 text-center" tabindex="-1" aria-live="polite">
                 <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white text-2xl text-white">✓</div>
                 <h3 class="mt-7 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">신청이 접수되었습니다</h3>
-                <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/55 md:text-base">만약 전 단계에서 입금을 못하셨다면, 아래 계좌로 입금해 주세요. 학술대회에서 뵙겠습니다.</p>
+                <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/55 md:text-base">만약 전 단계에서 입금을 못하셨다면, 아래 계좌로 입금해 주세요.</p>
                 <div class="mx-auto mt-6 max-w-md rounded-lg border border-white/15 bg-white/[0.04] px-5 py-4 text-sm leading-7 text-white/62">
                   <button class="text-base font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:text-blue-300" type="button" data-copy-account="국민은행 824201-00-114793" aria-label="입금 계좌 국민은행 824201-00-114793 복사">국민은행 824201-00-114793</button>
                   <p>예금주: 전국대학교로켓연합회</p>
                 </div>
+                <p class="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/55 md:text-base">학술대회에서 뵙겠습니다. 감사합니다.</p>
               </section>
             </div>
 
@@ -323,6 +324,12 @@
         const goodsChoices = Array.from(form.querySelectorAll('[name="entry.1859976833"]'));
         const goodsFormConfig = window.NURA_DATA?.goodsOrderForm || {};
         const goodsPreviewFile = window.NURA_DATA?.goodsPreviewFile || {};
+        const getFormViewUrl = () => {
+          if (goodsFormConfig.viewHref) return goodsFormConfig.viewHref;
+          if (goodsFormConfig.action) return goodsFormConfig.action.replace(/\/formResponse(?:\?.*)?$/, '/viewform');
+          return goodsFormConfig.directHref || '';
+        };
+        const formViewUrl = getFormViewUrl();
         const isFormReady = Boolean(goodsFormConfig.enabled && goodsFormConfig.action);
         let submitting = false;
         const fieldLabels = {
@@ -335,8 +342,8 @@
         };
 
         if (goodsFormConfig.action) form.action = goodsFormConfig.action;
-        if (goodsFormConfig.directHref) {
-          directFormLink.href = goodsFormConfig.directHref;
+        if (goodsFormConfig.directHref || formViewUrl) {
+          directFormLink.href = goodsFormConfig.directHref || formViewUrl;
         } else {
           directFormLink.closest('p').classList.add('hidden');
         }
@@ -484,11 +491,6 @@
           success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
-        if (window.location.protocol === 'file:') {
-          form.classList.add('hidden');
-          shell.querySelector('[aria-label="신청 단계"]').classList.add('hidden');
-          success.classList.remove('hidden');
-        }
       })();
     </script>
   </body>

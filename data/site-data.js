@@ -46,7 +46,7 @@ window.NURA_DATA = {
   goodsOrderForm: {
     enabled: true,
     action: "https://docs.google.com/forms/d/e/1FAIpQLScbcvJC2ONmzJnHai0vMUoIqKXncPruU2tEaYKL_55t9gd_1Q/formResponse",
-    directHref: "https://forms.gle/GZexh5jKRKyvbS2Q9"
+    directHref: "https://forms.gle/ydbDMZ8FHPchRnPn8"
   },
 
   goodsPreviewFile: {
