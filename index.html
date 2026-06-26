@@ -320,6 +320,18 @@
         height: 74px;
         width: auto;
       }
+      .sponsor-logo--dacc-carbon img {
+        width: min(92%, 128px);
+        height: auto;
+      }
+      @media (min-width: 768px) {
+        .sponsor-logo--dacc-carbon img {
+          width: min(92%, 180px);
+        }
+      }
+      .sponsor-logo:hover .dacc-carbon-logo {
+        filter: brightness(1.35) saturate(1.08);
+      }
       .sponsor-logo__caption {
         padding: 0.38rem 0.8rem;
         border: 1px solid rgba(255, 255, 255, 0.12);
@@ -626,7 +638,7 @@
       }
     </style>
 
-    <script src="./data/site-data.js?v=20260626-3"></script>
+    <script src="./data/site-data.js?v=20260627-1"></script>
     <script src="./data/shared-layout.js?v=20260530-2" defer></script>
   </head>
 
@@ -654,7 +666,7 @@
             <div class="hero-content-wrap max-w-7xl mx-auto px-4 md:px-8 h-full flex pt-[450px] md:pt-[400px] lg:pt-[350px]">
               <div class="max-w-5xl flex flex-col items-start text-left">
                 <h1 class="hero-title text-white font-bold tracking-[-0.01em] break-keep hero-reveal">
-                  <span class="reveal-line"><span class="reveal-text">함께 더 멀리</span></span>
+                  <span class="reveal-line"><span class="reveal-text">함께 더 높이</span></span>
                   <span class="reveal-line"><span class="reveal-text whitespace-nowrap">전국대학교로켓연합회</span></span>
                 </h1>
 
@@ -760,18 +772,21 @@
             </div>
 
             <div id="sponsor-wall" class="mb-10">
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
-                <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+              <div class="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center">
+                <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 xl:col-span-1">
                   <img src="source/partnership/koreanair.svg" alt="대한항공 로고" loading="lazy" decoding="async" style="height: 40px; width: auto;">
                 </a>
-                <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 xl:col-span-1">
                   <img src="source/partnership/innospace.svg" alt="이노스페이스 로고" loading="lazy" decoding="async" style="height: 48px; width: auto;">
                 </a>
-                <a href="http://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                <a href="http://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 xl:col-span-1">
                   <img src="source/partnership/ligpoongsan-transparent.png" alt="LIG풍산 로고" loading="lazy" decoding="async" style="height: 44px; width: auto;">
                 </a>
-                <a href="http://www.pdk.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo">
+                <a href="http://www.pdk.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 md:col-start-2 xl:col-span-1 xl:col-start-auto">
                   <img src="source/partnership/pdk.png" alt="PDK 로고" loading="lazy" decoding="async" style="height: 100px; width: auto; transform: scale(1.4);">
+                </a>
+                <a href="https://www.dacc21.com/" target="_blank" rel="noopener noreferrer" class="sponsor-logo sponsor-logo--dacc-carbon col-span-2 md:col-span-2 md:col-start-4 xl:col-span-1 xl:col-start-auto">
+                  <img class="dacc-carbon-logo" src="source/partnership/dacc-carbon.png" alt="데크카본 로고" loading="lazy" decoding="async">
                 </a>
               </div>
             </div>

@@ -82,7 +82,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 기준",
       label: "협력 기관",
-      value: 6,
+      value: 8,
       unit: "곳"
     }
   ],
