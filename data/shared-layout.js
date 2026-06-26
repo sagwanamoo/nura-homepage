@@ -542,6 +542,7 @@
 
     if (path.includes('/about')) return 'about';
     if (path.includes('/partnership')) return 'partnership';
+    if (path.includes('/goods')) return 'goods';
     if (path.includes('/members/leadership')) return 'leadership';
     if (path.includes('/members')) return 'members';
     if (path.includes('/resources')) return 'resources';

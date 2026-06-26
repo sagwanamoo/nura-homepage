@@ -456,7 +456,9 @@
         height: 100%;
         object-fit: cover;
         object-position: center 52%;
-        opacity: 0.9;
+        opacity: 0.82;
+        filter: blur(8px);
+        transform: scale(1.04);
       }
 
       .launch-visit-modal__hero::after {
@@ -624,7 +626,7 @@
       }
     </style>
 
-    <script src="./data/site-data.js?v=20260616-1"></script>
+    <script src="./data/site-data.js?v=20260626-2"></script>
     <script src="./data/shared-layout.js?v=20260530-2" defer></script>
   </head>
 
@@ -815,13 +817,34 @@
 
     <script>
       (function () {
-        const config = window.NURA_DATA && window.NURA_DATA.launchVisitModal;
         const mount = document.getElementById("launch-visit-modal-mount");
-        if (!config || !mount) return;
+        const data = window.NURA_DATA || {};
+        if (!mount) return;
 
         const params = new URLSearchParams(window.location.search);
-        const isPreview = params.get("launchModal") === "preview" || params.get("launchBanner") === "preview";
+        const isGoodsPreview = params.get("goodsModal") === "preview" || params.get("goodsBanner") === "preview";
+        const isLaunchPreview = params.get("launchModal") === "preview" || params.get("launchBanner") === "preview";
+        const isPreview = isGoodsPreview || isLaunchPreview;
         const now = Date.now();
+        const isScheduled = (item) => {
+          const startsAt = item?.startAt ? Date.parse(item.startAt) : null;
+          const endsAt = item?.endAt ? Date.parse(item.endAt) : null;
+          return (!startsAt || now >= startsAt) && (!endsAt || now <= endsAt);
+        };
+        const isDismissed = (item) => {
+          if (!item?.id) return true;
+          const snoozeStorageKey = `nura-modal-snoozed-until:${item.id}`;
+          const sessionStorageKey = `nura-modal-session-dismissed:${item.id}`;
+          const snoozedUntil = Number(localStorage.getItem(snoozeStorageKey)) || 0;
+          return snoozedUntil > now || sessionStorage.getItem(sessionStorageKey) === "true";
+        };
+        const config = isGoodsPreview
+          ? data.goodsModal
+          : isLaunchPreview
+            ? data.launchVisitModal
+            : [data.goodsModal, data.launchVisitModal].find((item) => item?.enabled && isScheduled(item) && !isDismissed(item));
+        if (!config || !mount) return;
+
         const startsAt = config.startAt ? Date.parse(config.startAt) : null;
         const endsAt = config.endAt ? Date.parse(config.endAt) : null;
         const isWithinSchedule = (!startsAt || now >= startsAt) && (!endsAt || now <= endsAt);
@@ -831,7 +854,7 @@
         const isSnoozed = !isPreview && snoozedUntil > now;
         const isSessionDismissed = !isPreview && sessionStorage.getItem(sessionStorageKey) === "true";
 
-        if ((!config.enabled && !isPreview) || !isWithinSchedule || isSnoozed || isSessionDismissed) return;
+        if ((!config.enabled && !isPreview) || (!isPreview && !isWithinSchedule) || isSnoozed || isSessionDismissed) return;
 
         const escapeHtml = (value) =>
           String(value || "")
@@ -840,21 +863,23 @@
             .replaceAll(">", "&gt;")
             .replaceAll('"', "&quot;")
             .replaceAll("'", "&#039;");
+        const renderMultiline = (value) => escapeHtml(value).replace(/\n/g, "<br>");
+        const modalTitle = renderMultiline(config.modalTitle || config.title);
+        const modalDescription = renderMultiline(config.modalDescription || config.description);
+        const imageAlt = escapeHtml(config.imageAlt || "NURA 안내 이미지");
+        const ctaLabel = escapeHtml(config.ctaLabel || "자세히 보기");
 
         mount.innerHTML = `
           <div class="launch-visit-modal" role="dialog" aria-modal="true" aria-labelledby="launch-visit-modal-title">
             <div class="launch-visit-modal__dialog">
               <section class="launch-visit-modal__hero">
-                <img class="launch-visit-modal__image" src="${escapeHtml(config.image)}" alt="발사대회 전경" loading="eager" decoding="async">
+                <img class="launch-visit-modal__image" src="${escapeHtml(config.image)}" alt="${imageAlt}" loading="eager" decoding="async">
                 <div class="launch-visit-modal__hero-content">
-                  <h2 class="launch-visit-modal__title" id="launch-visit-modal-title">발사대회의 뜨거운 현장을<br>가까이서 경험해보세요</h2>
-                  <p class="launch-visit-modal__description">
-                    NURA 전국대학교로켓발사대회의 생생한 순간을 직접 참관할 수 있습니다.<br>
-                    대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.
-                  </p>
+                  <h2 class="launch-visit-modal__title" id="launch-visit-modal-title">${modalTitle}</h2>
+                  <p class="launch-visit-modal__description">${modalDescription}</p>
                   <div class="launch-visit-modal__actions">
                     <a class="launch-visit-modal__primary" href="${escapeHtml(config.href)}">
-                      <span>참관 신청하기</span>
+                      <span>${ctaLabel}</span>
                       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                         <path d="M5 12h14M13 6l6 6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>

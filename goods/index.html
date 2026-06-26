@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | NURA 굿즈 신청</title>
+    <meta name="description" content="NURA 굿즈 신청 페이지입니다. 아래 양식을 통해 NURA 굿즈 소식을 신청할 수 있습니다." />
+    <meta property="og:title" content="NURA | NURA 굿즈 신청" />
+    <meta property="og:description" content="NURA 굿즈 신청 페이지입니다. 아래 양식을 통해 NURA 굿즈 소식을 신청할 수 있습니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nura.kr/goods/" />
+    <meta property="og:image" content="https://nura.kr/source/resources/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://nura.kr/source/resources/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="NURA 로고" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://nura.kr/source/resources/og-image.jpg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <style>
+      html { scroll-behavior: smooth; }
+      html, body { background-color: #030712; overflow-x: hidden; }
+      body { font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
+      .page-shell { min-height: 100vh; }
+      .break-keep { word-break: keep-all; }
+      .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
+      @media (max-width: 430px) {
+        .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
+      }
+
+      .apply-field {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 0;
+        background: transparent;
+        padding: 0.9rem 0;
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.5;
+        outline: none;
+        transition: border-color 180ms ease;
+      }
+      .apply-field::placeholder { color: rgba(255, 255, 255, 0.34); }
+      .apply-field:focus { border-color: #60a5fa; }
+      .apply-choice input { position: absolute; opacity: 0; pointer-events: none; }
+      .apply-choice span {
+        display: flex;
+        min-height: 3.2rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.15rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 0.75rem 1.25rem;
+        color: rgba(255, 255, 255, 0.68);
+        cursor: pointer;
+        transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+      }
+      .apply-choice input:focus-visible + span { outline: 2px solid #60a5fa; outline-offset: 3px; }
+      .apply-choice input:checked + span {
+        border-color: #fff;
+        background: #fff;
+        color: #000;
+      }
+      .apply-panel[hidden] { display: none; }
+      .apply-error { color: #fca5a5; }
+      .goods-hero-image {
+        filter: blur(8px);
+        transform: scale(1.04);
+      }
+
+    </style>
+    <script src="../data/site-data.js?v=20260626-2"></script>
+    <script src="../data/shared-layout.js?v=20260530-2" defer></script>
+  </head>
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="goods" data-base-path="..">
+    <div class="page-shell flex flex-col">
+      <div data-shared-header></div>
+
+      <main class="w-full flex-1 flex flex-col bg-black">
+        
+        <section class="w-full">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12">
+            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+              <div class="max-w-5xl">
+                <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white break-keep">NURA 굿즈 사전예약</h1>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="relative border-b border-white/10 bg-black py-28 md:py-40 text-center overflow-hidden flex flex-col items-center justify-center min-h-[55vh]">
+          <div class="absolute inset-0 z-0">
+            <img src="../source/resources/og-image.jpg" alt="NURA 굿즈 이미지" class="goods-hero-image w-full h-full object-cover opacity-[0.82]" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+            <div class="absolute inset-0 bg-black/20"></div>
+          </div>
+
+          <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-white tracking-[-0.04em] mb-8 leading-tight break-keep drop-shadow-2xl">
+              NURA의 순간을<br/>일상에서 간직해보세요
+            </h2>
+            <div class="text-gray-100 text-base md:text-[17px] leading-relaxed break-keep space-y-4 max-w-2xl mx-auto drop-shadow-lg font-medium">
+              <p>NURA 굿즈를 가장 먼저 구매할 수 있습니다.</p>
+              <p>전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-black py-20 md:py-28">
+          <div class="max-w-5xl mx-auto px-4 md:px-8">
+            <div class="text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white tracking-[-0.04em] mb-6 leading-tight break-keep">
+              굿즈 사전예약 신청서 작성
+            </h2>
+            <div class="text-gray-400 text-base md:text-[17px] leading-relaxed break-keep max-w-3xl mx-auto mb-16">
+              굿즈 사전예약을 하고 싶으신 분들은 아래 폼을 작성해 주세요. 제출이 완료되면 수령하시면 됩니다.
+            </div>
+            </div>
+
+            <div id="apply-form-shell" class="mx-auto max-w-4xl border-t border-white/15 pt-8 md:pt-12">
+              <div class="mb-12 grid grid-cols-2 gap-3" aria-label="신청 단계">
+                <button type="button" class="apply-step flex items-center gap-3 border-b border-blue-400 pb-4 text-left" data-step-target="1" aria-current="step">
+                  <span class="text-sm font-medium text-white md:text-base">약관 동의</span>
+                </button>
+                <button type="button" class="apply-step flex items-center gap-3 border-b border-white/15 pb-4 text-left" data-step-target="2" disabled>
+                  <span class="text-sm font-medium text-white/45 md:text-base">사전예약 정보</span>
+                </button>
+              </div>
+
+              <form
+                id="goods-apply-form"
+                action=""
+                method="POST"
+                target="google-form-response"
+                novalidate
+              >
+                <input type="hidden" name="fvv" value="1" />
+                <input type="hidden" name="pageHistory" value="0" />
+                <input type="hidden" name="partialResponse" value='[null,null,"-4735732229389852344"]' />
+                <input type="hidden" name="fbzx" value="-4735732229389852344" />
+                <input type="hidden" name="submissionTimestamp" value="-1" />
+                <input type="hidden" name="entry.379947374_sentinel" />
+                <input type="hidden" name="entry.109305597_sentinel" />
+                <input type="hidden" name="entry.1859976833_sentinel" />
+
+                <section class="apply-panel" data-step="1" aria-labelledby="apply-step-one-title">
+                  <h3 id="apply-step-one-title" class="text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">개인정보 수집 및 이용 동의</h3>
+                  <div class="mt-8 border-y border-white/10 py-7 text-sm leading-7 text-white/55 md:px-2 md:text-base">
+                    <p>굿즈 사전예약 접수와 안내를 위해 이름, 전화번호, 이메일 주소, 소속 대학·동아리, 구매할 굿즈, 기타 문의 내용을 수집합니다.</p>
+                    <p class="mt-2">수집한 개인정보는 2027년 2월 9일까지 보유 후 파기합니다. 동의하지 않을 경우 굿즈 신청이 어렵습니다.</p>
+                    <details class="mt-4">
+                      <summary class="cursor-pointer text-white/75 underline underline-offset-4">수집·이용 상세보기</summary>
+                      <dl class="mt-4 grid gap-x-5 gap-y-2 border-t border-white/10 pt-4 sm:grid-cols-[9rem_minmax(0,1fr)]">
+                        <dt class="text-white/70">수집·이용 목적</dt>
+                        <dd>NURA 굿즈 사전예약 접수, 신청자 확인, 판매 일정·구매 안내 및 문의 응대</dd>
+                        <dt class="text-white/70">수집 항목</dt>
+                        <dd>이름, 전화번호, 이메일 주소, 소속 대학·동아리, 구매할 굿즈, 기타 문의 내용, 동의 기록 및 제출 일시</dd>
+                        <dt class="text-white/70">보유·이용 기간</dt>
+                        <dd>2027년 2월 9일까지. 관계 법령에 따라 보존할 필요가 있는 경우에는 해당 법령에서 정한 기간 동안 보존합니다.</dd>
+                        <dt class="text-white/70">동의 거부 권리</dt>
+                        <dd>동의를 거부할 수 있으나, 필수정보 수집·이용에 동의하지 않으면 굿즈 신청을 접수할 수 없습니다.</dd>
+                      </dl>
+                    </details>
+                  </div>
+
+                  <label class="mt-7 flex cursor-pointer items-start gap-3 text-sm leading-6 text-white/75 md:text-base">
+                    <input id="privacy-agreement" name="entry.379947374" type="checkbox" value="동의" required class="mt-1 h-5 w-5 shrink-0 accent-blue-500" />
+                    <span><span class="font-semibold text-white">[필수]</span> 개인정보 수집 및 이용에 동의합니다.</span>
+                  </label>
+
+                  <details class="mt-7 border-y border-white/10 py-5 text-sm leading-7 text-white/55 md:px-2 md:text-base">
+                    <summary class="cursor-pointer text-white/75 underline underline-offset-4">Google Forms 국외 이전 상세보기</summary>
+                    <dl class="mt-4 grid gap-x-5 gap-y-2 border-t border-white/10 pt-4 sm:grid-cols-[9rem_minmax(0,1fr)]">
+                      <dt class="text-white/70">이전 항목</dt><dd>위 개인정보 수집 항목 일체</dd>
+                      <dt class="text-white/70">국가·받는 자</dt><dd>미국 Google LLC. 글로벌 인프라 운영 과정에서 미국 외 국가에서도 처리될 수 있습니다.</dd>
+                      <dt class="text-white/70">시기·방법</dt><dd>신청서 제출 시 암호화된 네트워크를 통한 전송</dd>
+                      <dt class="text-white/70">목적</dt><dd>Google Forms를 이용한 신청서 접수, 저장 및 관리</dd>
+                      <dt class="text-white/70">보유 기간</dt><dd>2027년 2월 9일까지. 삭제 후에는 Google의 삭제 및 백업 정책에 따라 처리됩니다.</dd>
+                      <dt class="text-white/70">거부 권리</dt><dd>국외 이전을 거부할 수 있으나, 동의하지 않으면 온라인 신청을 접수할 수 없습니다.</dd>
+                    </dl>
+                  </details>
+
+                  <label class="mt-7 flex cursor-pointer items-start gap-3 text-sm leading-6 text-white/75 md:text-base">
+                    <input id="overseas-agreement" name="entry.109305597" type="checkbox" value="동의" required class="mt-1 h-5 w-5 shrink-0 accent-blue-500" />
+                    <span><span class="font-semibold text-white">[필수]</span> 개인정보 국외 이전에 동의합니다.</span>
+                  </label>
+                  <p class="mt-5 text-sm leading-6 text-white/50">
+                    자세한 내용은 <a href="../privacy/" target="_blank" rel="noopener noreferrer" class="text-white/75 underline underline-offset-2 transition hover:text-white">개인정보처리방침</a>에서 확인할 수 있습니다.
+                  </p>
+                  <p id="agreement-error" class="apply-error mt-3 hidden text-sm" role="alert">필수 동의 항목을 모두 확인해 주세요.</p>
+
+                  <div class="mt-12 flex justify-end">
+                    <button id="apply-next" type="button" class="group inline-flex w-full items-center justify-center gap-5 rounded-full border border-transparent bg-white px-8 py-4 text-[15px] font-semibold text-black transition hover:bg-blue-400 sm:w-auto">
+                      다음 단계
+                      <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="apply-panel" data-step="2" aria-labelledby="apply-step-two-title" hidden>
+                  <h3 id="apply-step-two-title" class="text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">굿즈 신청 정보</h3>
+
+                  <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
+                    <label>
+                      <span class="text-sm font-medium text-white/80">이름 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="text" name="entry.1313421227" autocomplete="name" placeholder="이름을 입력해 주세요" required />
+                    </label>
+                    <label>
+                      <span class="text-sm font-medium text-white/80">이메일 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="email" name="entry.1136556055" autocomplete="email" placeholder="name@example.com" required />
+                    </label>
+                    <label>
+                      <span class="text-sm font-medium text-white/80">전화번호 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="tel" name="entry.1772298509" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required />
+                    </label>
+                    <label>
+                      <span class="text-sm font-medium text-white/80">소속 대학 / 소속 동아리 <span class="text-white/35">*</span></span>
+                      <input class="apply-field" type="text" name="entry.1271099595" autocomplete="organization" placeholder="학교, 동아리 또는 단체명" required />
+                    </label>
+                  </div>
+
+                  <fieldset class="mt-10">
+                    <legend class="text-sm font-medium text-white/80">구매할 굿즈 <span class="text-white/35">*</span> <span class="ml-1 font-normal text-white/35">복수 선택 가능</span></legend>
+                    <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                      <label class="apply-choice relative"><input type="checkbox" name="entry.1859976833" value="NURA 스포츠 타월 (10,000원)" /><span>NURA 스포츠 타월 (10,000원)</span></label>
+                      <label class="apply-choice relative"><input type="checkbox" name="entry.1859976833" value="NURA 트라이탄 물병 (10,000원)" /><span>NURA 트라이탄 물병 (10,000원)</span></label>
+                      <label class="apply-choice relative"><input type="checkbox" name="entry.1859976833" value="NURA logo-wall 손수건 (5,000원)" /><span>NURA logo-wall 손수건 (5,000원)</span></label>
+                    </div>
+                  </fieldset>
+
+                  <div class="mt-8 rounded-lg border border-white/15 bg-white/[0.04] p-5 text-sm leading-7 text-white/62">
+                    <p class="font-semibold text-white">입금 안내</p>
+                    <p class="mt-2">신청서 제출 전 선택한 굿즈 금액에 맞춰 아래 계좌로 입금해 주세요.</p>
+                    <button class="mt-3 text-left text-base font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:text-blue-300" type="button" data-copy-account="국민은행 824201-00-114793" aria-label="입금 계좌 국민은행 824201-00-114793 복사">국민은행 824201-00-114793</button>
+                    <p class="text-white/50">예금주: 전국대학교로켓연합회</p>
+                  </div>
+
+                  <label class="mt-10 block">
+                    <span class="text-sm font-medium text-white/80">기타 문의 <span class="font-normal text-white/35">선택</span></span>
+                    <textarea class="apply-field min-h-32 resize-y" name="entry.1625656616" placeholder="문의 사항이 없다면 비워두셔도 됩니다"></textarea>
+                  </label>
+
+                  <p id="form-error" class="apply-error mt-5 hidden text-sm" role="alert">필수 항목을 모두 확인해 주세요.</p>
+                  <div class="mt-12 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+                    <button id="apply-prev" type="button" class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-[15px] font-semibold text-white transition hover:border-white hover:bg-white hover:text-black">
+                      ← 이전 단계
+                    </button>
+                    <button id="apply-submit" type="submit" class="group inline-flex w-full self-end items-center justify-center gap-5 rounded-full border border-transparent bg-blue-600 px-8 py-4 text-[15px] font-semibold text-white transition hover:bg-blue-500 disabled:cursor-wait disabled:opacity-60 sm:w-auto sm:self-auto">
+                      신청서 제출
+                      <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                    </button>
+                  </div>
+                </section>
+              </form>
+
+              <section id="apply-success" class="hidden py-16 text-center" tabindex="-1" aria-live="polite">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white text-2xl text-white">✓</div>
+                <h3 class="mt-7 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">신청이 접수되었습니다</h3>
+                <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/55 md:text-base">만약 전 단계에서 입금을 못하셨다면, 아래 계좌로 입금해 주세요. 학술대회에서 뵙겠습니다.</p>
+                <div class="mx-auto mt-6 max-w-md rounded-lg border border-white/15 bg-white/[0.04] px-5 py-4 text-sm leading-7 text-white/62">
+                  <button class="text-base font-semibold text-white underline decoration-white/35 underline-offset-4 transition hover:text-blue-300" type="button" data-copy-account="국민은행 824201-00-114793" aria-label="입금 계좌 국민은행 824201-00-114793 복사">국민은행 824201-00-114793</button>
+                  <p>예금주: 전국대학교로켓연합회</p>
+                </div>
+              </section>
+            </div>
+
+            <iframe name="google-form-response" id="google-form-response" title="신청서 전송 결과" class="hidden"></iframe>
+
+            <p class="mt-8 text-center text-[13px] text-gray-500 md:text-[15px]">
+              * 제출에 문제가 있을 경우
+              <a id="goods-direct-form-link"
+                 href="#"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="text-white/70 underline underline-offset-2 transition hover:text-white">
+                여기를 클릭하여 Google Form으로 직접 접속
+              </a>해 주세요.
+            </p>
+          </div>
+        </section>
+
+        <section class="bg-black py-16 md:py-24 text-center">
+          <div class="max-w-4xl mx-auto px-4 md:px-8">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="../" class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-[15px] font-semibold text-white transition hover:bg-white hover:text-black">
+                홈으로 돌아가기
+              </a>
+              <a id="goods-preview-file-link" href="../source/goods/goods-preview.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-8 py-4 text-[15px] font-semibold text-black transition hover:bg-white/85">
+                굿즈 시안 보기
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <div data-shared-footer></div>
+    </div>
+
+    <script>
+      (() => {
+        const form = document.getElementById('goods-apply-form');
+        const shell = document.getElementById('apply-form-shell');
+        const panels = Array.from(document.querySelectorAll('.apply-panel'));
+        const steps = Array.from(document.querySelectorAll('.apply-step'));
+        const agreement = document.getElementById('privacy-agreement');
+        const overseasAgreement = document.getElementById('overseas-agreement');
+        const agreementError = document.getElementById('agreement-error');
+        const formError = document.getElementById('form-error');
+        const submitButton = document.getElementById('apply-submit');
+        const responseFrame = document.getElementById('google-form-response');
+        const success = document.getElementById('apply-success');
+        const directFormLink = document.getElementById('goods-direct-form-link');
+        const previewFileLink = document.getElementById('goods-preview-file-link');
+        const goodsChoices = Array.from(form.querySelectorAll('[name="entry.1859976833"]'));
+        const goodsFormConfig = window.NURA_DATA?.goodsOrderForm || {};
+        const goodsPreviewFile = window.NURA_DATA?.goodsPreviewFile || {};
+        const isFormReady = Boolean(goodsFormConfig.enabled && goodsFormConfig.action);
+        let submitting = false;
+        const fieldLabels = {
+          "entry.379947374": "개인정보 수집 및 이용 동의",
+          "entry.109305597": "개인정보 국외 이전 동의",
+          "entry.1313421227": "이름",
+          "entry.1136556055": "이메일",
+          "entry.1772298509": "전화번호",
+          "entry.1271099595": "소속 대학 / 소속 동아리"
+        };
+
+        if (goodsFormConfig.action) form.action = goodsFormConfig.action;
+        if (goodsFormConfig.directHref) {
+          directFormLink.href = goodsFormConfig.directHref;
+        } else {
+          directFormLink.closest('p').classList.add('hidden');
+        }
+
+        if (goodsPreviewFile.href) previewFileLink.href = goodsPreviewFile.href;
+        if (goodsPreviewFile.label) previewFileLink.textContent = goodsPreviewFile.label;
+
+        const formatChoiceLabel = (value) => String(value || '').replace(/\s+\(([^)]+)\)$/, '($1)');
+
+        const syncChoiceLabels = () => {
+          goodsChoices.forEach((field) => {
+            const label = field.nextElementSibling;
+            if (!label) return;
+            label.textContent = formatChoiceLabel(field.value);
+          });
+        };
+
+        syncChoiceLabels();
+
+        const copyTextToClipboard = async (text) => {
+          if (window.navigator?.clipboard && window.isSecureContext) {
+            try {
+              await Promise.race([
+                window.navigator.clipboard.writeText(text),
+                new Promise((_, reject) => {
+                  setTimeout(() => reject(new Error('clipboard timeout')), 800);
+                })
+              ]);
+              return;
+            } catch (error) {
+              // Fall through to the textarea fallback for browsers that block clipboard writes.
+            }
+          }
+
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.top = '-9999px';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand('copy');
+          textarea.remove();
+          if (!copied) throw new Error('copy failed');
+        };
+
+        document.querySelectorAll('[data-copy-account]').forEach((button) => {
+          button.addEventListener('click', async () => {
+            const account = button.dataset.copyAccount || '';
+            if (!account) return;
+            const originalText = button.textContent || account;
+
+            try {
+              await copyTextToClipboard(account);
+              button.textContent = '복사됨';
+              setTimeout(() => {
+                button.textContent = originalText;
+              }, 1200);
+            } catch (error) {
+              button.textContent = account;
+            }
+          });
+        });
+
+        const showStep = (step) => {
+          panels.forEach((panel) => { panel.hidden = Number(panel.dataset.step) !== step; });
+          steps.forEach((item, index) => {
+            const active = index + 1 === step;
+            const label = item.querySelector('span');
+            item.classList.toggle('border-blue-400', active);
+            item.classList.toggle('border-white/15', !active);
+            label.classList.toggle('text-white', active);
+            label.classList.toggle('text-white/45', !active);
+            active ? item.setAttribute('aria-current', 'step') : item.removeAttribute('aria-current');
+          });
+          shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        const validateAgreements = () => {
+          if (!agreement.checked || !overseasAgreement.checked) {
+            agreementError.classList.remove('hidden');
+            (agreement.checked ? overseasAgreement : agreement).focus();
+            steps[1].disabled = true;
+            return false;
+          }
+          agreementError.classList.add('hidden');
+          steps[1].disabled = false;
+          return true;
+        };
+
+        const syncAgreementState = () => {
+          steps[1].disabled = !agreement.checked || !overseasAgreement.checked;
+          agreementError.classList.add('hidden');
+        };
+
+        document.getElementById('apply-next').addEventListener('click', () => {
+          if (!validateAgreements()) return;
+          showStep(2);
+          panels[1].querySelector('input').focus({ preventScroll: true });
+        });
+
+        agreement.addEventListener('change', syncAgreementState);
+        overseasAgreement.addEventListener('change', syncAgreementState);
+        document.getElementById('apply-prev').addEventListener('click', () => showStep(1));
+        steps[0].addEventListener('click', () => showStep(1));
+        steps[1].addEventListener('click', () => { if (validateAgreements()) showStep(2); });
+
+        form.addEventListener('submit', (event) => {
+          const inquiryField = form.querySelector('[name="entry.1625656616"]');
+          if (inquiryField && !inquiryField.value.trim()) inquiryField.value = '없음';
+
+          const requiredFields = Array.from(form.querySelectorAll('[required]'));
+          const invalidField = requiredFields.find((field) => !field.checkValidity());
+          const invalidGoods = !goodsChoices.some((field) => field.checked);
+          if (invalidField || invalidGoods) {
+            event.preventDefault();
+            const missingLabel = invalidField ? fieldLabels[invalidField.name] : '구매할 굿즈';
+            formError.textContent = `${missingLabel} 항목을 확인해 주세요.`;
+            formError.classList.remove('hidden');
+            (invalidField || goodsChoices[0]).focus();
+            return;
+          }
+
+          if (!isFormReady) {
+            event.preventDefault();
+            formError.textContent = '현재 굿즈 신청 폼 연결 준비 중입니다.';
+            formError.classList.remove('hidden');
+            submitButton.focus();
+            return;
+          }
+
+          formError.classList.add('hidden');
+          submitting = true;
+          submitButton.disabled = true;
+          submitButton.firstChild.textContent = '제출 중 ';
+        });
+
+        responseFrame.addEventListener('load', () => {
+          if (!submitting) return;
+          form.classList.add('hidden');
+          shell.querySelector('[aria-label="신청 단계"]').classList.add('hidden');
+          success.classList.remove('hidden');
+          success.focus({ preventScroll: true });
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        if (window.location.protocol === 'file:') {
+          form.classList.add('hidden');
+          shell.querySelector('[aria-label="신청 단계"]').classList.add('hidden');
+          success.classList.remove('hidden');
+        }
+      })();
+    </script>
+  </body>
+</html>

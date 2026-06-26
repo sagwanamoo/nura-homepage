@@ -12,15 +12,52 @@ window.NURA_DATA = {
     id: "2026-launch-visit-v2",
     enabled: true,
     // ISO 날짜를 입력하면 해당 기간에만 노출됩니다. 예: "2026-08-01T00:00:00+09:00"
-    startAt: "2026-06-08T00:00:00+09:00",
+    startAt: "2026-07-05T00:00:00+09:00",
     endAt: "2026-08-05T23:59:59+09:00",
     eyebrow: "2026 NURA LAUNCH DAY",
     title: "발사대회의 뜨거운 현장을 가까이서 경험해보세요",
+    modalTitle: "발사대회의 뜨거운 현장을\n가까이서 경험해보세요",
+    modalDescription: "NURA 전국대학교로켓발사대회의 생생한 순간을 직접 참관할 수 있습니다.\n대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.",
     description: "대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.",
     schedule: "일정 및 장소 추후 공개",
     ctaLabel: "참관 신청하기",
     href: "./activities/launch/apply/",
     image: "./source/resources/launch.jpg"
+  },
+
+  // 공개 시 enabled를 true로 변경하세요. 비공개 상태에서도 메인 주소 뒤에
+  // ?goodsModal=preview를 붙이면 미리 볼 수 있습니다.
+  goodsModal: {
+    id: "2026-nura-goods-v1",
+    enabled: true,
+    startAt: "",
+    endAt: "2026-07-04T23:59:59+09:00",
+    eyebrow: "NURA GOODS",
+    title: "NURA의 순간을\n일상에서 간직해보세요",
+    modalTitle: "NURA의 순간을\n일상에서 간직해보세요",
+    modalDescription: "NURA 굿즈를 가장 먼저 구매할 수 있습니다.\n전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.",
+    description: "전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.",
+    ctaLabel: "굿즈 사전예약하기",
+    href: "./goods/",
+    image: "./source/resources/og-image.jpg",
+    imageAlt: "NURA 굿즈 이미지"
+  },
+
+  goodsOrderForm: {
+    enabled: true,
+    action: "https://docs.google.com/forms/d/e/1FAIpQLScbcvJC2ONmzJnHai0vMUoIqKXncPruU2tEaYKL_55t9gd_1Q/formResponse",
+    directHref: "https://forms.gle/GZexh5jKRKyvbS2Q9"
+  },
+
+  goodsPreviewFile: {
+    label: "굿즈 시안 보기",
+    href: "../source/goods/goods-preview.pdf"
+  },
+
+  goodsPrices: {
+    "NURA 스포츠 타월": 10000,
+    "NURA 트라이탄 물병": 10000,
+    "NURA logo-wall 손수건": 5000
   },
 
   overviewStats: [
