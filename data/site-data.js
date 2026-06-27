@@ -35,7 +35,7 @@ window.NURA_DATA = {
     eyebrow: "NURA GOODS",
     title: "NURA의 순간을\n일상에서 간직해보세요",
     modalTitle: "NURA의 순간을\n일상에서 간직해보세요",
-    modalDescription: "NURA 굿즈를 가장 먼저 구매할 수 있습니다.\n전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.\n전국대학교로켓학술대회 현장에서 수령할 수 있습니다.",
+    modalDescription: "NURA 굿즈를 가장 먼저 구매할 수 있습니다.\n전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.\n전국대학교로켓학술대회 현장에서 수령할 수 있습니다.\n굿즈 사전예약은 NURA 구성원만을 대상으로 합니다.",
     description: "전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.",
     ctaLabel: "굿즈 사전예약하기",
     href: "./goods/",
