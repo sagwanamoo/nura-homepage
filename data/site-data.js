@@ -30,7 +30,7 @@ window.NURA_DATA = {
   goodsModal: {
     id: "2026-nura-goods-v1",
     enabled: true,
-    startAt: "",
+    startAt: "2026-06-27T18:00:00+09:00",
     endAt: "2026-07-04T23:59:59+09:00",
     eyebrow: "NURA GOODS",
     title: "NURA의 순간을\n일상에서 간직해보세요",
