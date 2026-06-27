@@ -144,7 +144,7 @@
                 novalidate
               >
                 <input type="hidden" name="fvv" value="1" />
-                <input type="hidden" name="pageHistory" value="0" />
+                <input type="hidden" name="pageHistory" value="0,1" />
                 <input type="hidden" name="partialResponse" value='[null,null,"-7154923099066428598"]' />
                 <input type="hidden" name="fbzx" value="-7154923099066428598" />
                 <input type="hidden" name="submissionTimestamp" value="-1" />
@@ -246,7 +246,7 @@
 
                   <label class="mt-10 block">
                     <span class="text-sm font-medium text-white/80">기타 문의 <span class="font-normal text-white/35">선택</span></span>
-                    <textarea class="apply-field min-h-32 resize-y" name="entry.1625656616" placeholder="문의 사항이 없다면 비워두셔도 됩니다"></textarea>
+                    <textarea class="apply-field min-h-32 resize-y" name="entry.1625656616" placeholder="문의 사항을 입력해 주세요"></textarea>
                   </label>
 
                   <p id="form-error" class="apply-error mt-5 hidden text-sm" role="alert">필수 항목을 모두 확인해 주세요.</p>
@@ -295,7 +295,7 @@
               <a href="../" class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-[15px] font-semibold text-white transition hover:bg-white hover:text-black">
                 홈으로 돌아가기
               </a>
-              <a id="goods-preview-file-link" href="../source/goods/goods-preview.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-8 py-4 text-[15px] font-semibold text-black transition hover:bg-white/85">
+              <a id="goods-preview-file-link" href="../source/goods/nura-goods-preview.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-8 py-4 text-[15px] font-semibold text-black transition hover:bg-white/85">
                 굿즈 시안 보기
               </a>
             </div>
@@ -454,9 +454,6 @@
         steps[1].addEventListener('click', () => { if (validateAgreements()) showStep(2); });
 
         form.addEventListener('submit', (event) => {
-          const inquiryField = form.querySelector('[name="entry.1625656616"]');
-          if (inquiryField && !inquiryField.value.trim()) inquiryField.value = '없음';
-
           const requiredFields = Array.from(form.querySelectorAll('[required]'));
           const invalidField = requiredFields.find((field) => !field.checkValidity());
           const invalidGoods = !goodsChoices.some((field) => field.checked);

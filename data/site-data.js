@@ -51,7 +51,7 @@ window.NURA_DATA = {
 
   goodsPreviewFile: {
     label: "굿즈 시안 보기",
-    href: "../source/goods/goods-preview.pdf"
+    href: "../source/goods/nura-goods-preview.pdf"
   },
 
   goodsPrices: {
