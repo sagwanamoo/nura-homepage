@@ -1,4 +1,6 @@
 User-agent: *
+Disallow: /goods/
+Disallow: /goods-old/
 Allow: /
 
 Sitemap: https://nura.kr/sitemap.xml

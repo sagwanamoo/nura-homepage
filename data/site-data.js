@@ -8,11 +8,46 @@ window.NURA_DATA = {
 
   // 공개 시 enabled를 true로 변경하세요. 비공개 상태에서도 메인 주소 뒤에
   // ?launchModal=preview를 붙이면 미리 볼 수 있습니다.
+  launchVisitModals: [
+    {
+      id: "2026-conference-visit-v1",
+      enabled: true,
+      startAt: "2026-07-07T00:00:00+09:00",
+      endAt: "2026-07-15T23:59:59+09:00",
+      eyebrow: "2026 NURA CONFERENCE",
+      title: "학술대회의 발표 현장을 가까이서 경험해보세요",
+      modalTitle: "학술대회의 발표 현장을\n가까이서 경험해보세요",
+      modalDescription: "NURA 전국대학교로켓학술대회의 생생한 발표 현장을 직접 참관할 수 있습니다.\n각 대학 로켓팀의 설계와 제작 과정을 공유하는 기술 교류의 장에 함께해 주세요.",
+      description: "각 대학 로켓팀의 설계와 제작 과정을 공유하는 기술 교류의 장에 함께해 주세요.",
+      schedule: "2026. 07. 18. (토) - 2026. 07. 19. (일)",
+      ctaLabel: "참관 신청하기",
+      href: "./activities/conference/apply/",
+      image: "./source/resources/conference.jpg",
+      imageAlt: "학술대회 전경"
+    },
+    {
+      id: "2026-launch-visit-v3",
+      enabled: true,
+      startAt: "2026-07-16T00:00:00+09:00",
+      endAt: "2026-08-05T23:59:59+09:00",
+      eyebrow: "2026 NURA LAUNCH DAY",
+      title: "발사대회의 뜨거운 현장을 가까이서 경험해보세요",
+      modalTitle: "발사대회의 뜨거운 현장을\n가까이서 경험해보세요",
+      modalDescription: "NURA 전국대학교로켓발사대회의 생생한 순간을 직접 참관할 수 있습니다.\n대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.",
+      description: "대학생들의 땀과 열정이 담긴 로켓이 하늘로 솟아오르는 감동을 함께 나누어보세요.",
+      schedule: "일정 및 장소 추후 공개",
+      ctaLabel: "참관 신청하기",
+      href: "./activities/launch/apply/",
+      image: "./source/resources/launch.jpg",
+      imageAlt: "발사대회 전경"
+    }
+  ],
+
   launchVisitModal: {
-    id: "2026-launch-visit-v2",
+    id: "2026-launch-visit-v3",
     enabled: true,
     // ISO 날짜를 입력하면 해당 기간에만 노출됩니다. 예: "2026-08-01T00:00:00+09:00"
-    startAt: "2026-07-05T00:00:00+09:00",
+    startAt: "2026-07-16T00:00:00+09:00",
     endAt: "2026-08-05T23:59:59+09:00",
     eyebrow: "2026 NURA LAUNCH DAY",
     title: "발사대회의 뜨거운 현장을 가까이서 경험해보세요",
@@ -25,28 +60,10 @@ window.NURA_DATA = {
     image: "./source/resources/launch.jpg"
   },
 
-  // 공개 시 enabled를 true로 변경하세요. 비공개 상태에서도 메인 주소 뒤에
-  // ?goodsModal=preview를 붙이면 미리 볼 수 있습니다.
-  goodsModal: {
-    id: "2026-nura-goods-v1",
-    enabled: true,
-    startAt: "2026-06-27T18:00:00+09:00",
-    endAt: "2026-07-04T23:59:59+09:00",
-    eyebrow: "NURA GOODS",
-    title: "NURA의 순간을\n일상에서 간직해보세요",
-    modalTitle: "NURA의 순간을\n일상에서 간직해보세요",
-    modalDescription: "NURA 굿즈를 가장 먼저 구매할 수 있습니다.\n전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.\n전국대학교로켓학술대회 현장에서 수령할 수 있습니다.\n굿즈 사전예약은 NURA 구성원만을 대상으로 합니다.",
-    description: "전국대학교로켓연합회의 로고와 학술대회의 의미를 담은 굿즈를 준비하고 있습니다.",
-    ctaLabel: "굿즈 사전예약하기",
-    href: "./goods/",
-    image: "./source/resources/og-image.jpg",
-    imageAlt: "NURA 굿즈 이미지"
-  },
-
   goodsOrderForm: {
-    enabled: true,
-    action: "https://docs.google.com/forms/d/e/1FAIpQLScbcvJC2ONmzJnHai0vMUoIqKXncPruU2tEaYKL_55t9gd_1Q/formResponse",
-    directHref: "https://forms.gle/ydbDMZ8FHPchRnPn8"
+    enabled: false,
+    action: "",
+    directHref: ""
   },
 
   goodsPreviewFile: {
@@ -55,8 +72,8 @@ window.NURA_DATA = {
   },
 
   goodsPrices: {
-    "NURA 스포츠 타월": 10000,
-    "NURA 트라이탄 물병": 10000,
+    "NURA 스포츠 타월": 4000,
+    "NURA 트라이탄 물병": 5000,
     "NURA logo-wall 손수건": 5000
   },
 

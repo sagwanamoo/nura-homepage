@@ -311,6 +311,9 @@
       .sponsor-logo:hover .kspe-logo {
         filter: brightness(0) invert(1);
       }
+      .sponsor-logo--perigee:hover img {
+        filter: brightness(0) invert(1);
+      }
       .sponsor-logo--kari {
         flex-direction: column;
         gap: 0.75rem;
@@ -772,7 +775,10 @@
             </div>
 
             <div id="sponsor-wall" class="mb-10">
-              <div class="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center">
+              <div class="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center">
+                <a href="https://www.perigee.space/" target="_blank" rel="noopener noreferrer" class="sponsor-logo sponsor-logo--perigee md:col-span-2 xl:col-span-1">
+                  <img src="source/partnership/perigee.svg" alt="페리지 에어로스페이스 로고" loading="lazy" decoding="async" style="height: 46px; width: auto;">
+                </a>
                 <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 xl:col-span-1">
                   <img src="source/partnership/koreanair.svg" alt="대한항공 로고" loading="lazy" decoding="async" style="height: 40px; width: auto;">
                 </a>
@@ -782,10 +788,10 @@
                 <a href="http://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 xl:col-span-1">
                   <img src="source/partnership/ligpoongsan-transparent.png" alt="LIG풍산 로고" loading="lazy" decoding="async" style="height: 44px; width: auto;">
                 </a>
-                <a href="http://www.pdk.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 md:col-start-2 xl:col-span-1 xl:col-start-auto">
+                <a href="http://www.pdk.co.kr" target="_blank" rel="noopener noreferrer" class="sponsor-logo md:col-span-2 xl:col-span-1">
                   <img src="source/partnership/pdk.png" alt="PDK 로고" loading="lazy" decoding="async" style="height: 100px; width: auto; transform: scale(1.4);">
                 </a>
-                <a href="https://www.dacc21.com/" target="_blank" rel="noopener noreferrer" class="sponsor-logo sponsor-logo--dacc-carbon col-span-2 md:col-span-2 md:col-start-4 xl:col-span-1 xl:col-start-auto">
+                <a href="https://www.dacc21.com/" target="_blank" rel="noopener noreferrer" class="sponsor-logo sponsor-logo--dacc-carbon md:col-span-2 xl:col-span-1">
                   <img class="dacc-carbon-logo" src="source/partnership/dacc-carbon.png" alt="데크카본 로고" loading="lazy" decoding="async">
                 </a>
               </div>
@@ -837,9 +843,8 @@
         if (!mount) return;
 
         const params = new URLSearchParams(window.location.search);
-        const isGoodsPreview = params.get("goodsModal") === "preview" || params.get("goodsBanner") === "preview";
         const isLaunchPreview = params.get("launchModal") === "preview" || params.get("launchBanner") === "preview";
-        const isPreview = isGoodsPreview || isLaunchPreview;
+        const isPreview = isLaunchPreview;
         const now = Date.now();
         const isScheduled = (item) => {
           const startsAt = item?.startAt ? Date.parse(item.startAt) : null;
@@ -853,11 +858,12 @@
           const snoozedUntil = Number(localStorage.getItem(snoozeStorageKey)) || 0;
           return snoozedUntil > now || sessionStorage.getItem(sessionStorageKey) === "true";
         };
-        const config = isGoodsPreview
-          ? data.goodsModal
-          : isLaunchPreview
-            ? data.launchVisitModal
-            : [data.goodsModal, data.launchVisitModal].find((item) => item?.enabled && isScheduled(item) && !isDismissed(item));
+        const modalItems = Array.isArray(data.launchVisitModals)
+          ? data.launchVisitModals
+          : [data.launchVisitModal].filter(Boolean);
+        const config = isLaunchPreview
+          ? (data.launchVisitModal || modalItems[0])
+          : modalItems.find((item) => item?.enabled && isScheduled(item) && !isDismissed(item));
         if (!config || !mount) return;
 
         const startsAt = config.startAt ? Date.parse(config.startAt) : null;

@@ -1369,7 +1369,9 @@
           }
         });
 
-        const highlightedMacroRegionId = hoveredMacroRegionId;
+        const highlightedMacroRegionId = hoveredMacroRegionId || (
+          isMobileMapInteraction() && isRegionPanelOpen ? activeMacroRegionId : null
+        );
 
         provinceNodes.forEach((provinceNode) => {
           const visualState = provinceNode.id === hoveredProvinceId
@@ -1524,7 +1526,7 @@
         syncActiveState();
       };
 
-      const isMobileMapInteraction = () => window.matchMedia('(pointer: coarse), (max-width: 767px)').matches;
+      const isMobileMapInteraction = () => window.matchMedia('(pointer: coarse), (max-width: 1023px)').matches;
 
       const updateMapViewBoxForMobile = () => {
         if (!svgRootNode || !provinceNodes.length) return;
